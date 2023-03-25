@@ -1,0 +1,107 @@
+/*
+   CS/ECE 552 Spring '23
+  
+   Filename        : decode.v
+   Description     : This is the module for the overall decode stage of the processor.
+*/
+`default_nettype none
+module decode (		//	INPUTS
+					clk,
+					rst,
+					instr, 
+					currPC,
+					newPC,
+					writeback_data, 
+					
+					//	CONTROL UNIT DECODE OUTPUTS
+					HALT,  
+					Jump,
+					isIType1,
+					SignExtend,
+					JR,
+					// JAL,
+					Branch, 
+					MemToReg, 
+					MemRead, 
+					MemWrite, 
+					ALU_op, 
+					Branch_Op,
+					ALUsrc, 
+					// RegWrite,
+					// RegDist,
+					
+					//	REGISTER OUTPUTS
+					ALU_input_A,
+					read_data_1,
+					read_data_2,
+					
+					// EXECUTE STAGE INPUTS
+					exec_Instr);
+					
+// Inputs:
+//	1. Instruction [15:0]
+//	2. Current PC
+//	3. Incremented PC (PC+2)
+//	4. Write Back for Write Data
+// clk, rst (for regfile)
+
+input clk, rst;
+input [15:0] instr, currPC, newPC, writeback_data;
+
+output Halt, Jump, isIType1, SignExtend, JR, Branch, 
+	MemToReg, MemRead, MemWrite,
+	ALU_op, Branch_Op, ALUSrc;
+
+output [15:0] ALU_input_A, read_data_1, read_data_2, exec_instruction;
+
+wire JAL, RegWrite, RegDist, err;
+
+wire [2:0] write_reg_sel, write_data, rd;
+
+
+
+//	Control Unit: JAE
+// 	Case statement for all the ISA
+// 	Outputs of Control Unit:
+//		1.	isNotHALT
+//		2.	isJump
+//		3.	isIType1
+//		4.	isSignExtend
+//		5.	isJR
+//		6.	isJAL
+//		7.	isBranch
+//		8.	MemToReg
+//		9.	MemRead
+//		10.	MemWrite
+//		11.	ALU_op
+//		12. branch_op
+//		13. ALU_src
+//		14. RegWrite
+//		15.	RegDist
+
+control CONTROL_Unit(.instr(inst),
+	.isNotHalt(~Halt), .isJump(Jump), .isIType1(isIType1), 
+	.isSignExtend(SignExtend), .isJR(JR), .isJAL(JAL), .isBranch(Branch), 
+	.memToReg(MemToReg), .memRead(MemRead), .memWrite(MemWrite), 
+	.ALU_op(ALU_op), .branch_op(Branch_Op), .ALU_src(ALUSrc), 
+	.RegWrite(RegWrite), .RegDist(RegDist));
+
+//	Write Reg Select Mux
+mux2_1 RD_MUX[3:0] (.out(rd), .inputA(instr[10:8]), .inputB(instr[4:2]), .sel(RegDist));
+mux2_1 WRITE_REG_SEL_MUX[3:0] (.out(write_reg_sel), .inputA(rd), .inputB(3'd7), .sel(JAL));
+
+//	Write Data
+mux2_1 WRITE_DATA_MUX[15:0] (.out(write_data), .inputA(writeback_data), .inputB(newPC), .sel(JAL));
+
+//	Register File
+rf_bypass REGISTER(.read1OutData(read_data_1), .read2OutData(read_data_2), 
+	.err(err), .clk(clk), .rst(rst), .read1RegSel(instr[10:8]), .read2RegSel(instr[7:5]), 
+	.writeRegSel(write_reg_sel), .writeInData(write_data), .writeEn(RegWrite));
+
+
+
+
+   // TODO: Your code here
+   
+endmodule
+`default_nettype wire
