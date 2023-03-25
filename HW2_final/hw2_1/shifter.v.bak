@@ -1,0 +1,68 @@
+/*
+    CS/ECE 552 Spring '23
+    Homework #2, Problem 1
+    
+    A barrel shifter module.  It is designed to shift a number via rotate
+    left, shift left, shift right arithmetic, or shift right logical based
+    on the 'Oper' value that is passed in.  It uses these
+    shifts to shift the value any number of bits.
+ */
+`default_nettype none
+module shifter (InBS, ShAmt, ShiftOper, OutBS);
+
+    // declare constant for size of inputs, outputs, and # bits to shift
+    parameter OPERAND_WIDTH = 16;
+    parameter SHAMT_WIDTH   =  4;
+    parameter NUM_OPERATIONS = 2;
+
+    input wire [OPERAND_WIDTH -1:0] InBS;  // Input operand
+    input wire [SHAMT_WIDTH   -1:0] ShAmt; // Amount to shift/rotate
+    input wire [NUM_OPERATIONS-1:0] ShiftOper;  // Operation type
+    output wire [OPERAND_WIDTH -1:0] OutBS;  // Result of shift/rotate
+
+	reg [15:0] shiftIntermediate1;
+	reg [15:0] shiftIntermediate2;
+	reg [15:0] shiftIntermediate3;
+	reg [15:0] shiftIntermediate4;
+   /* YOUR CODE HERE */
+   
+   assign OutBS = shiftIntermediate4;
+   always @(*)	begin
+		case (ShiftOper)
+			// shift left
+			2'b00: begin
+				shiftIntermediate1 = ShAmt[0] == 1 ? InBS << 1 : InBS;
+				shiftIntermediate2 = ShAmt[1] == 1 ? shiftIntermediate1 << 2 : shiftIntermediate1;
+				shiftIntermediate3 = ShAmt[2] == 1 ? shiftIntermediate2 << 4 : shiftIntermediate2;
+				shiftIntermediate4 = ShAmt[3] == 1 ? shiftIntermediate3 << 8 : shiftIntermediate3;
+			end
+			
+			// shift right logical
+			2'b01: begin
+				shiftIntermediate1 = ShAmt[0] == 1 ? InBS >> 1 : InBS;
+				shiftIntermediate2 = ShAmt[1] == 1 ? shiftIntermediate1 >> 2 : shiftIntermediate1;
+				shiftIntermediate3 = ShAmt[2] == 1 ? shiftIntermediate2 >> 4 : shiftIntermediate2;
+				shiftIntermediate4 = ShAmt[3] == 1 ? shiftIntermediate3 >> 8 : shiftIntermediate3;
+			end
+			
+			// rotate left
+			2'b10: begin
+				shiftIntermediate1 = ShAmt[0] == 1 ? {InBS[14:0], InBS[15]} : InBS;
+				shiftIntermediate2 = ShAmt[1] == 1 ? {shiftIntermediate1[13:0], shiftIntermediate1[15:14]} : shiftIntermediate1;
+				shiftIntermediate3 = ShAmt[2] == 1 ? {shiftIntermediate2[11:0], shiftIntermediate2[15:12]} : shiftIntermediate2;
+				shiftIntermediate4 = ShAmt[3] == 1 ? {shiftIntermediate3[7:0], shiftIntermediate3[15:8]} : shiftIntermediate3;
+			end
+			
+			// shift right arithmetic
+			2'b11: begin
+				shiftIntermediate1 = ShAmt[0] == 1 ? {InBS[15], InBS[15:1]} : InBS;
+				shiftIntermediate2 = ShAmt[1] == 1 ? {{2{shiftIntermediate1[15]}}, shiftIntermediate1[15:2]} : shiftIntermediate1;
+				shiftIntermediate3 = ShAmt[2] == 1 ? {{4{shiftIntermediate2[15]}}, shiftIntermediate2[15:4]} : shiftIntermediate2;
+				shiftIntermediate4 = ShAmt[3] == 1 ? {{8{shiftIntermediate3[15]}}, shiftIntermediate3[15:8]} : shiftIntermediate3;
+			end
+
+		endcase
+	end
+  
+endmodule
+

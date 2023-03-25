@@ -1,0 +1,26 @@
+/*
+    CS/ECE 552 Spring '23
+    Homework #1, Problem 2
+    
+    a 16-bit CLA module
+*/
+`default_nettype none
+module cla16b(sum, cOut, inA, inB, cIn);
+
+    // declare constant for size of inputs, outputs (N)
+    parameter   N = 16;
+
+    output wire [N-1:0] sum;
+    output wire         cOut;
+    input wire [N-1: 0] inA, inB;
+    input wire          cIn;
+
+    // YOUR CODE HERE
+ wire carry1, carry2, carry3;
+    cla_4b iDUT0(.sum(sum[3:0]), .cOut(carry1), .inA(a[3:0]), .b(b[3:0]), .c_in(c_in));
+    cla_4b iDUT1(.sum(sum[7:4]), .cOut(carry2), .a(a[7:4]), .b(b[7:4]), .c_in(carry1));
+    cla_4b iDUT2(.sum(sum[11:8]), .cOut(carry3), .a(a[11:8]), .b(b[11:8]), .c_in(carry2));
+    cla_4b iDUT3(.sum(sum[15:12]), .cOut(c_out), .a(a[15:12]), .b(b[15:12]), .c_in(carry3));
+
+endmodule
+`default_nettype wire

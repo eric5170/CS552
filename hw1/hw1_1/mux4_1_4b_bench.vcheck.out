@@ -1,0 +1,10 @@
+Line 30: Bad keyword initial
+Line 32: begin without always/case
+Line 46: Bad keyword posedge
+Line 46: Always without case(x)
+Line 55: Bad keyword negedge
+Line 63: Bad keyword if
+Line 65: Bad keyword if
+Line 67: Bad keyword if
+Line 69: Bad keyword if
+End of file /home/yeonc/private/CS552/HW1/hw1_1/mux4_1_4b_bench.v. Hash = -1638931898
