@@ -1,0 +1,14 @@
+Line 23: Bad keyword integer
+Line 24: Bad keyword integer
+Line 51: Bad keyword initial
+Line 52: begin without always/case
+Line 70: Bad keyword posedge
+Line 88: Bad keyword if
+Line 105: Bad keyword if
+Line 111: Bad keyword if
+Line 115: Bad keyword if
+Line 120: Bad keyword if
+Line 121: Bad keyword if
+Line 124: Bad keyword else
+Line 70: Always without case(x)
+End of file /home/yeonc/private/CS552/hw3/hw3_2/tb_rf_bypass_hier.v. Hash = -637683725
