@@ -1,39 +1,21 @@
 /*
-   CS/ECE 552 Spring '20
+   CS/ECE 552 Spring '22
   
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch 	(
-						clk,
-						rst,
-						currPC,
-						nextPC,
-						instruction
-					);
+`default_nettype none
+module fetch (clk, rst, currPC, nextPC, instr);
 
-input clk, rst;
-input [15:0] currPC;
-output [15:0] nextPC, instruction;
-
-// Get instruction from INSTRUCTION MEMORY
-// Perform PC increment logic
-// Take care of HALT and NOP
-//	Dump data mem for halt
+input wire clk, rst;
+input  wire [15:0] currPC;
+output wire [15:0] nextPC, instr;
    
-// get instr from mem
-memory2c INSTR_MEM(
-				.data_out(instruction), 
-				.data_in(16'h0),  
-				.addr(currPC),  
-				.enable(1'b1),				// ???? how do we know?
-				.wr(1'b0),  
-				.createdump(1'b0),  		// ???? HALT
-				.clk(clk),  
-				.rst(rst)
-			);
+// instruction from memory using memory2c
+memory2c iMEM(.data_out(instr), .data_in(16'h0), .addr(currPC), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
-// Add 2 to curr address to create new addr
+// increment PC to PC+2 for the nextPC
 cla_16b ADDER(.A(currPC), .B(16'h2), .C_in(1'b0),.S(nextPC), .C_out());
 
 endmodule
+`default_nettype wire
