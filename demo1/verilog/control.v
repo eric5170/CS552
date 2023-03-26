@@ -1,23 +1,48 @@
 /*
-   CS/ECE 552 Spring '22
+   CS/ECE 552 Spring '23
   
    Filename        : control.v
    Description     : This is the module for the overall control unit of the decode stage of the processor.
 */
 `default_nettype none
-module control (instr,isNotHalt,isJump,isIType1,isSignExtend, isJR, isJAL, isBranch, memToReg,memRead, memWrite, ALU_op, branch_op, ALU_src, RegWrite, RegDist);
+module control (instr,isNotHalt, isNOP, isType, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, ALU_Op, isMemWrite, ALU_src, isRegWrite);
 
 // instruction received
 input wire [15:0] instr;
 
 // control signals that result from the instruction
-output wire isNotHalt, isJump,isIType1,isSignExtend, isJR, isJAL, isBranch, memToReg,memRead, memWrite, branch_op, ALU_src, RegWrite, RegDist;
-output wire [3:0] ALU_op;
+output wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite, ALU_src, isRegWrite;
+output wire [1:0] isType;
+output wire [3:0] ALU_Op;
 
-// operations
+// control signals in process
+reg isNotHalt_reg, isNOP_reg, isJAL_reg, isJR_reg, isJump_reg, isBranch_reg, isMemToReg_reg, isMemRead_reg, isMemWrite_reg, ALU_src_reg, isRegWrite_reg;
+reg [1:0] isType_reg;
+reg [3:0] ALU_Op_reg;
+
+// control signals at the end of process
+assign isNotHalt = isNotHalt_reg;
+assign isNOP = isNOP_reg;
+assign isType = isType_reg;
+assign isJAL = isJAL_reg;
+assign isJR = isJR_reg;
+assign isJump = isJump_reg;
+assign isBranch = isBranch_reg;
+assign isMemToReg = isMemToReg_reg;
+assign isMemRead = isMemRead_reg;
+assign isMemWrite = isMemWrite_reg;
+assign ALU_src = ALU_src_reg;
+assign ALU_Op = ALU_Op_reg;
+assign isRegWrite = isRegWrite_reg;
+
+// instruction opcode
 wire [4:0] opcode;
+// func determines which operation to do
 wire [1:0] func;
-reg [3:0] aluOp;
+
+// aluOp = ALU_1: ADD,SUB...
+reg [3:0] addOp;
+// rotOp = ALU_2: SLL, SRL...
 reg [3:0] rotOp;
 
 assign opcode = instr[15:11];
@@ -36,17 +61,16 @@ localparam	ST 			= 5'b10000;
 localparam 	LD 			= 5'b10001; 
 localparam	STU 		= 5'b10011; 
 
-//R format
+// R-format 
+
 localparam 	BTR 		= 5'b11001; 
 
-//ALU for simple math
 localparam	ALU_1 		= 5'b11011; 
 localparam 	ADD 		= 2'b00; 
 localparam 	SUB 		= 2'b01;
 localparam 	XOR 		= 2'b10;
 localparam 	ANDN 		= 2'b11;
 
-//ALU for shft/rot
 localparam	ALU_2 		= 5'b11010; 
 localparam 	SLL 		= 2'b00;
 localparam 	SRL 		= 2'b01;
@@ -78,21 +102,498 @@ localparam 	NOP 		= 5'b00001;
 localparam 	NOP_RTI 	= 5'b00011;
 localparam 	HALT 		= 5'b00000;
 
-//using case statement to set control signals for each of the instructions above
-always @(opcode) begin
-   deafult:
-	isNotHalt = 1'b1;
-	isJump = 1'b0;
-	isIType1 = 1'b0;
-	isSignExtend = 1'b0;
-	isJR = 1'b0;
-	isJAL = 1'b0;
-	isBranch = 1'b0;
-	memToReg = 1'b0;
-	memRead = 1'b0;
-	memWrite = 1'b0;
-    ALU_op = 1'b0; //whether it's ALU_1 or ALU_2
-   //TODO: work on this.
+//ALU operation logic
+always@(*) begin
+	case(func)
+		2'b00: begin
+			addOp = 4'h0; //ADD
+			rotOp = 4'h4; //SLL
+		end
+		2'b01: begin
+			addOp = 4'h1; //SUB
+			rotOp = 4'h5; //SRL
+		end
+		2'b10: begin
+			addOp = 4'h7; //XOR
+			rotOp = 4'h2; //ROL
+		end
+		2'b11: begin
+			addOp = 4'hD; //ANDN
+			rotOp = 4'h3; //ROR
+		end
+	endcase
+end
+
+always @(*) begin
+	case(opcode)
+		HALT: begin
+			isNotHalt_reg = 0;
+			isNOP_reg = 0;
+			isType_reg = 0;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		NOP: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 1;
+			isType_reg = 0;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		J: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 0;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 1;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		JAL: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 0;
+			isJAL_reg = 1;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		ADDI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd0;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		SUBI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd1;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		XORI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd7;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		ANDNI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		
+		ROLI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd2;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		SLLI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd4;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		RORI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd3;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		SRLI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd5;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		ST: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 1;
+			ALU_Op_reg = 4'd0;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 0;
+		end
+		LD: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd0;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		STU: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1; //I-1
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 1;
+			ALU_Op_reg = 4'd0;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		LBI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2; //I-2
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'hE;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		SLBI: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'hC;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		JR: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2;
+			isJAL_reg = 0;
+			isJR_reg = 1;
+			isJump_reg = 1;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		JALR: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2;
+			isJAL_reg = 1;
+			isJR_reg = 1;
+			isJump_reg = 1;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		BEQZ: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2; 
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 1;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		BNEZ: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 1;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		BLTZ: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 1;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		BGEZ: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 2;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 1;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+		BTR: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 6;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		ALU_1: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = addOp;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		ALU_2: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = rotOp;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		SEQ: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd8;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		SLT: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd9;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		SLE: begin	
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'hA;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 1;
+		end
+		SCO: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 3;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'hB;
+			ALU_src_reg = 1;
+			isRegWrite_reg = 1;
+		end
+		default: begin
+			isNotHalt_reg = 1;
+			isNOP_reg = 0;
+			isType_reg = 1;
+			isJAL_reg = 0;
+			isJR_reg = 0;
+			isJump_reg = 0;
+			isBranch_reg = 0;
+			isMemToReg_reg = 0;
+			isMemRead_reg = 0;
+			isMemWrite_reg = 0;
+			ALU_Op_reg = 4'd0;
+			ALU_src_reg = 0;
+			isRegWrite_reg = 0;
+		end
+	endcase
+end
    
 endmodule
 `default_nettype wire
