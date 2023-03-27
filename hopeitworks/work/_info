@@ -1,0 +1,1138 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/yeonc/private/CS552/project/demo1/demo_al/wat
+valu
+Z0 !s110 1679938466
+!i10b 1
+!s100 6zIWjc8>eIgF?>F5FG9_20
+Id::e<UEKEWk;E<9Tcz@2A1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 d/home/yeonc/private/CS552/project/demo1/demo_final
+Z3 w1679819625
+8/home/yeonc/private/CS552/project/demo1/demo_final/alu.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/alu.v
+Z4 L0 12
+Z5 OP;L;10.7c;67
+r1
+!s85 0
+31
+!s108 1679938465.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/alu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/alu.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+valu_optimal
+R0
+!i10b 1
+!s100 W699hSL;L6M=fS`?TQUS<3
+I:K=:^E=dOL<19Nzd=b_3h0
+R1
+R2
+w1679938094
+8/home/yeonc/private/CS552/project/demo1/demo_final/alu_optimal.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/alu_optimal.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1679938466.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/alu_optimal.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/alu_optimal.v|
+!i113 1
+R6
+R7
+vand2
+Z8 !s110 1679938467
+!i10b 1
+!s100 P^Ylg`_<T`bkH`V[lCZAk2
+IWIkg2RcdCKEW2@mdN5T2O2
+R1
+R2
+Z9 w1679815229
+8/home/yeonc/private/CS552/project/demo1/demo_final/and2.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/and2.v
+L0 8
+R5
+r1
+!s85 0
+31
+Z10 !s108 1679938467.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/and2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/and2.v|
+!i113 1
+R6
+R7
+vand3
+R8
+!i10b 1
+!s100 ^BjbfQjB<OcKG>d25TGjJ1
+IMATid5;O2n@a;k[4d3zJY0
+R1
+R2
+R9
+8/home/yeonc/private/CS552/project/demo1/demo_final/and3.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/and3.v
+L0 8
+R5
+r1
+!s85 0
+31
+R10
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/and3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/and3.v|
+!i113 1
+R6
+R7
+vbranch_ALU
+R8
+!i10b 1
+!s100 VlK:PQ4Y3R]HafjmL4?f61
+I5adNEA^_@ARV9854hSaSM3
+R1
+R2
+R3
+8/home/yeonc/private/CS552/project/demo1/demo_final/branch_ALU.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/branch_ALU.v
+L0 3
+R5
+r1
+!s85 0
+31
+R10
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/branch_ALU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/branch_ALU.v|
+!i113 1
+R6
+R7
+nbranch_@a@l@u
+vbranch_jump
+R8
+!i10b 1
+!s100 JEihOcDJDXNCGG=gcGS`b3
+IefPO2GU95G^oU:9BPo>M<3
+R1
+R2
+w1679938127
+Z11 8/home/yeonc/private/CS552/project/demo1/demo_final/branch_jump.v
+Z12 F/home/yeonc/private/CS552/project/demo1/demo_final/branch_jump.v
+L0 1
+R5
+r1
+!s85 0
+31
+R10
+Z13 !s107 /home/yeonc/private/CS552/project/demo1/demo_final/branch_jump.v|
+Z14 !s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/branch_jump.v|
+!i113 1
+R6
+R7
+vbtr
+Z15 !s110 1679938468
+!i10b 1
+!s100 llQkz>mbb25gU3Bk^lVlV3
+IQ2nzEg8inQ;=]_HR?3F?_3
+R1
+R2
+R3
+8/home/yeonc/private/CS552/project/demo1/demo_final/btr.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/btr.v
+L0 1
+R5
+r1
+!s85 0
+31
+Z16 !s108 1679938468.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/btr.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/btr.v|
+!i113 1
+R6
+R7
+vcla16b
+R15
+!i10b 1
+!s100 IaVG?;aEa9D9`0PUoDg0I1
+I5U5YMVK]cT?97=JZ9M_<@1
+R1
+R2
+Z17 w1679815230
+8/home/yeonc/private/CS552/project/demo1/demo_final/cla16b.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/cla16b.v
+L0 8
+R5
+r1
+!s85 0
+31
+R16
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/cla16b.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/cla16b.v|
+!i113 1
+R6
+R7
+vcla4b
+R15
+!i10b 1
+!s100 QAfCh8oF=<6>N;0z`]19`0
+IDznh=?iB1<lZ9d;5l3U`G0
+R1
+R2
+w1679894482
+8/home/yeonc/private/CS552/project/demo1/demo_final/cla4b.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/cla4b.v
+L0 8
+R5
+r1
+!s85 0
+31
+R16
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/cla4b.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/cla4b.v|
+!i113 1
+R6
+R7
+vclkrst
+Z18 !s110 1679938469
+!i10b 1
+!s100 ZzzHl;B1mbcM<UZQX`N5V1
+I3D67]OYciXP2gBb5>AH[]1
+R1
+R2
+Z19 w1679819626
+8/home/yeonc/private/CS552/project/demo1/demo_final/clkrst.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/clkrst.v
+R4
+R5
+r1
+!s85 0
+31
+R16
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/clkrst.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/clkrst.v|
+!i113 1
+R6
+R7
+vcontrol_unit
+Z20 !s110 1679942705
+!i10b 1
+!s100 2Rm_L=??zCzIP`LT;1bBc3
+I1VFhn@LVFc_QLdZijj7B:3
+R1
+R2
+w1679942098
+8/home/yeonc/private/CS552/project/demo1/demo_final/control_unit.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/control_unit.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1679942704.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/control_unit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/control_unit.v|
+!i113 1
+R6
+R7
+vdecode
+!s110 1679948264
+!i10b 1
+!s100 OihW4C1blGI5Oc4WUNn;Y3
+I>R<E1S^=2gmMLOj<Dnj6f3
+R1
+R2
+w1679948112
+8/home/yeonc/private/CS552/project/demo1/demo_final/decode.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/decode.v
+L0 7
+R5
+r1
+!s85 0
+31
+!s108 1679948261.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/decode.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/decode.v|
+!i113 1
+R6
+R7
+vdff
+R18
+!i10b 1
+!s100 YVYPgX10jcD@:7eFEVS1<3
+IE]WZ:zALG6ISaIEzoiHj:1
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/dff.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/dff.v
+L0 6
+R5
+r1
+!s85 0
+31
+!s108 1679938469.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/dff.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/dff.v|
+!i113 1
+R6
+R7
+vexecute
+R20
+!i10b 1
+!s100 D4RElF]Y:N4CoIHM39KKL0
+IgM;YLaE]nGO5V]bZnV7^71
+R1
+R2
+w1679942221
+8/home/yeonc/private/CS552/project/demo1/demo_final/execute.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/execute.v
+L0 22
+R5
+r1
+!s85 0
+31
+!s108 1679942705.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/execute.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/execute.v|
+!i113 1
+R6
+R7
+vextension_unit
+Z21 !s110 1679938470
+!i10b 1
+!s100 M>IcO`=@kLZBnAXYA7ATg0
+IeGV7UCVYOYXX40Z^OJ9>U3
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/extension_unit.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/extension_unit.v
+L0 1
+R5
+r1
+!s85 0
+31
+Z22 !s108 1679938470.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/extension_unit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/extension_unit.v|
+!i113 1
+R6
+R7
+vfetch
+Z23 !s110 1679948265
+!i10b 1
+!s100 YbaYdEVijl1O@zlecAkMf1
+I8eH8>DSV8OM^T1zf^>Y]11
+R1
+R2
+w1679948065
+8/home/yeonc/private/CS552/project/demo1/demo_final/fetch.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/fetch.v
+L0 7
+R5
+r1
+!s85 0
+31
+Z24 !s108 1679948265.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/fetch.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/fetch.v|
+!i113 1
+R6
+R7
+vfullAdder1b
+R21
+!i10b 1
+!s100 gc_6Oj2;4eK0D5L:]MzNM3
+IWMfkcA]]iUmk7Q:<[Bd>B3
+R1
+R2
+w1679894251
+8/home/yeonc/private/CS552/project/demo1/demo_final/fullAdder1b.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/fullAdder1b.v
+L0 8
+R5
+r1
+!s85 0
+31
+R22
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/fullAdder1b.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/fullAdder1b.v|
+!i113 1
+R6
+R7
+nfull@adder1b
+vfullAdder_1b
+Z25 !s110 1679938471
+!i10b 1
+!s100 MAZ^^HjW<6W1gSmV]92<c0
+IgoF0Ih>nn4;Mz6UWQhV7C1
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/fullAdder_1b.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/fullAdder_1b.v
+L0 7
+R5
+r1
+!s85 0
+31
+Z26 !s108 1679938471.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/fullAdder_1b.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/fullAdder_1b.v|
+!i113 1
+R6
+R7
+nfull@adder_1b
+vinstr_decode
+!s110 1679946849
+!i10b 1
+!s100 S3VD0H?KJHePe6>nS6o>`2
+Ihn6cO9L2B5O^lQaI161`o0
+R1
+R2
+w1679946487
+8/home/yeonc/private/CS552/project/demo1/demo_final/instr_decode.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/instr_decode.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1679946849.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/instr_decode.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/instr_decode.v|
+!i113 1
+R6
+R7
+vinstruction_decode
+R25
+!i10b 1
+!s100 l:LJoncn]EZ<]PX^@Oe052
+I@aPSkgbFEO:2g`_2EZWYU3
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/instruction_decode.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/instruction_decode.v
+L0 1
+R5
+r1
+!s85 0
+31
+R26
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/instruction_decode.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/instruction_decode.v|
+!i113 1
+R6
+R7
+visBranch_ALU
+!s110 1679945905
+!i10b 1
+!s100 Xc[kc9iKU<4<7FgR[@UFQ3
+I`^`0EV7[0QNig<gC>YV8_3
+R1
+R2
+w1679943516
+8/home/yeonc/private/CS552/project/demo1/demo_final/isBranch_ALU.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/isBranch_ALU.v
+L0 3
+R5
+r1
+!s85 0
+31
+!s108 1679945905.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/isBranch_ALU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/isBranch_ALU.v|
+!i113 1
+R6
+R7
+nis@branch_@a@l@u
+visBranch_isJump
+!s110 1679943465
+!i10b 1
+!s100 YdzH7o7iC0<X3NNl080173
+I`?ooTmU:;CHT_Dg^X:lWK2
+R1
+R2
+w1679943459
+R11
+R12
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1679943464.000000
+R13
+R14
+!i113 1
+R6
+R7
+nis@branch_is@jump
+visBranch_Jump
+Z27 !s110 1679948267
+!i10b 1
+!s100 IP[E?CP@POG^ecjLNA6WT3
+I::[IgVGJ421bPeod0;HMn3
+R1
+R2
+w1679947892
+8/home/yeonc/private/CS552/project/demo1/demo_final/isBranch_jump.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/isBranch_jump.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1679948267.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/isBranch_jump.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/isBranch_jump.v|
+!i113 1
+R6
+R7
+nis@branch_@jump
+vmemory
+R23
+!i10b 1
+!s100 Zk?9c<Q0z`lW?aDzal4H[0
+Il:XBgn3zR;CVEm<oCPb[T1
+R1
+R2
+w1679947660
+8/home/yeonc/private/CS552/project/demo1/demo_final/memory.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/memory.v
+L0 9
+R5
+r1
+!s85 0
+31
+R24
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/memory.v|
+!i113 1
+R6
+R7
+vmemory2c
+Z28 !s110 1679938472
+!i10b 1
+!s100 mBla:Z3FU]LZ9QoAFNKak1
+I@1XUA`35c2mJUj<ULb50`0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/memory2c.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/memory2c.v
+L0 35
+R5
+r1
+!s85 0
+31
+Z29 !s108 1679938472.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/memory2c.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/memory2c.v|
+!i113 1
+R6
+R7
+vmux2_1
+R28
+!i10b 1
+!s100 iT0j=d@68C2Vo;2?GYkzA3
+IMWijBonm`77`dUzXk?Ucj0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/mux2_1.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/mux2_1.v
+L0 7
+R5
+r1
+!s85 0
+31
+R29
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/mux2_1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/mux2_1.v|
+!i113 1
+R6
+R7
+vmux4_1
+R28
+!i10b 1
+!s100 zQN72JU<G;_USLVNR@==W2
+IEVY]:01fmIEVdmVFmWHEl1
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/mux4_1.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/mux4_1.v
+L0 7
+R5
+r1
+!s85 0
+31
+R29
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/mux4_1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/mux4_1.v|
+!i113 1
+R6
+R7
+vnand2
+Z30 !s110 1679938473
+!i10b 1
+!s100 Q>o694DW2Ab[kzXTIDbc<3
+ICg^B`G5<YnV>R]fWV8MPQ1
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/nand2.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/nand2.v
+L0 7
+R5
+r1
+!s85 0
+31
+Z31 !s108 1679938473.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/nand2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/nand2.v|
+!i113 1
+R6
+R7
+vnand3
+R30
+!i10b 1
+!s100 zBE_]imGj0lgW3gk1<obB3
+Ig[l?gcz;ekPS[4EF<ccF^3
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/nand3.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/nand3.v
+L0 7
+R5
+r1
+!s85 0
+31
+R31
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/nand3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/nand3.v|
+!i113 1
+R6
+R7
+vnor2
+R30
+!i10b 1
+!s100 WBP@[]hASV7`=AA:zYl?]1
+IMblNeFJ@STZ8b_<3CTXXD3
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/nor2.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/nor2.v
+L0 7
+R5
+r1
+!s85 0
+31
+R31
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/nor2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/nor2.v|
+!i113 1
+R6
+R7
+vnot1
+Z32 !s110 1679938474
+!i10b 1
+!s100 b4KmB4Ek_bEURaRe6_AkX0
+I9?SXhkYP=Yi;J4M^;DMnQ0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/not1.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/not1.v
+L0 7
+R5
+r1
+!s85 0
+31
+Z33 !s108 1679938474.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/not1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/not1.v|
+!i113 1
+R6
+R7
+vor2
+R32
+!i10b 1
+!s100 WJoS2U[IPNAP6EWG2n@<P3
+InI7GmXOOh>jc4_:6cm_fA0
+R1
+R2
+R9
+8/home/yeonc/private/CS552/project/demo1/demo_final/or2.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/or2.v
+L0 8
+R5
+r1
+!s85 0
+31
+R33
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/or2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/or2.v|
+!i113 1
+R6
+R7
+vor3
+R32
+!i10b 1
+!s100 ge<Gknf4=81Q0Z1WgFgkH1
+IgdB;9IFRcKW@`f`USlHN90
+R1
+R2
+R9
+8/home/yeonc/private/CS552/project/demo1/demo_final/or3.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/or3.v
+L0 8
+R5
+r1
+!s85 0
+31
+R33
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/or3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/or3.v|
+!i113 1
+R6
+R7
+vproc
+Z34 !s110 1679943246
+!i10b 1
+!s100 f:]<eHl9zUK=Tg@JQ2BZ41
+IWE21o`BN9]0h2_7O8fZbY1
+R1
+R2
+w1679942998
+8/home/yeonc/private/CS552/project/demo1/demo_final/proc.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/proc.v
+L0 4
+R5
+r1
+!s85 0
+31
+Z35 !s108 1679943246.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/proc.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/proc.v|
+!i113 1
+R6
+R7
+vproc_hier
+Z36 !s110 1679938475
+!i10b 1
+!s100 fCQ@9<WUiG_i1e@liDFCK3
+IGz0bOSaACHfl8oWk<neD`0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/proc_hier.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/proc_hier.v
+L0 6
+R5
+r1
+!s85 0
+31
+Z37 !s108 1679938475.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/proc_hier.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/proc_hier.v|
+!i113 1
+R6
+R7
+vproc_hier_bench
+R34
+!i10b 1
+!s100 g`FW`XBV:iC^^jK7<0L1^2
+IFYIiEQ_X_ML@k1fozWf]G1
+R1
+R2
+w1679942953
+8/home/yeonc/private/CS552/project/demo1/demo_final/proc_hier_bench.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/proc_hier_bench.v
+L0 4
+R5
+r1
+!s85 0
+31
+R35
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/proc_hier_bench.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/proc_hier_bench.v|
+!i113 1
+R6
+R7
+vregFile
+R36
+!i10b 1
+!s100 dGQNU0DFYdBX2i18mJf;J1
+I7NM1<knQRdZQIAbECkXMa3
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/regFile.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/regFile.v
+Z38 L0 10
+R5
+r1
+!s85 0
+31
+R37
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/regFile.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/regFile.v|
+!i113 1
+R6
+R7
+nreg@file
+vregFile_bypass
+R36
+!i10b 1
+!s100 mM]]AnVWbZEgak>1M6EKT0
+IYZVW<1_4RBDP21[Tn`28L1
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/regFile_bypass.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/regFile_bypass.v
+L0 8
+R5
+r1
+!s85 0
+31
+R37
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/regFile_bypass.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/regFile_bypass.v|
+!i113 1
+R6
+R7
+nreg@file_bypass
+vregFile_hier
+Z39 !s110 1679938476
+!i10b 1
+!s100 >`DJeVBV06k]L;]2LW0bU0
+IeeHgRPfimm4=IVOGT351I1
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/regFile_hier.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/regFile_hier.v
+R38
+R5
+r1
+!s85 0
+31
+Z40 !s108 1679938476.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/regFile_hier.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/regFile_hier.v|
+!i113 1
+R6
+R7
+nreg@file_hier
+vregister
+R39
+!i10b 1
+!s100 A2f=5XLC8cQmgb=1UN7`g2
+IWZ]>@OOZ>S2792YZ=zkIG0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/register.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/register.v
+L0 2
+R5
+r1
+!s85 0
+31
+R40
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/register.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/register.v|
+!i113 1
+R6
+R7
+vrotateLeft
+R39
+!i10b 1
+!s100 66bgIPXIb@hV?Q5naUMGX2
+I3JFgMEj8`H]QSmShIKkLK0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/rotateLeft.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/rotateLeft.v
+L0 1
+R5
+r1
+!s85 0
+31
+R40
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/rotateLeft.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/rotateLeft.v|
+!i113 1
+R6
+R7
+nrotate@left
+vrotateRight
+R39
+!i10b 1
+!s100 =e4ja;K18?2Mjn5i@`aLF2
+IAnPm2;jlVYmZ48JIPCiiQ0
+R1
+R2
+R19
+8/home/yeonc/private/CS552/project/demo1/demo_final/rotateRight.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/rotateRight.v
+L0 1
+R5
+r1
+!s85 0
+31
+R40
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/rotateRight.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/rotateRight.v|
+!i113 1
+R6
+R7
+nrotate@right
+vsco
+R27
+!i10b 1
+!s100 >Y0zTdNBVBd:;WH4PSm>V1
+Id>mD3XU7jk35N90TSEjf03
+R1
+R2
+w1679948143
+8/home/yeonc/private/CS552/project/demo1/demo_final/sco.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/sco.v
+L0 1
+R5
+r1
+!s85 0
+31
+R24
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/sco.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/sco.v|
+!i113 1
+R6
+R7
+vseq
+Z41 !s110 1679938477
+!i10b 1
+!s100 jYbKa[>lNZW8NlP^S6WZV1
+IYJ1Yn=0C@f894b=0<FX[?3
+R1
+R2
+Z42 w1679819627
+8/home/yeonc/private/CS552/project/demo1/demo_final/seq.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/seq.v
+L0 1
+R5
+r1
+!s85 0
+31
+Z43 !s108 1679938477.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/seq.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/seq.v|
+!i113 1
+R6
+R7
+vshifter
+R41
+!i10b 1
+!s100 =3jbaDS9fHg2bS21JeWD?3
+IbafZnMjP^5MO1I^P9RGB?2
+R1
+R2
+R42
+8/home/yeonc/private/CS552/project/demo1/demo_final/shifter.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/shifter.v
+R38
+R5
+r1
+!s85 0
+31
+R43
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/shifter.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/shifter.v|
+!i113 1
+R6
+R7
+vshiftLeft
+R41
+!i10b 1
+!s100 Y_9Nc_eUeCUl:fD8LEe1:3
+I1R`_>16o8Lh7[;d^9hOgh2
+R1
+R2
+R42
+8/home/yeonc/private/CS552/project/demo1/demo_final/shiftLeft.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/shiftLeft.v
+L0 1
+R5
+r1
+!s85 0
+31
+R43
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/shiftLeft.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/shiftLeft.v|
+!i113 1
+R6
+R7
+nshift@left
+vshiftRight_Arithmetic
+Z44 !s110 1679938478
+!i10b 1
+!s100 8:BeY]OUHWgZElb@BeLSd0
+IKgcT6R_9VWmEJ`24k>B8d2
+R1
+R2
+R42
+8/home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Arithmetic.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Arithmetic.v
+L0 1
+R5
+r1
+!s85 0
+31
+Z45 !s108 1679938478.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Arithmetic.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Arithmetic.v|
+!i113 1
+R6
+R7
+nshift@right_@arithmetic
+vshiftRight_Logical
+R44
+!i10b 1
+!s100 dklNh4JLMR<XN?[GCSL5D3
+Icfi_F@ah13aS>0=>aYS731
+R1
+R2
+R42
+8/home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Logical.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Logical.v
+L0 1
+R5
+r1
+!s85 0
+31
+R45
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Logical.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/shiftRight_Logical.v|
+!i113 1
+R6
+R7
+nshift@right_@logical
+vslbi
+R44
+!i10b 1
+!s100 lzD5f8`j9h<FBA58^eN:[2
+IUI=1TG@doeJHLA1FLM`bC0
+R1
+R2
+R42
+8/home/yeonc/private/CS552/project/demo1/demo_final/slbi.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/slbi.v
+L0 1
+R5
+r1
+!s85 0
+31
+R45
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/slbi.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/slbi.v|
+!i113 1
+R6
+R7
+vtb_regFile_hier
+Z46 !s110 1679938479
+!i10b 1
+!s100 MCFidV2`jI>LF:^]ON01a1
+IB@<=a8<DYHX7X<bPILRXf1
+R1
+R2
+R42
+8/home/yeonc/private/CS552/project/demo1/demo_final/tb_regFile_hier.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/tb_regFile_hier.v
+L0 7
+R5
+r1
+!s85 0
+31
+Z47 !s108 1679938479.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/tb_regFile_hier.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/tb_regFile_hier.v|
+!i113 1
+R6
+R7
+ntb_reg@file_hier
+vwb
+!s110 1679942707
+!i10b 1
+!s100 Ph[aj];gUjTHY9W=U1LY<1
+I3he2O2a?hnzoY2X[if<h41
+R1
+R2
+w1679942590
+8/home/yeonc/private/CS552/project/demo1/demo_final/wb.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/wb.v
+L0 8
+R5
+r1
+!s85 0
+31
+!s108 1679942707.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/wb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/wb.v|
+!i113 1
+R6
+R7
+vxor2
+R46
+!i10b 1
+!s100 `NUJU>;B0A3?APYXPbMC>3
+IVN6:mVoc2JcP6zD=X`j4P1
+R1
+R2
+R17
+8/home/yeonc/private/CS552/project/demo1/demo_final/xor2.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/xor2.v
+L0 8
+R5
+r1
+!s85 0
+31
+R47
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/xor2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/xor2.v|
+!i113 1
+R6
+R7
+vxor3
+!s110 1679948338
+!i10b 1
+!s100 @geKe>0^7UAED0PJ_E?nP1
+I^o0Yfd0:SSiY6[>3T0BEM0
+R1
+R2
+w1679948330
+8/home/yeonc/private/CS552/project/demo1/demo_final/xor3.v
+F/home/yeonc/private/CS552/project/demo1/demo_final/xor3.v
+L0 7
+R5
+r1
+!s85 0
+31
+!s108 1679948337.000000
+!s107 /home/yeonc/private/CS552/project/demo1/demo_final/xor3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|/home/yeonc/private/CS552/project/demo1/demo_final/xor3.v|
+!i113 1
+R6
+R7
