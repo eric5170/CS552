@@ -6,15 +6,18 @@
                      processor.
 */
 `default_nettype none
-module memory (/* TODO: Add appropriate inputs/outputs for your memory stage here*/
+module memory (
 					//	INPUTS:
+					clk,
+					rst,
 					
 					//	Control Unit
+					HALT,
 					MemWrite,
 					MemRead,
 					
 					//	ALU
-					ALUResult,
+					ALU_Result,
 					read_data_2,
 					
 					//	WriteBack
@@ -24,19 +27,22 @@ module memory (/* TODO: Add appropriate inputs/outputs for your memory stage her
 					read_data,
 					writeback_A);
 	
-	input	MemWrite, MemRead;
-	input[15:0]	ALUResult, read_data_2, writeback_data;
+	input wire	MemWrite, MemRead;
+	input wire[15:0]	ALUResult, read_data_2, writeback_data;
 	
-	output[15:0]	read_data, write_data, writeback_A;
+	output wire[15:0]	read_data, write_data, writeback_A;
+	
+	wire	MemReadOrWrite;
+	
+	assign	MemReadOrWrite = MemRead | MemWrite;
 	
 	memory2c DATA_MEMORY(.data_out(read_data), .data_in(read_data_2), 
-		.addr(ALUResult), .enable(MemRead), .wr(MemWrite), 
-		.createdump(), .clk(), .rst());
+		.addr(ALU_Result), .enable(MemReadOrWrite), .wr(MemWrite), 
+		.createdump(HALT), .clk(clk), .rst(rst));
 
-	assign writeback_A = ALUResult;
+	assign writeback_A = ALU_Result;
 	assign write_data = writeback_data;
 
-   // TODO: Your code here
    
 endmodule
 `default_nettype wire
