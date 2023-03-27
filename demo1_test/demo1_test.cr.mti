@@ -1,0 +1,344 @@
+/home/yeonc/private/CS552/project/demo1/demo1_test/cla4b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/cla4b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module cla4b
+
+Top level modules:
+	cla4b
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/rf_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/rf_hier.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rf_hier
+
+Top level modules:
+	rf_hier
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/rf.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/rf.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rf
+
+Top level modules:
+	rf
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/nand2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/nand2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nand2
+
+Top level modules:
+	nand2
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/proc.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/proc.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc
+
+Top level modules:
+	proc
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/xor3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/xor3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module xor3
+
+Top level modules:
+	xor3
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/reg_dff.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/reg_dff.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module reg_dff
+
+Top level modules:
+	reg_dff
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/and2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/and2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module and2
+
+Top level modules:
+	and2
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/memory2c.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/memory2c.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module memory2c
+
+Top level modules:
+	memory2c
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/alu_optimal.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/alu_optimal.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module alu_optimal
+
+Top level modules:
+	alu_optimal
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/or2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/or2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module or2
+
+Top level modules:
+	or2
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/decode_instr.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/decode_instr.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module decode_instr
+
+Top level modules:
+	decode_instr
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/rotR.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/rotR.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rotR
+
+Top level modules:
+	rotR
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/btr.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/btr.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module btr
+
+Top level modules:
+	btr
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/clkrst.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/clkrst.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module clkrst
+
+Top level modules:
+	clkrst
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/decode.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/decode.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module decode
+
+Top level modules:
+	decode
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/nand3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/nand3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nand3
+
+Top level modules:
+	nand3
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/memory2c.syn.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/memory2c.syn.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module memory2c
+
+Top level modules:
+	memory2c
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/and3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/and3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module and3
+
+Top level modules:
+	and3
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/nor2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/nor2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nor2
+
+Top level modules:
+	nor2
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/alu.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/alu.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/slbi.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/slbi.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module slbi
+
+Top level modules:
+	slbi
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/or3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/or3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module or3
+
+Top level modules:
+	or3
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/rf_bypass_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/rf_bypass_hier.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rf_bypass_hier
+
+Top level modules:
+	rf_bypass_hier
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/memory.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/memory.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module memory
+
+Top level modules:
+	memory
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/fetch.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/fetch.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module fetch
+
+Top level modules:
+	fetch
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/proc_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/proc_hier.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc_hier
+
+Top level modules:
+	proc_hier
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/sco.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/sco.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module sco
+
+Top level modules:
+	sco
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/fullAdder1b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/fullAdder1b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module fullAdder1b
+
+Top level modules:
+	fullAdder1b
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/dff.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/dff.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module dff
+
+Top level modules:
+	dff
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/alu_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/alu_hier.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module alu_hier
+
+Top level modules:
+	alu_hier
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/proc_hier_bench.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/proc_hier_bench.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc_hier_bench
+
+Top level modules:
+	proc_hier_bench
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/nor3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/nor3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nor3
+
+Top level modules:
+	nor3
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/mux4_1_4b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/mux4_1_4b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module mux4_1_4b
+
+Top level modules:
+	mux4_1_4b
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/branch_ALU.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/branch_ALU.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module branch_ALU
+
+Top level modules:
+	branch_ALU
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/cla16b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/cla16b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module cla16b
+
+Top level modules:
+	cla16b
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/xor2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/xor2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module xor2
+
+Top level modules:
+	xor2
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/execute.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/execute.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module execute
+
+Top level modules:
+	execute
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/mux2_1.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/mux2_1.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module mux2_1
+
+Top level modules:
+	mux2_1
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/shifter.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/shifter.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module shifter
+
+Top level modules:
+	shifter
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/register.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/register.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module register
+
+Top level modules:
+	register
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/mux4_1.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/mux4_1.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module mux4_1
+
+Top level modules:
+	mux4_1
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/wb.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/wb.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module wb
+
+Top level modules:
+	wb
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/ext.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/ext.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module ext
+
+Top level modules:
+	ext
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/rf_bypass.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/rf_bypass.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rf_bypass
+
+Top level modules:
+	rf_bypass
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/control.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/control.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module control
+
+Top level modules:
+	control
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/seq.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/seq.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module seq
+
+Top level modules:
+	seq
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/not1.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/not1.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module not1
+
+Top level modules:
+	not1
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo1_test/shifter_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo1_test/shifter_hier.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module shifter_hier
+
+Top level modules:
+	shifter_hier
+
+} {} {}}
