@@ -1,13 +1,37 @@
 /*
-   CS/ECE 552 Spring '22
+   CS/ECE 552 Spring '23
   
    Filename        : execute.v
-   Description     : This is the overall module for the execute stage of the processor.
+   Description     : This is the module for the ALU execution.
 */
-`default_nettype none
-module execute (/* TODO: Add appropriate inputs/outputs for your execute stage here*/);
+module execute(ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl);
+	localparam SLT = 4'b1001;
+	localparam SLE = 4'b1010;
+	localparam SUB = 4'b0001;
+	localparam ANDN = 4'b1101;
+	
+	input ALU_src;
+	input [3:0] ALU_Op;
+	input [15:0] extOut, rd_data1, rd_data2;
+	output [15:0] ALU_res;
+	output zero, ofl;
 
-   // TODO: Your code here
-   
+	wire [15:0] muxOutput;
+	wire invA, invB, SLT_f, SLE_f, SUB_f, ANDN_f;
+	wire carryIn;	
+
+	
+	assign muxOutput = ALU_src ? extOut : rd_data2;
+	assign SLT_f = |(ALU_Op ^ SLT);
+	assign SLE_f = |(ALU_Op ^ SLE);
+	assign SUB_f = |(ALU_Op ^ SUB);
+	assign ANDN_f = |(ALU_Op ^ ANDN);
+	assign carryIn = ~SLT_f | ~SUB_f | ~SLE_f;
+	
+	assign invA = (~SUB_f) ? 1 : 0;
+	assign invB = (~ANDN_f | ~SLT_f | ~SLE_f) ? 1 : 0;
+	
+	alu_optimal ALU (.opcode(ALU_Op), .inA(rd_data1), .inB(muxOutput), .Cin(carryIn),
+	.invA(invA), .invB(invB), .sign(1'b1), .zero(zero), .ofl(ofl), .aluOut(ALU_res));
+	
 endmodule
-`default_nettype wire
