@@ -1,6 +1,7 @@
 /* $Author: sinclair $ */
 /* $LastChangedDate: 2020-02-09 17:03:45 -0600 (Sun, 09 Feb 2020) $ */
 /* $Rev: 46 $ */
+`default_nettype none
 module proc (/*AUTOARG*/
    // Outputs
    err, 
@@ -8,29 +9,11 @@ module proc (/*AUTOARG*/
    clk, rst
    );
 
-   input clk;
-   input rst;
+   input wire clk;
+   input wire rst;
 
-   output err;
+   output reg err;
 
-	wire HALT;
-	wire NOP;
-	wire writeR7;
-	wire jumpReg;
-	wire jump;
-	wire branch;
-	wire memToReg; 
-	wire memRead;
-	wire [3:0] ALUop;
-	wire memWrite; 
-	wire ALUsrc;
-	wire regWrite;
-
-	wire [15:0] readData1, readData2, immediate, currPC, nextPC, pc_plus_2;
-	wire [15:0] instruction, writeData, aluResult, readFromMem;
-
-	// PC dff
-	register PC_REG(.clk(clk), .rst(rst), .data_in(nextPC), .state(currPC));
    // None of the above lines can be modified
 
    // OR all the err ouputs for every sub-module and assign it as this
@@ -41,68 +24,49 @@ module proc (/*AUTOARG*/
    
    
    /* your code here -- should include instantiations of fetch, decode, execute, mem and wb modules */
-
-
-fetch fetch0(.clk(clk), .rst(rst), .PC_current(currPC), .instr(instruction), .PC_next(pc_plus_2));
-
-decode decode0(			
-					.clk(clk),
+   //control signals and other wires 
+   wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite, ALUSrc, isRegWrite;
+   wire [3:0] ALUop;
+   wire [15:0] instr, wr_data, ALURes, rFm,rdData1, rdData2, immed, currPC, PC_next, PC_2;
+   
+   reg_dff iREG(.clk(clk), .rst(rst), .data_in(PC_next), .state(currPC));
+   
+   fetch fetch0(.clk(clk), .rst(rst), .currPC(currPC), .nextPC(PC_2), .instr(instr));
+   
+   decode decode0(.clk(clk),
 					.rst(rst),
+					.instr(instr), 
 					.currPC(currPC),
-					.instruction(instruction), 
-					.new_addr(pc_plus_2),
-					.write_data(writeData), 
-					.HALT(HALT),  
-					.NOP(NOP),  
-					.writeR7(writeR7),  
-					.jumpReg(jumpReg),  
-					.jump(jump),  
-					.branch(branch), 
-					.memToReg(memToReg), 
-					.memRead(memRead), 
-					.ALUop(ALUop), 
-					.memWrite(memWrite), 
-					.ALUsrc(ALUsrc), 
-					.regWrite(regWrite),
-					.immediate(immediate),
-					.read_data_1(readData1),
-					.read_data_2(readData2),
-					.nextPC(nextPC)
-		);
-
-execute execute0(
-					.ALUSrc(ALUsrc), 
-					.ALUOp(ALUop), 
-					.ReadData1(readData1), 
-					.ReadData2(readData2), 
-					.extOutput(immediate), 
-					.ALUResult(aluResult), 
-					.Zero(), 
-					.Ofl()
-		);
-
-memory memory0 (
-					.clk(clk),
-					.rst(rst),
-					.HALT(HALT),
-					.memWrite(memWrite),
-					.aluResult(aluResult),
-					.writeData(readData2),
-					.memRead(memRead),
-					.readData(readFromMem)		
-		);
-
-wb wb0 (
-					.readData(readFromMem),
-					.memToReg(memToReg),
-					.memRead(memRead),
-					.aluResult(aluResult),
-					.nextPC(pc_plus_2),
-					.writeR7(writeR7),
-					.writeData(writeData),
-					.writeEn(regWrite)		
-		);
-
+					.new_addr(PC_2),
+					.writeData(wr_data), 
+					.isNotHalt(isNotHalt),  
+					.isNOP(isNOP),  
+					.isJAL(isJAL),  
+					.isJR(isJR),  
+					.isJump(isJump),  
+					.isBranch(isBranch), 
+					.isMemToReg(isMemToReg), 
+					.isMemRead(isMemRead), 
+					.ALU_Op(ALUop), 
+					.isMemWrite(isMemWrite), 
+					.ALU_src(ALUSrc), 
+					.isRegWrite(isRegWrite),
+					.immed(immed),
+					.rd_data1(rdData1),
+					.rd_data2(rdData2),
+					.PC_next(PC_next)
+					);
+				
+	 execute execute0(.ALU_src(ALUSrc), .ALU_Op(ALUop), .extOut(immed), .rd_data1(rdData1), 
+	 .rd_data2(rdData2), .ALU_res(ALURes),.zero(), .ofl());
+	 
+	 memory memory0 (.clk(clk), .rst(rst), .isNotHalt(isNotHalt), .isMemWrite(isMemWrite), 
+	 .isMemRead(isMemRead), .aluResult(ALURes), .readData(rFm), .writeData(rdData2));
+	 
+	 wb wb0(.readData(rFm), .isMemToReg(isMemToReg), .isMemRead(isMemRead), .aluResult(ALURes),
+	 .isJAL(isJAL), .nextPC(PC_2), .writeEn(isRegWrite), .writeData(wr_data));
+ 
    
 endmodule // proc
+`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

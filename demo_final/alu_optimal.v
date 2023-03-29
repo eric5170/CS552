@@ -15,7 +15,7 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 	localparam 	ANDN 		= 4'b1101;
 	localparam 	LBI 		= 4'b1110;
 	
-	input [3:0] opcode;
+	input wire [3:0] opcode;
 	input wire [15:0] inA, inB;
 	input wire Cin,invA,invB,sign;
 	
@@ -85,12 +85,12 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 			end
 
 			XOR: begin 
-				aluOut_inp = A_inp ^ B_inp;
+				aluOut_inp = A_inp^ B_inp;
 				ofl_inp = 0;
 			end
 
 			ANDN: begin 
-				aluOut_inp = A_inp & B_inp;
+				aluOut_inp = A_inp& B_inp;
 				ofl_inp = 0;
 			end
 

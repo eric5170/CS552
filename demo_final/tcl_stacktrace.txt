@@ -1,0 +1,24 @@
+Wed Mar 29 01:43:44 CDT 2023
+Trace back: can't read "::vsimPriv(tbarBtnIgnore)": no such element in array
+    while executing
+"if { ! $::vsimPriv(tbarBtnIgnore) } {
+            ButtonInvoke $b $m
+         }"
+    (procedure "Tbar::BMenu::Action" line 51)
+    invoked from within
+"Tbar::BMenu::Action release .dockbar.tbf9.bookmarks.tb.button_51 .dockbar.tbf9.bookmarks.tb.button_51.menu 23 10 1"
+    (command bound to event)
+  <2:/afs/cs.wisc.edu/s/mentor-2018/amd64_rhel6/modelsim_dlx/linuxpe/tk8.6/bgerror.tcl:106: ::tkerror {can't read "::vsimPriv(tbarBtnIgnore)": no such element in array}
+  <1:eval:1: ::tk::dialog::error::bgerror {can't read "::vsimPriv(tbarBtnIgnore)": no such element in array}
+Wed Mar 29 01:44:16 CDT 2023
+Trace back: can't read "::vsimPriv(tbarBtnIgnore)": no such element in array
+    while executing
+"if { ! $::vsimPriv(tbarBtnIgnore) } {
+            ButtonInvoke $b $m
+         }"
+    (procedure "Tbar::BMenu::Action" line 51)
+    invoked from within
+"Tbar::BMenu::Action release .dockbar.tbf9.bookmarks.tb.button_50 .dockbar.tbf9.bookmarks.tb.button_50.menu 17 5 1"
+    (command bound to event)
+  <2:/afs/cs.wisc.edu/s/mentor-2018/amd64_rhel6/modelsim_dlx/linuxpe/tk8.6/bgerror.tcl:106: ::tkerror {can't read "::vsimPriv(tbarBtnIgnore)": no such element in array}
+  <1:proc:14: ::tk::dialog::error::bgerror {can't read "::vsimPriv(tbarBtnIgnore)": no such element in array}

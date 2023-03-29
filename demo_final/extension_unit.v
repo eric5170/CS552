@@ -1,62 +1,114 @@
-module extension_unit(instruction, immediate);
+module extension_unit(instr, immed);
 
-// There are 5 flavors of extending immediates, which are used by various instructions: 
+// There are 5 flavors of extending immeds, which are used by various instrs: 
 //			5b zero extension, 
 //			5b sign extension, 
 //			8b zero extension, 
 //			8b sign extension, 
 //			and 11b sign extension
 
-input [15:0] instruction;
-output reg [15:0] immediate;
+input [15:0] instr;
+output reg [15:0] immed;
 wire [4:0] opcode;
 
-assign opcode = instruction[15:11];
+
+// I-format 1
+localparam	ADDI 		= 5'b01000; 
+localparam 	SUBI 		= 5'b01001; 
+localparam	XORI 		= 5'b01010; 
+localparam 	ANDNI 		= 5'b01011; 
+localparam	ROLI  		= 5'b10100; 
+localparam 	SLLI 		= 5'b10101; 
+localparam	RORI 		= 5'b10110; 
+localparam 	SRLI 		= 5'b10111; 
+localparam	ST 			= 5'b10000; 
+localparam 	LD 			= 5'b10001; 
+localparam	STU 		= 5'b10011; 
+
+// I-format 2
+localparam 	BEQZ 		= 5'b01100;
+localparam 	BNEZ 		= 5'b01101;
+localparam 	BLTZ 		= 5'b01110;
+localparam 	BGEZ 		= 5'b01111;
+localparam 	LBI 		= 5'b11000;
+localparam 	SLBI 		= 5'b10010;
+localparam 	J 			= 5'b00100;
+localparam 	JR 			= 5'b00101;
+
+// J-format
+localparam 	JAL 		= 5'b00110;
+localparam 	JALR 		= 5'b00111;
+
+/*
+ * 5b sign: ADDI , SUBI
+ * 5b zero: XORI, ANDNI
+ * 8b sign: LBI, JR, JALR, all branch instr
+ * 8b zero: SLBI
+ * 11b sign: J, JAL
+ * 
+ */
 always@(*) begin
    case(opcode)
-		5'b00100: begin			// J (11b sign)
-					immediate = {{5{instruction[10]}}, instruction[10:0]};
-				 end
-		5'b00110: begin			// JAL (11b sign)
-					immediate = {{5{instruction[10]}}, instruction[10:0]};
-				 end
-		5'b01000: begin			// ADDI (5b sign)
-					immediate = {{11{instruction[4]}}, instruction[4:0]};
-				 end
-		5'b01001: begin			// SUBI (5b sign)
-					immediate = {{11{instruction[4]}}, instruction[4:0]};
-				 end
-		5'b01010: begin			// XORI (5b zero)
-					immediate = {11'h0, instruction[4:0]};
-				 end
-		5'b01011: begin			// ANDNI (5b zero)
-					immediate = {11'h0, instruction[4:0]};
-				 end
-		5'b11000: begin			// LBI (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		5'b10010: begin			// SLBI (8b zero)
-					immediate = {8'h0, instruction[7:0]};
-				 end
-		5'b00101: begin			// JR (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		5'b00111: begin			// JALR (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		5'b01100: begin			// BEQZ (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		5'b01101: begin			// BNEZ (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		5'b01110: begin			// BLTZ (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		5'b01111: begin			// BGEZ (8b sign)
-					immediate = {{8{instruction[7]}}, instruction[7:0]};
-				 end
-		default: immediate = {{11{instruction[4]}}, instruction[4:0]}; // only matters for ROLI, SLLI, RORI, SRLI - they take the bottom 4 bits. Otherwise - imm not used
+		J: begin
+			immed = {{5{instr[10]}}, instr[10:0]};
+		end
+				
+		JAL: begin		
+			immed = {{5{instr[10]}}, instr[10:0]};
+		end
+		
+		ADDI: begin	
+			immed = {{11{instr[4]}}, instr[4:0]};
+		end
+		
+		SUBI: begin			
+			immed = {{11{instr[4]}}, instr[4:0]};
+		end
+		
+		XORI: begin		
+			immed = {11'h0, instr[4:0]};
+		end
+		
+		ANDNI: begin		
+			immed = {11'h0, instr[4:0]};
+		end
+		
+		LBI: begin	
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		SLBI: begin			
+			immed = {8'h0, instr[7:0]};
+		end
+		
+		JR: begin			
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		JALR: begin			
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		BEQZ: begin			
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		BNEZ: begin			
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		BLTZ: begin			
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		BGEZ: begin			
+			immed = {{8{instr[7]}}, instr[7:0]};
+		end
+		
+		// shft/rot functions
+		default: begin
+				immed = {{11{instr[4]}}, instr[4:0]}; 
+		end
    endcase
 end
 

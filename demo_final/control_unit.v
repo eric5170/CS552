@@ -1,70 +1,69 @@
-module control_unit(	instruction, 
-			instr_type, 
-			HALT,  
-			NOP,  
-			writeR7,  
-			jumpReg,  
-			jump,  
-			branch, 
-			memToReg, 
-			memRead, 
+module control_unit(	instr, 
+			isNotHalt, 
+			isNOP,  
+			isType,  
+			isJAL,  
+			isJR,  
+			isJump,  
+			isBranch, 
+			isMemToReg, 
+			isMemRead, 
 			ALUop, 
-			memWrite, 
-			ALUsrc, 
-			regWrite	);
+			isMemWrite, 
+			ALU_src, 
+			isRegWrite	);
 
-input [15:0] instruction;
+input [15:0] instr;
 
-// 4 instruction types:
+// 4 instr types:
 // 0 = J
 // 1 = I-1
 // 2 = I-2
 // 3 = R
-output [1:0] instr_type;
+output [1:0] isType;
 
 // Control signals
-output wire HALT;
-output NOP;
-output writeR7;
-output jumpReg;
-output jump;
-output branch;
-output memToReg; 
-output memRead;
+output wire isNotHalt;
+output isNOP;
+output isJAL;
+output isJR;
+output wire isJump;
+output isBranch;
+output isMemToReg; 
+output isMemRead;
 output [3:0] ALUop;
-output memWrite; 
-output ALUsrc;
-output regWrite;
+output isMemWrite; 
+output ALU_src;
+output isRegWrite;
 
 // Intermediate control signals
-reg HALT_i;
-reg NOP_i;
-reg writeR7_i;
-reg jumpReg_i;
-reg jump_i;
-reg branch_i;
-reg memToReg_i; 
-reg memRead_i;
+reg isNotHalt_i;
+reg isNOP_i;
+reg isJAL_i;
+reg isJR_i;
+reg isJump_i;
+reg isBranch_i;
+reg isMemToReg_i; 
+reg isMemRead_i;
 reg [3:0] ALUop_i;
-reg memWrite_i; 
-reg ALUsrc_i;
-reg regWrite_i;
-reg [1:0] instr_type_i;
+reg isMemWrite_i; 
+reg ALU_src_i;
+reg isRegWrite_i;
+reg [1:0] isType_i;
 
 // Assign outputs:
-//assign HALT = HALT_i;
-//assign NOP = NOP_i;
-assign writeR7 = writeR7_i;
-assign jumpReg = jumpReg_i;
-assign jump = jump_i;
-assign branch = branch_i;
-assign memToReg = memToReg_i;
-assign memRead = memRead_i;
+
+assign isJAL = isJAL_i;
+assign isJR = isJR_i;
+assign isJump = isJump_i;
+assign isBranch = isBranch_i;
+assign isMemToReg = isMemToReg_i;
+assign isMemRead = isMemRead_i;
 assign ALUop = ALUop_i;
-assign memWrite = memWrite_i;
-assign ALUsrc = ALUsrc_i;
-assign regWrite = regWrite_i;
-assign instr_type = instr_type_i;
+assign isMemWrite = isMemWrite_i;
+assign ALU_src = ALU_src_i;
+assign isRegWrite = isRegWrite_i;
+assign isType = isType_i;
 
 // Opcodes and operations
 // wire [1:0]alu_op_sel;
@@ -73,10 +72,10 @@ reg [3:0] alu_op;
 reg [3:0] shift_rot_op;
 wire [1:0] func;
 
-assign func = instruction[1:0];
-assign opcode = instruction[15:11];
-assign HALT = HALT_i;
-assign NOP = NOP_i;
+assign func = instr[1:0];
+assign opcode = instr[15:11];
+assign isNotHalt = isNotHalt_i;
+assign isNOP = isNOP_i;
 
 // Logic to determine ALU operations
 // ADD, SUB, XOR, ANDN
@@ -100,494 +99,483 @@ always@(*) begin
 			alu_op = 4'hD; //ANDN
 			shift_rot_op = 4'h3; //ROR
 		end
+		//if func not in these values --> err
+		default: begin
+			alu_op = 4'hx;
+			shift_rot_op = 4'hx;
+		end
 	endcase
 end
 
 
-/*
-		ADD, ADDI, LD, STU, ST 			0
-		SUBI, SUB				 			1
-		ROL, ROLI 							2
-		ROR, RORI 							3
-		SLL, SLLI 							4
-		SRL, SRLI 							5
-		BTR 									6
-		XOR, XORI 							7
-		SEQ 									8
-		SLT 									9
-		SLE 									10
-		SCO									11
-		SLBI 									12
-		ANDN, ANDNI 						13
-*/
 always@(*) begin
    case(opcode)
-		5'b00000: begin			/************************************ HALT */
-					// Only HALT is set to 1, all others 0
-					instr_type_i = 0;
-					HALT_i = 1;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+		5'b00000: begin			/************************************ isNotHalt */
+					// Everything 0  since Halt
+					isType_i = 0;
+					isNotHalt_i = 0;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b00001: begin			/************************************ NOP */
-					// Only NOP is set to 1, all others 0
-					instr_type_i = 0;
-					HALT_i = 0;  
-					NOP_i = 1;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					// NOP
+					isType_i = 0;
+					isNotHalt_i = 1;  
+					isNOP_i = 1;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b00100: begin			/************************************ J */
-					instr_type_i = 0;
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 1;				// JUMP instr
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 0;
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 1;				// isJump instr
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b00110: begin			/************************************ JAL */
-					instr_type_i = 0;
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 1;  		// Writing to R7
-					jumpReg_i = 0;
-					jump_i = 1;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 0;
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 1;  		// Writing to R7
+					isJR_i = 0;
+					isJump_i = 1;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// Writing to reg R7
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// Writing to reg R7
 				 end
 		5'b01000: begin			/************************************ ADDI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 4'd0;		// ALU OP 0
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Add immediate
-					regWrite_i = 1;		// Rd <- Rs + I(zero ext.)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Add immediate
+					isRegWrite_i = 1;		// Rd <- Rs + I(zero ext.)
 				 end
 		5'b01001: begin			/************************************ SUBI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 1;		// ALU OP 1
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Sub immediate
-					regWrite_i = 1;		// Rd <- I(sign ext.) - Rs
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Sub immediate
+					isRegWrite_i = 1;		// Rd <- I(sign ext.) - Rs
 				 end
 		5'b01010: begin			/************************************ XORI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 7;		// ALU OP 7
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// xor immediate
-					regWrite_i = 1;		// Rd <- Rs XOR I(zero ext.)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// xor immediate
+					isRegWrite_i = 1;		// Rd <- Rs XOR I(zero ext.)
 				 end
 		5'b01011: begin			/************************************ ANDNI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 13;		// ALU OP 13
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// AND NOT immediate 
-					regWrite_i = 1;		// Rd <- Rs AND ~I(zero ext.)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// AND NOT immediate 
+					isRegWrite_i = 1;		// Rd <- Rs AND ~I(zero ext.)
 				 end
 		5'b10100: begin			/************************************ ROLI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 2;		// ALU OP 2
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Rotate left by immediate 
-					regWrite_i = 1;		// Rd <- Rs << (rotate) I(lowest 4 bits)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Rotate left by immediate 
+					isRegWrite_i = 1;		// Rd <- Rs << (rotate) I(lowest 4 bits)
 				 end
 		5'b10101: begin			/************************************ SLLI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 4;		// ALU OP 4
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Shift left by immediate 
-					regWrite_i = 1;		// Rd <- Rs << I(lowest 4 bits)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Shift left by immediate 
+					isRegWrite_i = 1;		// Rd <- Rs << I(lowest 4 bits)
 				 end
 		5'b10110: begin			/************************************ RORI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 3;		// ALU OP 3	
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Rotate right by immediate 
-					regWrite_i = 1;		// Rd <- Rs >> (rotate) I(lowest 4 bits)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Rotate right by immediate 
+					isRegWrite_i = 1;		// Rd <- Rs >> (rotate) I(lowest 4 bits)
 				 end
 		5'b10111: begin			/************************************ SRLI */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i <= 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i <= 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 5;		// ALU OP 5
-					memWrite_i = 0;
-					ALUsrc_i =  1;			// Shift right by immediate 
-					regWrite_i = 1;		// Rd <- Rs >> I(lowest 4 bits)
+					isMemWrite_i = 0;
+					ALU_src_i =  1;			// Shift right by immediate 
+					isRegWrite_i = 1;		// Rd <- Rs >> I(lowest 4 bits)
 				 end
 		5'b10000: begin			/************************************ ST */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;		// ALU OP 0
-					memWrite_i = 1;		// STORE writes to memory
-					ALUsrc_i = 1;			// Offset memory by immediate
-					regWrite_i = 0;		// NO REG WRITE:	Mem[Rs + I(sign ext.)] <- Rd
+					isMemWrite_i = 1;		// STORE writes to memory
+					ALU_src_i = 1;			// Offset memory by immediate
+					isRegWrite_i = 0;		// NO REG WRITE:	Mem[Rs + I(sign ext.)] <- Rd
 				 end
 		5'b10001: begin			/************************************ LD */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 1;		// Reading from memory, writing to REG
-					memRead_i = 1;			// LOAD reads from memory
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1; 
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 1;		// Reading from memory, writing to REG
+					isMemRead_i = 1;			// LOAD reads from memory
 					ALUop_i = 0;		// ALU OP 0
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Offset memory by immediate
-					regWrite_i = 1;		// Rd <- Mem[Rs + I(sign ext.)]
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Offset memory by immediate
+					isRegWrite_i = 1;		// Rd <- Mem[Rs + I(sign ext.)]
 				 end
 		5'b10011: begin			/************************************ STU */
-					instr_type_i = 1;		// Format I-1 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 1;		// Format I-1 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;		// ALU OP 0
-					memWrite_i = 1;		// STU writes to memory
-					ALUsrc_i = 1;			// Offset memory by immediate
-					regWrite_i = 1;		// Mem[Rs + I(sign ext.)] <- Rd, Rs <- Rs + I(ssign ext.)
+					isMemWrite_i = 1;		// STU writes to memory
+					ALU_src_i = 1;			// Offset memory by immediate
+					isRegWrite_i = 1;		// Mem[Rs + I(sign ext.)] <- Rd, Rs <- Rs + I(ssign ext.)
 				 end
 		5'b11000: begin			/************************************ LBI */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1; 
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 4'hE;		// ALU OP 14
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Immediate is read into reg
-					regWrite_i = 1;			// Rs <- I(sign ext.)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Immediate is read into reg
+					isRegWrite_i = 1;			// Rs <- I(sign ext.)
 				 end
 		5'b10010: begin			/************************************ SLBI */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 4'hC;		// ALU OP 12
-					memWrite_i = 0;
-					ALUsrc_i = 1;			// Immediate user for OR
-					regWrite_i = 1;		// Rs <- (Rs << 8) | I(zero ext.)
+					isMemWrite_i = 0;
+					ALU_src_i = 1;			// Immediate user for OR
+					isRegWrite_i = 1;		// Rs <- (Rs << 8) | I(zero ext.)
 				 end
 		5'b00101: begin			/************************************ JR */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 1;			// Reading from Rs
-					jump_i = 1;				// JUMP instr
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 1;			// Reading from Rs
+					isJump_i = 1;				// isJump instr
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b00111: begin			/************************************ JALR */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 1;  		// Writing to R7
-					jumpReg_i = 1;			// Reading from Rs
-					jump_i = 1;				// JUMP instr
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 1;  		// Writing to R7
+					isJR_i = 1;			// Reading from Rs
+					isJump_i = 1;				// isJump instr
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// Writing to reg R7
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// Writing to reg R7
 				 end
 		5'b01100: begin			/************************************ BEQZ */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 1;			// BRANCH INSTR
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 1;			// isBranch INSTR
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b01101: begin			/************************************ BNEZ */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 1;			// BRANCH INSTR
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 1;			// isBranch INSTR
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b01110: begin			/************************************ BLTZ */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 1;			// BRANCH INSTR
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1; 
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 1;			// isBranch INSTR
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b01111: begin			/************************************ BGEZ */
-					instr_type_i = 2;		// Format I-2 instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 1;			// BRANCH INSTR
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 2;		// Format I-2 instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 1;			// isBranch INSTR
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;
 				 end
 		5'b11001: begin			/************************************ BTR */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 6;			// ALU OP 6
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// Rd[bit i] <- Rs[bit 15-i] for i = 0..15
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// Rd[bit i] <- Rs[bit 15-i] for i = 0..15
 				 end
 		5'b11011: begin			/************************************ ADD, SUB, XOR, ANDN */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = alu_op;		// ALU OP (decided in case statement)
-					memWrite_i = 0;
-					ALUsrc_i = 0;			// ALU src 0: Reading from 2 regs
-					regWrite_i = 1; 		// Rd <- Rs + Rt (for add)
+					isMemWrite_i = 0;
+					ALU_src_i = 0;			// ALU src 0: Reading from 2 regs
+					isRegWrite_i = 1; 		// Rd <- Rs + Rt (for add)
 				 end
 		5'b11010: begin			/************************************ ROL, SLL, ROR, SRL */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1;  
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = shift_rot_op;	// Shift/ROTATE OP (decided in case statement)
-					memWrite_i = 0;
-					ALUsrc_i = 0;			// ALU src 0: Reading from 2 regs
-					regWrite_i = 1;		// Rd <- Rs << (rotate) Rt (lowest 4 bits)
+					isMemWrite_i = 0;
+					ALU_src_i = 0;			// ALU src 0: Reading from 2 regs
+					isRegWrite_i = 1;		// Rd <- Rs << (rotate) Rt (lowest 4 bits)
 				 end
 		5'b11100: begin			/************************************ SEQ */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1; 
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 8;		// ALU OP 8
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// if (Rs == Rt) then Rd <- 1 else Rd <- 0
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// if (Rs == Rt) then Rd <- 1 else Rd <- 0
 				 end
 		5'b11101: begin			/************************************ SLT */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 9;		// ALU OP 9
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// if (Rs < Rt) then Rd <- 1 else Rd <- 0
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// if (Rs < Rt) then Rd <- 1 else Rd <- 0
 				 end
 		5'b11110: begin			/************************************ SLE */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1; 
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 4'hA;		// ALU OP 10
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// if (Rs <= Rt) then Rd <- 1 else Rd <- 0
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// if (Rs <= Rt) then Rd <- 1 else Rd <- 0
 				 end
 		5'b11111: begin			/************************************ SCO */
-					instr_type_i = 3;		// Format R instruction
-					HALT_i = 0;  
-					NOP_i = 0;
-					writeR7_i = 0;  
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 3;		// Format R instr
+					isNotHalt_i = 1;   
+					isNOP_i = 0;
+					isJAL_i = 0;  
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 4'hB;		// ALU OP 11
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 1;		// Writing Rd
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 1;		// Writing Rd
 				 end
    		default: begin
-					instr_type_i = 0;               // Format R instruction
-                    HALT_i = 0;
-					NOP_i = 0;
-					writeR7_i = 0;
-					jumpReg_i = 0;
-					jump_i = 0;
-					branch_i = 0;
-					memToReg_i = 0;
-					memRead_i = 0;
+					isType_i = 0;               // Format R instr
+                    isNotHalt_i = 1; 
+					isNOP_i = 0;
+					isJAL_i = 0;
+					isJR_i = 0;
+					isJump_i = 0;
+					isBranch_i = 0;
+					isMemToReg_i = 0;
+					isMemRead_i = 0;
 					ALUop_i = 0;                // ALU OP 11
-					memWrite_i = 0;
-					ALUsrc_i = 0;
-					regWrite_i = 0;         // Writing Rd
+					isMemWrite_i = 0;
+					ALU_src_i = 0;
+					isRegWrite_i = 0;         // Writing Rd
 				end
 	endcase
 end

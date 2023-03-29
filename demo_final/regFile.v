@@ -1,12 +1,4 @@
-/*
-   CS/ECE 552, Spring '20
-   Homework #3, Problem #1
-  
-   This module creates a 16-bit register.  It has 1 write port, 2 read
-   ports, 3 register select inputs, a write enable, a reset, and a clock
-   input.  All register state changes occur on the rising edge of the
-   clock. 
-*/
+
 module regFile (
                 // Outputs
                 read1Data, read2Data, err,
@@ -116,37 +108,6 @@ module regFile (
 		endcase 
 	end
 
-/*
-	always@(*) begin 
-	case(rst)
-	   1'b1: begin 
-			in0 = 16'h00;
-			in1 = 16'h00;
-			in2 = 16'h00;
-			in3 = 16'h00;
-			in4 = 16'h00;
-			in5 = 16'h00;
-			in6 = 16'h00;
-			in7 = 16'h00;
-	   end
-	   1'b0: begin end
-	endcase
-	end
-
-
-	always@(writeEn, writeRegSel, rst, writeData) begin
-		case(writeRegSel) 
-		3'b000: in0 = rst ? 16'h00 : (writeEn ? writeData : state0);
-		3'b001: in1 = rst ? 16'h00 : (writeEn ? writeData : state1);
-		3'b010: in2 = rst ? 16'h00 : (writeEn ? writeData : state2);
-		3'b011: in3 = rst ? 16'h00 : (writeEn ? writeData : state3);
-		3'b100: in4 = rst ? 16'h00 : (writeEn ? writeData : state4);
-		3'b101: in5 = rst ? 16'h00 : (writeEn ? writeData : state5);
-		3'b110: in6 = rst ? 16'h00 : (writeEn ? writeData : state6);
-		3'b111: in7 = rst ? 16'h00 : (writeEn ? writeData : state7);
-		endcase
-	end
-*/
 	
    assign in0 = writeEn ? ( (writeRegSel == 3'h0) ? writeData : state0 ) : state0;
    assign in1 = writeEn ? ( (writeRegSel == 3'h1) ? writeData : state1 ) : state1;

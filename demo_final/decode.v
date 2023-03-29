@@ -6,26 +6,26 @@
 */
 module decode (clk,
 					rst,
-					instruction, 
+					instr, 
 					currPC,
 					new_addr,
-					write_data, 
-					HALT,  
-					NOP,  
-					writeR7,  
-					jumpReg,  
-					jump,  
-					branch, 
-					memToReg, 
-					memRead, 
-					ALUop, 
-					memWrite, 
-					ALUsrc, 
-					regWrite,
-					immediate,
-					read_data_1,
-					read_data_2,
-					nextPC);
+					writeData, 
+					isNotHalt,  
+					isNOP,  
+					isJAL,  
+					isJR,  
+					isJump,  
+					isBranch, 
+					isMemToReg, 
+					isMemRead, 
+					ALU_Op, 
+					isMemWrite, 
+					ALU_src, 
+					isRegWrite,
+					immed,
+					rd_data1,
+					rd_data2,
+					PC_next);
 
 // Inputs:
 //	1. Instruction [15:0]
@@ -33,113 +33,78 @@ module decode (clk,
 //	3. Write Data [15:0]
 // clk, rst (for regfile)
    
-input clk, rst;
-input [15:0] instruction;
-input [15:0] new_addr, currPC;
-input [15:0] write_data;
+input wire clk, rst;
+input wire[15:0] instr, currPC, new_addr, writeData;
 
-output HALT;
-output NOP;
-output writeR7;
-output jumpReg;
-output jump;
-output branch;
-output memToReg; 
-output memRead;
-output [3:0] ALUop;
-output memWrite; 
-output ALUsrc;
-output regWrite;
-output [15:0] immediate;
-output [15:0] read_data_1, read_data_2;
-output [15:0] nextPC;
+output wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
+ ALU_src, isRegWrite;
+output wire [3:0] ALU_Op;
 
-wire [1:0] instr_type;
-wire [2:0] readReg1, readReg2, writeReg;
-wire zero;
-wire[15:0] next_PC_i, branchAluResult;
-wire branch_or_jump, branch_or_jump_n;
+output wire [15:0] immed, rd_data1, rd_data2, PC_next;
 
-nor2 NOR_BR_JMP(branch, jump, branch_or_jump_n);
-not1 NOT_BR_JMP(branch_or_jump_n, branch_or_jump);
+wire [1:0] isType;
+wire[2:0] read_reg1, read_reg2, writeReg;
+wire zero, b_or_j;
+wire [15:0] PC_next_i, branchALU;
 
-assign nextPC = HALT ? currPC : (branch_or_jump ? next_PC_i : new_addr);
+assign b_or_j = isBranch | isJump;
 
-// Control unit: ALEX
-// 	A giant case statement for all the ISA instr
-// 	Outputs a bunch of control signals:
-//		1. HALT
-//		2. NOP
-//		3. WriteR7
-//		4. JumpReg
-//		5. Jump
-//		6. Branch
-//		7. MemToReg
-//		8. MemRead
-//		9. ALUOP (figure out how it goes with the added alu)
-//		10. MemWrite
-//		11. ALUSrc
-//		12. RegWrite
-control_unit CONTROL(	.instruction(instruction), 
-			.instr_type(instr_type), 
-			.HALT(HALT),  
-			.NOP(NOP),  
-			.writeR7(writeR7),  
-			.jumpReg(jumpReg),  
-			.jump(jump),  
-			.branch(branch), 
-			.memToReg(memToReg), 
-			.memRead(memRead), 
-			.ALUop(ALUop), 
-			.memWrite(memWrite), 
-			.ALUsrc(ALUsrc), 
-			.regWrite(regWrite)	);
+assign PC_next = ~(isNotHalt) ? currPC : (b_or_j ? PC_next_i : new_addr);
 
 
-// Instruction Decode: ABBY
-// 	Figure out what rt, rs, rd are
-// 	Determine which are used for Read Reg 1, Read Reg 2, and Write Reg
-instruction_decode DECODE_REGS(.instr_Type(instr_type),  
-								.instruction(instruction),  
-								.readReg1(readReg1),  
-								.readReg2(readReg2),  
+/* Control Unit: Yeon Jae
+ * control signals:
+ *  1. isNotHalt
+ *  2. isNOP
+ *  3. isType
+ *  4. isJAL, 
+ *  5. isJR 
+ *  6. isJump
+ *  7. isBranch
+ *  8. isMemToReg
+ *  9. isMemRead
+ *  10. ALU_Op
+ *  11. isMemWrite
+ *  12. ALU_src
+ *  13. isRegWrite
+ */
+control_unit iCtrl(.instr(instr), .isNotHalt(isNotHalt), .isNOP(isNOP), .isType(isType),.isJAL(isJAL), 
+  .isJR(isJR),.isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
+ .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
+ 
+instr_decode DECODE_REGS(.isType(isType),  
+								.instr(instr),  
+								.read_reg1(read_reg1),  
+								.read_reg2(read_reg2),  
 								.writeReg(writeReg),  
 								.incr_PC(new_addr));
-
 // Extension unit: ALEX
 // 	Determine if SIGN extend or ZERO extend
-extension_unit EXTEND_IMM(instruction, immediate);
+extension_unit EXTEND_IMM(.instr(instr), .immed(immed));
 
 //	Determine num bits
 // Register File:
 // 	From the instruction-decode unit - read from 2 regs.
 regFile regFile0(
                 // Outputs
-                .read1Data(read_data_1), .read2Data(read_data_2), .err(),
+                .read1Data(rd_data1), .read2Data(rd_data2), .err(),
                 // Inputs
-                .clk(clk), .rst(rst), .read1RegSel(readReg1), .read2RegSel(readReg2), .writeRegSel(writeReg), .writeData(write_data), .writeEn(regWrite)
+                .clk(clk), .rst(rst), .read1RegSel(read_reg1), .read2RegSel(read_reg2), 
+				.writeRegSel(writeReg), .writeData(writeData), .writeEn(isRegWrite)
                 );
 
 
-// BRANCH AND JUMPS: ABBY
-// Additional ALU
-//	Has operations for all branches (4)
-// Word align (shift 2)
-// Adder for curr instr and branch offset
-// 2 Muxes (2-1, 4-1)
-// AND gate for branch instruction
+cla16b iCLA(.sum(branchALU), .cOut(), .inA(immed), .inB(rd_data1), .cIn(1'b0));
 
-// branch_ALU BRANCH_ALU(.opcode(instruction[15:11]), .RsVal(read_data_1), .zero(zero));
-//A, B, C_in, S, C_out
 
-cla16b iCLA(.sum(branchAluResult), .cOut(), .inA(immediate), .inB(read_data_1), .cIn(1'b0));
-branch_jump BRANCH_JUMP(.opcode(instruction[15:11]), 
-								.RsVal(read_data_1), 
+
+isBranch_Jump BRANCH_JUMP(.opcode(instr[15:11]), 
+								.RsVal(rd_data1), 
 								.incr_PC(new_addr),  
-								.JumpReg(jumpReg),  
-								.Jump(jump),   
-								.Branch(branch),  
-								.ALUResult(branchAluResult),  
-								.immediate(immediate),  
-								.next_PC(next_PC_i));
+								.isJR(isJR),  
+								.isJump(isJump),   
+								.isBranch(isBranch),  
+								.ALUResult(branchALU),  
+								.immed(immed),  
+								.next_PC(PC_next_i));
 endmodule

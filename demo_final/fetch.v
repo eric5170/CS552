@@ -1,30 +1,22 @@
 /*
-   CS/ECE 552 Spring '23
+   CS/ECE 552 Spring '22
   
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch(clk, rst, PC_current, instr, PC_next);
+`default_nettype none
+module fetch (clk, rst, currPC, nextPC, instr);
 
-input clk, rst;
-input [15:0] PC_current;
-output [15:0] instr, PC_next;
+input wire clk, rst;
+input  wire [15:0] currPC;
+output wire [15:0] nextPC, instr;
+   
+// instruction from memory using memory2c
+memory2c iMEM(.data_out(instr), .data_in(16'h0), .addr(currPC), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
+// increment PC to PC+2 
+cla16b iADD(.sum(nextPC), .cOut(), .inA(currPC), .inB(16'h2),.cIn(1'b0));
 
-wire [15:0] blank_instr;
-assign blank_instr = 16'h0;
-
-wire assrt, deassrt;
-assign assrt = 1'b1;
-assign deassrt = 1'b0;
-
-
-// get instr from mem
-memory2c iMEM2C(.data_out(instr), .data_in(blank_instr), .addr(PC_current), .enable(assrt),
-				.wr(deassrt), .createdump(assrt), .clk(clk), .rst(rst));
-
-
-// PC_next = PC+2 
- cla16b ADDER(.sum(PC_next), .cOut(), .inA(PC_current), .inB(16'h2), .cIn(deassrt));
 
 endmodule
+`default_nettype wire
