@@ -58,7 +58,7 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 	slbi iSLBI(.A(A_inp), .B(B_inp), .Out(slbi_out));
 
 	// Jay's CLA
-	cla16b CLA_16(.sum(sum), .cOut(C_out), .inA(A_inp), .inB(B_inp), .cIn(Cin));
+	cla16b CLA_16(.sum(sum), .cOut(cOut), .inA(A_inp), .inB(B_inp), .cIn(Cin));
      
 	//different Sign
 	assign diffS = A_inp[15] ^ B_inp[15];
@@ -80,7 +80,7 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 				aluOut_inp = sum;
 				ofl_inp = sign ? ( negFPos | posFNeg ? 1 : diffS ? 0 : cOut_i ) : cOut;
 			end
-		
+			//THIS IS PROBLEM!! FIX IT!
 			SUB: begin 
 				aluOut_inp = sum;
 				ofl_inp = sign ? ( negFPos | posFNeg ? 1 : diffS ? 0 : cOut_i ) : cOut;
@@ -136,11 +136,12 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 				ofl_inp = 0;
 			end
 
+			
 			SLT: begin	
 				ofl_inp = sign ? ( negFPos | posFNeg ? 1 : diffS ? 0 : cOut_i ) : cOut;
 				aluOut_inp = ofl_inp ? (neg ? 16'h0 : 16'h1) : (neg ? 16'h1 : 16'h0);
 			end
-
+			
 			SLE: begin
 				ofl_inp = sign ? ( negFPos | posFNeg ? 1 : diffS ? 0 : cOut_i ) : cOut;
 				aluOut_inp = ofl_inp ? (neg ? 16'h0 : 16'h1) : noz ? 16'h1 : 16'h0;
