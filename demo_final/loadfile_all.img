@@ -1,36 +1,47 @@
-Reading line: // Original test: ./ziliang/hw4/problem6/add_0.asm
-Reading line: // Author: ziliang
+Reading line: // Original test: ./bolanows/hw4/problem6/jal_1.asm
+Reading line: // Author: bolanows
 Reading line: // Test source code follows
 Reading line: 
 Reading line: 
-Reading line: //This mainly tests the forwarding problems that can happen
-Reading line: //if people messed up passing values between their pipelines.
+Reading line: // tests for negative jump
 Reading line: 
-Reading line: lbi r1, 100	//load 100 into r1
-Reading line: lbi r2, 99	//load 99 into r2
-Reading line: add r3, r1, r2	//expected r3 = 199 or x00c7
-Reading line: add r2, r3, r1	//expected r2 = 299 or x012b
-Reading line: add r4, r1, r2	//expected r4 = 399 or x018f
-Reading line: add r6, r2, r1	//expected r6 = 399 or x018f
-Reading line: add r5, r1, r4	//expected r5 = 499 or x01f3
-Reading line: add r4, r5, r1	//expected r4 = 599 or x0257
-Reading line: halt
+Reading line: Nop
+Reading line: JAL 12 // Should jump to Target_A, PC = 16
+Reading line: Nop
+Reading line: Nop
+Reading line: Nop
+Reading line: Nop // PC = 10 Target_B
+Reading line: Halt
+Reading line: Nop
+Reading line: Nop // PC = 16 Target_A 
+Reading line: JAL -10 // Should jump to Target_B, PC = 10
+Reading line: Nop
+Reading line: Nop
+Reading line: Halt
 @0
-c1
-64
-c2
-63
-d9
-4c
-db
-28
-d9
-50
-da
-38
-d9
-94
-dd
+08
+00
 30
+0c
+08
+00
+08
+00
+08
+00
+08
+00
+00
+00
+08
+00
+08
+00
+37
+f6
+08
+00
+08
+00
 00
 00

@@ -1,16 +1,9 @@
 module extension_unit(instr, immed);
 
-// There are 5 flavors of extending immeds, which are used by various instrs: 
-//			5b zero extension, 
-//			5b sign extension, 
-//			8b zero extension, 
-//			8b sign extension, 
-//			and 11b sign extension
-
 input [15:0] instr;
 output reg [15:0] immed;
 wire [4:0] opcode;
-
+assign opcode = instr[15:11];
 
 // I-format 1
 localparam	ADDI 		= 5'b01000; 
@@ -107,7 +100,7 @@ always@(*) begin
 		
 		// shft/rot functions
 		default: begin
-				immed = {{11{instr[4]}}, instr[4:0]}; 
+			immed = {{11{instr[4]}}, instr[4:0]}; 
 		end
    endcase
 end

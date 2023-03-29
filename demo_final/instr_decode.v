@@ -46,6 +46,10 @@ always @(*) begin
 			readReg2Wire = instr[7:5];
 			writeRegWire = instr[4:2];
 			end
+		default: begin
+			readReg1Wire = 2'bxx;
+			readReg2Wire = 2'bxx;
+		end
 	endcase
 end
 

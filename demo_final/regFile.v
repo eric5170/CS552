@@ -6,7 +6,7 @@ module regFile (
                 clk, rst, read1RegSel, read2RegSel, writeRegSel, writeData, writeEn
                 );
 
-   input        clk, rst;
+   input clk, rst;
    input [2:0]  read1RegSel;
    input [2:0]  read2RegSel;
    input [2:0]  writeRegSel;
@@ -108,20 +108,20 @@ module regFile (
 		endcase 
 	end
 
-	
-   assign in0 = writeEn ? ( (writeRegSel == 3'h0) ? writeData : state0 ) : state0;
-   assign in1 = writeEn ? ( (writeRegSel == 3'h1) ? writeData : state1 ) : state1;
-   assign in2 = writeEn ? ( (writeRegSel == 3'h2) ? writeData : state2 ) : state2;
-   assign in3 = writeEn ? ( (writeRegSel == 3'h3) ? writeData : state3 ) : state3;
-   assign in4 = writeEn ? ( (writeRegSel == 3'h4) ? writeData : state4 ) : state4;
-   assign in5 = writeEn ? ( (writeRegSel == 3'h5) ? writeData : state5 ) : state5;
-   assign in6 = writeEn ? ( (writeRegSel == 3'h6) ? writeData : state6 ) : state6;
-   assign in7 = writeEn ? ( (writeRegSel == 3'h7) ? writeData : state7 ) : state7;
+
+	assign in0 = writeEn ? ( (writeRegSel == 3'h0) ? writeData : state0 ) : state0;
+	assign in1 = writeEn ? ( (writeRegSel == 3'h1) ? writeData : state1 ) : state1;
+	assign in2 = writeEn ? ( (writeRegSel == 3'h2) ? writeData : state2 ) : state2;
+	assign in3 = writeEn ? ( (writeRegSel == 3'h3) ? writeData : state3 ) : state3;
+	assign in4 = writeEn ? ( (writeRegSel == 3'h4) ? writeData : state4 ) : state4;
+	assign in5 = writeEn ? ( (writeRegSel == 3'h5) ? writeData : state5 ) : state5;
+	assign in6 = writeEn ? ( (writeRegSel == 3'h6) ? writeData : state6 ) : state6;
+	assign in7 = writeEn ? ( (writeRegSel == 3'h7) ? writeData : state7 ) : state7;
 
 
-   assign read1Data = read1;
-   assign read2Data = read2;
-   assign err = err_i;
+	assign read1Data = read1;
+	assign read2Data = read2;
+	assign err = err_i;
 
 
 endmodule

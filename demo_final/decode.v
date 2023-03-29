@@ -4,40 +4,16 @@
    Filename        : decode.v
    Description     : This is the module for the overall decode stage of the processor.
 */
-module decode (clk,
-					rst,
-					instr, 
-					currPC,
-					new_addr,
-					writeData, 
-					isNotHalt,  
-					isNOP,  
-					isJAL,  
-					isJR,  
-					isJump,  
-					isBranch, 
-					isMemToReg, 
-					isMemRead, 
-					ALU_Op, 
-					isMemWrite, 
-					ALU_src, 
-					isRegWrite,
-					immed,
-					rd_data1,
-					rd_data2,
-					PC_next);
+module decode (clk,	rst, instr, currPC, new_addr, writeData, isNotHalt, isNOP, isJAL, isJR,  
+					isJump, isBranch, isMemToReg, isMemRead, ALU_Op, isMemWrite, ALU_src, 
+					isRegWrite, immed, rd_data1, rd_data2, PC_next);
 
-// Inputs:
-//	1. Instruction [15:0]
-//	2. incremented address (PC+2)
-//	3. Write Data [15:0]
-// clk, rst (for regfile)
-   
 input wire clk, rst;
 input wire[15:0] instr, currPC, new_addr, writeData;
 
 output wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
- ALU_src, isRegWrite;
+			ALU_src, isRegWrite;
+			
 output wire [3:0] ALU_Op;
 
 output wire [15:0] immed, rd_data1, rd_data2, PC_next;
@@ -46,6 +22,8 @@ wire [1:0] isType;
 wire[2:0] read_reg1, read_reg2, writeReg;
 wire zero, b_or_j;
 wire [15:0] PC_next_i, branchALU;
+wire [4:0] opcode;
+
 
 assign b_or_j = isBranch | isJump;
 
@@ -72,39 +50,20 @@ control_unit iCtrl(.instr(instr), .isNotHalt(isNotHalt), .isNOP(isNOP), .isType(
   .isJR(isJR),.isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
  .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
  
-instr_decode DECODE_REGS(.isType(isType),  
-								.instr(instr),  
-								.read_reg1(read_reg1),  
-								.read_reg2(read_reg2),  
-								.writeReg(writeReg),  
-								.incr_PC(new_addr));
-// Extension unit: ALEX
-// 	Determine if SIGN extend or ZERO extend
-extension_unit EXTEND_IMM(.instr(instr), .immed(immed));
+instr_decode iDecode(.isType(isType), .instr(instr), .read_reg1(read_reg1), .read_reg2(read_reg2),  
+					 .writeReg(writeReg), .incr_PC(new_addr));
 
-//	Determine num bits
-// Register File:
-// 	From the instruction-decode unit - read from 2 regs.
-regFile regFile0(
-                // Outputs
-                .read1Data(rd_data1), .read2Data(rd_data2), .err(),
-                // Inputs
-                .clk(clk), .rst(rst), .read1RegSel(read_reg1), .read2RegSel(read_reg2), 
-				.writeRegSel(writeReg), .writeData(writeData), .writeEn(isRegWrite)
-                );
+extension_unit iExtnd(.instr(instr), .immed(immed));
 
+regFile regFile0(.read1Data(rd_data1), .read2Data(rd_data2), .err(), .clk(clk), .rst(rst), 
+				 .read1RegSel(read_reg1), .read2RegSel(read_reg2), .writeRegSel(writeReg),
+				 .writeData(writeData), .writeEn(isRegWrite));
 
 cla16b iCLA(.sum(branchALU), .cOut(), .inA(immed), .inB(rd_data1), .cIn(1'b0));
 
+assign opcode = instr[15:11];
 
-
-isBranch_Jump BRANCH_JUMP(.opcode(instr[15:11]), 
-								.RsVal(rd_data1), 
-								.incr_PC(new_addr),  
-								.isJR(isJR),  
-								.isJump(isJump),   
-								.isBranch(isBranch),  
-								.ALUResult(branchALU),  
-								.immed(immed),  
-								.next_PC(PC_next_i));
+isBranch_Jump iBrnchjp(.opcode(opcode), .RsVal(rd_data1), .incr_PC(new_addr), .isJR(isJR),  
+					   .isJump(isJump), .isBranch(isBranch), .ALUResult(branchALU), .immed(immed),  
+					   .next_PC(PC_next_i));
 endmodule

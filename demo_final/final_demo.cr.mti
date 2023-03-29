@@ -26,19 +26,19 @@ Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
 Top level modules:
 	fetch
 
-} {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/seq.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/seq.v
-Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling module seq
-
-Top level modules:
-	seq
-
 } {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/memory.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/memory.v
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
 -- Compiling module memory
 
 Top level modules:
 	memory
+
+} {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/seq.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/seq.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module seq
+
+Top level modules:
+	seq
 
 } {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/xor2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/xor2.v
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
@@ -70,9 +70,18 @@ Top level modules:
 
 } {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/alu_optimal.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/alu_optimal.v
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module alu_optimal
+-- Compiling module alu_optimal
 -- Compiling module alu_optimal
 
+
+
 Top level modules:
+Top level modules:
+Top level modules:
+	alu_optimal
+	alu_optimal
 	alu_optimal
 
 } {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/cla16b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/cla16b.v
@@ -193,13 +202,6 @@ Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
 
 Top level modules:
 	shiftLeft
-
-} {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/execute.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/execute.v
-Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
--- Compiling module execute
-
-Top level modules:
-	execute
 
 } {} {}} /home/yeonc/private/CS552/project/demo1/demo_final/proc_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo1/demo_final/proc_hier.v
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018

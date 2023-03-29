@@ -1,4 +1,5 @@
-module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);//instructions
+module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
+
 	localparam 	ADD 		= 4'b0000;
 	localparam 	SUB 		= 4'b0001;
 	localparam 	ROL 		= 4'b0010;
@@ -56,6 +57,7 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 	seq iSEQ(.A(A_inp), .B(B_inp), .Out(seq_out));
 	slbi iSLBI(.A(A_inp), .B(B_inp), .Out(slbi_out));
 
+	// Jay's CLA
 	cla16b CLA_16(.sum(sum), .cOut(C_out), .inA(A_inp), .inB(B_inp), .cIn(Cin));
      
 	//different Sign
@@ -148,7 +150,11 @@ module alu_optimal (opcode, inA, inB, Cin, invA, invB, sign, zero, ofl, aluOut);
 				aluOut_inp = B_inp; 
 				ofl_inp = 0;
 			end
-		
+			default: begin
+				aluOut_inp = 16'hx;
+				ofl_inp = 1'bx;
+			end
+			
 	   endcase
 	end
 

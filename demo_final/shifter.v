@@ -1,35 +1,34 @@
-
 module shifter (In, Cnt, Op, Out);
 
-   // declare constant for size of inputs, outputs (N) and # bits to shift (C)
-   parameter   N = 16;
-   parameter   C = 4;
-   parameter   O = 2;
+	localparam rotL = 2'b00;
+	localparam shfL = 2'b01;
+	localparam shfRA = 2'b10;
+	localparam shfRL = 2'b11;
+	
+	
+	input [15:0] In;
+	input [3:0] Cnt;
+	input [1:0] Op;
+	output reg [15:0]  Out;
 
-   input [N-1:0]   In;
-   input [C-1:0]   Cnt;
-   input [O-1:0]   Op;
-   output reg [N-1:0]  Out;
+	wire [15:0] shiftLeftResult;
+	wire [15:0] shiftRightLogical;
+	wire [15:0] shiftRightArithmetic;
+	wire [15:0] rotateLeftResult;
 
-   wire [15:0] shiftLeftResult;
-   wire [15:0] shiftRightLogical;
-   wire [15:0] shiftRightArithmetic;
-   wire [15:0] rotateLeftResult;
+	shiftLeft SHFT1(In, Cnt, shiftLeftResult);
+	shiftRight_Logical SHFT_RL(In, Cnt, shiftRightLogical);
+	shiftRight_Arithmetic SHFT_RA(In, Cnt, shiftRightArithmetic);
+	rotateLeft ROTL(In, Cnt, rotateLeftResult);
 
-   shiftLeft SHFT1(In, Cnt, shiftLeftResult);
-   shiftRight_Logical SHFT_RL(In, Cnt, shiftRightLogical);
-   shiftRight_Arithmetic SHFT_RA(In, Cnt, shiftRightArithmetic);
-   rotateLeft ROTL(In, Cnt, rotateLeftResult);
-
-always@(*) begin
-   case(Op)
-	2'b00: assign Out = rotateLeftResult;
-	2'b01: assign Out = shiftLeftResult;
-	2'b10: assign Out = shiftRightArithmetic;
-	2'b11: assign Out = shiftRightLogical;
-   endcase
-end
-
-   //reg [15:0] arr;
-   
+	always@(*) begin
+	   case(Op)
+		rotL: assign Out = rotateLeftResult;
+		shfL: assign Out = shiftLeftResult;
+		shfRA: assign Out = shiftRightArithmetic;
+		shfRL: assign Out = shiftRightLogical;
+		default: Out = 16'hx;
+	   endcase
+	end
+	   
 endmodule

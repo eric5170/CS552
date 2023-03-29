@@ -1,5 +1,5 @@
 /*
-   CS/ECE 552 Spring '20
+   CS/ECE 552 Spring '23
   
    Filename        : memory.v
    Description     : This module contains all components in the Memory stage of the 
