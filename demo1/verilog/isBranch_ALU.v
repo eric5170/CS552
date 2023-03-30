@@ -6,30 +6,12 @@
 */
 module isBranch_ALU(opcode, RsVal, zero);
 
-localparam BEQZ = 5'b01100;
-localparam BNEZ = 5'b01101;
-localparam BLTZ = 5'b01110;
-localparam BGEZ = 5'b01111;
-
-
 input [4:0] opcode;
 input [15:0] RsVal;
 output wire zero;
 
-reg zero_i;
 
-always @(*) begin
-	case(opcode)
-		BEQZ: zero_i = RsVal ? 0 : 1; 
-		BNEZ: zero_i = RsVal ? 1 : 0; 
-		BLTZ: zero_i = (RsVal[15]) ? 1 : 0; 
-		BGEZ: zero_i = (RsVal[15]) ? 0 : 1; 
-		default: zero_i = 0;
-	endcase
-end
+mux4_1 BRANCH_MUX(.out(zero), .inputA(RsVal ? 0 : 1), .inputB(RsVal ? 1 : 0),
+	.inputC((RsVal[15]) ? 1 : 0), .inputD((RsVal[15]) ? 0 : 1), .sel(opcode[1:0]));
 
-assign zero = zero_i;
-			
 endmodule	
-	
-	
