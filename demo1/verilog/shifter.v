@@ -26,10 +26,10 @@ module shifter (in, bit_cnt, Op, Out);
 	wire [15:0] shfR_A_res;
 	wire [15:0] shfR_L_res;
 	
-	shftL iShftL(in, bit_cnt, shfL_res);
-	shfR_L iShftR(in, bit_cnt, shfR_L_res);
-	shfR_A iShftRA(in, bit_cnt, shfR_A_res);
-	rotateL iRotL(in, bit_cnt, rotL_res);
+	rotateL iRotL(.in(in), .bit_cnt(bit_cnt), .Out(rotL_res));
+	shftL iShftL(.in(in), .bit_cnt(bit_cnt), .Out(shfL_res));
+	shfR_A iShftRA(.in(in), .bit_cnt(bit_cnt), .Out(shfR_A_res));
+	shfR_L iShftR(.in(in), .bit_cnt(bit_cnt), .Out(shfR_L_res));
 
 	always@(*) begin
 	   case(Op)
