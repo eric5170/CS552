@@ -5,11 +5,6 @@
    Description     : This is the module for shifter operation.
 */
 module shifter (in, bit_cnt, Op, Out);
-
-	localparam rotL = 2'b00;
-	localparam shfL = 2'b01;
-	localparam shfRA = 2'b10;
-	localparam shfRL = 2'b11;
 	
 	// instruction received
 	input [15:0] in;
