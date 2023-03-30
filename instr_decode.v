@@ -29,7 +29,7 @@ wire [4:0] opcode;
 //flags for the operations
 wire JALR_f, JAL_f, SLBI_f, LBI_f, ST_f, STU_f;
 
-wire I1_Extend, I2_Extend;
+wire[15:0] I1_Extend, I2_Extend;
 
 
 mux2_1 I1_MUX[15:0](.out(I1_Extend), .inputA({ {11{instr[4]}}, instr[4:0] }),
@@ -37,7 +37,7 @@ mux2_1 I1_MUX[15:0](.out(I1_Extend), .inputA({ {11{instr[4]}}, instr[4:0] }),
 	
 	
 mux2_1 I2_MUX[15:0](.out(I2_Extend), .inputA({ {8{instr[7]}}, instr[7:0] }),
-	.inputB({ {8{1'b0}}, instr[7:0] }), .sel(instr[12]));
+	.inputB({ {8{1'b0}}, instr[7:0] }), .sel(instr[15] & instr[12]));
 
 assign opcode = instr[15:11];
 
@@ -79,7 +79,6 @@ always @(*) begin
 			readReg1Wire = instr[10:8];
 			readReg2Wire = instr[7:5];
 			writeRegWire = instr[4:2];
-			assign immed = 1'b0;
 			
 		end
 		
@@ -87,7 +86,6 @@ always @(*) begin
 		default: begin
 			readReg1Wire = 2'bxx;
 			readReg2Wire = 2'bxx;
-			assign immed = 1'b0;
 		end
 		
 	endcase
