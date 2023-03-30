@@ -16,10 +16,7 @@ module shifter (in, bit_cnt, Op, Out);
 	output reg [15:0]  Out;
 
 	// shift results
-	wire [15:0] rotL_res;
-	wire [15:0] shfL_res;
-	wire [15:0] shfR_A_res;
-	wire [15:0] shfR_L_res;
+	wire [15:0] rotL_res, shfL_res, shfR_A_res, shfR_L_res;
 	
 	shftL iShftL(.in(in), .bit_cnt(bit_cnt), .Out(shfL_res));
 	shfR_L iShftR(.in(in), .bit_cnt(bit_cnt), .Out(shfR_L_res));
