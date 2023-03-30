@@ -22,12 +22,22 @@ input wire[15:0] instr, incr_PC;
 input wire [1:0] isType;
 
 output wire [2:0] read_reg1, read_reg2, writeReg;
-output wire [15:0] immed;
+output reg [15:0] immed;
 
 reg [2:0] readReg1Wire, readReg2Wire, writeRegWire;
 wire [4:0] opcode;
 //flags for the operations
 wire JALR_f, JAL_f, SLBI_f, LBI_f, ST_f, STU_f;
+
+wire I1_Extend, I2_Extend;
+
+
+mux2_1 I1_MUX[15:0](.out(I1_Extend), .inputA({ {11{instr[4]}}, instr[4:0] }),
+	.inputB({ {11{1'b0}}, instr[4:0] }), .sel(instr[12]));
+	
+	
+mux2_1 I2_MUX[15:0](.out(I2_Extend), .inputA({ {8{instr[7]}}, instr[7:0] }),
+	.inputB({ {8{1'b0}}, instr[7:0] }), .sel(instr[12]));
 
 assign opcode = instr[15:11];
 
@@ -55,16 +65,14 @@ always @(*) begin
 			writeRegWire = ( ~STU_f ) ? instr[10:8] : instr[7:5];
 			readReg1Wire = instr[10:8];
 			readReg2Wire = ( ~STU_f | ~ST_f ) ?  instr[7:5] : 3'h0;
-			mux2_1 I1_EXTEND(.out(immed), .inputA({ {11{instr[4]}}, instr[4:0] }),
-				.inputB({ {11{1'b0}}, instr[4:0] }), .sel(instr[12]));
+			immed = I1_Extend;
 
 		end
 		
 		I2: begin 
 			readReg1Wire = instr[10:8];
 			writeRegWire = (~JALR_f) ? 7 : ((~SLBI_f | ~LBI_f) ? instr[10:8] : 0);
-			mux2_1 I2_EXTEND(.out(immed), .inputA({ {8{instr[7]}}, instr[7:0] }),
-				.inputB({ {8{1'b0}}, instr[7:0] }), .sel(instr[12]));
+			immed = I2_Extend;
 		end
 		
 		R: begin 
