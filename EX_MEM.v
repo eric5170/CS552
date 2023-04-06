@@ -36,7 +36,7 @@ register_16b ALURESULT_REG(.en(en), .clk(clk), .rst(rst), .data_in(aluResult), .
 
 register_3b WRITEREGSEL_REG(.en(en), .clk(clk), .rst(rst), .data_in(writeRegSel), .state(writeRegSel_EX_MEM));
 
-register_1b HALT_REG(.en(en), .clk(clk), .rst(rst), .data_in(isNotHalt), .state(HALT_EX_MEM));
+	register_1b HALT_REG(.en(en), .clk(clk), .rst(rst), .data_in(isNotHalt), .state(isNotHalt_EX_MEM));
 register_1b MEMTOREG_REG(.en(en), .clk(clk), .rst(rst), .data_in(isMemToReg), .state(isMemToReg_EX_MEM));
 register_1b MEMREAD_REG(.en(en), .clk(clk), .rst(rst), .data_in(isMemRead), .state(isMemRead_EX_MEM));
 register_1b MEMWRITE_REG(.en(en), .clk(clk), .rst(rst), .data_in(isMemWrite), .state(isMemWrite_EX_MEM));
