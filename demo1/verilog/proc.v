@@ -1,6 +1,3 @@
-/* $Author: sinclair $ */
-/* $LastChangedDate: 2020-02-09 17:03:45 -0600 (Sun, 09 Feb 2020) $ */
-/* $Rev: 46 $ */
 `default_nettype none
 module proc (/*AUTOARG*/
 	// Outputs
