@@ -1,4 +1,4 @@
-module IF_ID(en, clk, rst, PC_2, instr, currPC, instr_next, PC_2_next, currPC_next);
+module I2D(en, clk, rst, PC_2, instr, currPC, instr_next, PC_2_next, currPC_next);
    
 	input wire clk, rst, en;
 	input  wire[15:0] PC_2, instr, currPC;
