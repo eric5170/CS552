@@ -2,38 +2,38 @@ module MEM_WB(
 				clk,
 				rst,
 				en,
-				HALT_MEM,
-				data_MEM,
-				aluResult_MEM,
-				inc_PC_MEM,
-				memToReg_MEM,
-				regWrite_MEM,
-				writeRegSel_MEM,
-				data_WB,
-				aluResult_WB,
-				inc_PC_WB,
-				memToReg_WB,
-				regWrite_WB,
-				writeRegSel_WB,
-				HALT_WB);
+				isNotHalt,
+				rdData2,
+				aluResult,
+				PC_2,
+				MemToReg,
+				regWrite,
+				writeRegSel,
+				data_MEM_WB,
+				aluResult_MEM_WB,
+				PC_2_MEM_WB,
+				MemToReg_MEM_WB,
+				regWrite_MEM_WB,
+				writeRegSel_MEM_WB,
+				HALT_MEM_WB);
 
-input [15:0] inc_PC_MEM, aluResult_MEM, data_MEM;
-input memToReg_MEM, regWrite_MEM, clk, rst, en, HALT;
-input [2:0] writeRegSel_MEM;
+input [15:0] PC_2, aluResult, data;
+input MemToReg, regWrite, clk, rst, en, isNotHalt;
+input [2:0] writeRegSel;
 
-output [15:0] inc_PC_WB, aluResult_WB, data_WB;
-output memToReg_WB, regWrite_WB, HALT_WB;
+output [15:0] PC_2_MEM_WB, aluResult_MEM_WB, rdData2_MEM_WB;
+output MemToReg_MEM_WB, regWrite_MEM_WB, isNotHalt_MEM_WB;
 output [2:0] writeRegSel_WB;
 
-register_16b IN_PC_REG(.en(en), .clk(clk), .rst(rst), .data_in(inc_PC_MEM), .state(inc_PC_WB));
-register_16b DATA_REG(.en(en), .clk(clk), .rst(rst), .data_in(data_MEM), .state(data_WB));
-register_16b ALURESULT_REG(.en(en), .clk(clk), .rst(rst), .data_in(aluResult_MEM), .state(aluResult_WB));
+register_16b IN_PC_REG(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_MEM_WB));
+register_16b DATA_REG(.en(en), .clk(clk), .rst(rst), .data_in(rdData2), .state(rdData2_MEM_WB));
+register_16b ALURESULT_REG(.en(en), .clk(clk), .rst(rst), .data_in(aluResult), .state(aluResult_MEM_WB));
 
-register_3b WRITEREGSEL_REG(.en(en), .clk(clk), .rst(rst), .data_in(writeRegSel_MEM), .state(writeRegSel_WB));
+register_3b WRITEREGSEL_REG(.en(en), .clk(clk), .rst(rst), .data_in(writeRegSel), .state(writeRegSel_MEM_WB));
 
-register_1b MEMTOREG_REG(.en(en), .clk(clk), .rst(rst), .data_in(MemToReg_MEM), .state(MemToReg_WB));
-register_1b REGWRITE_REG(.en(en), .clk(clk), .rst(rst), .data_in(RegWrite_MEM), .state(RegWrite_WB));
-register_1b HALT_REG(.en(en), .clk(clk), .rst(rst), .data_in(HALT_MEM), .state(HALT_WB));
+register_1b MEMTOREG_REG(.en(en), .clk(clk), .rst(rst), .data_in(MemToReg), .state(MemToReg_MEM_WB));
+register_1b REGWRITE_REG(.en(en), .clk(clk), .rst(rst), .data_in(RegWrite), .state(RegWrite_MEM_WB));
+register_1b HALT_REG(.en(en), .clk(clk), .rst(rst), .data_in(isNotHalt), .state(isNotHalt_MEM_WB));
 
 
 endmodule
