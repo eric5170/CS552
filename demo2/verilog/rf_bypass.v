@@ -25,30 +25,17 @@ module rf_bypass (
    output wire        err;
 
 wire [15:0] output1, output2;
-reg [15:0] bypass1, bypass2;
 wire comp1, comp2;
 
-//rf DUT instantiation
-rf registerFile (.read1OutData(output1), .read2OutData(output2), .err(err), .clk(clk), .rst(rst), .read1RegSel(read1RegSel), .read2RegSel(read2RegSel), .writeRegSel(writeRegSel), .writeInData(writeInData), .writeEn(writeEn)); 
+rf registerFile (.read1OutData(output1), .read2OutData(output2), .err(err), .clk(clk), .rst(rst), 
+	.read1RegSel(read1RegSel), .read2RegSel(read2RegSel), .writeRegSel(writeRegSel), 
+	.writeInData(writeInData), .writeEn(writeEn)); 
 
 assign comp1 = |(writeRegSel ^ read1RegSel);
 assign comp2 = |(writeRegSel ^ read2RegSel);
 
-always @(*) begin
-	case(comp1)
-		1'b0: bypass1 = writeEn ? writeInData : output1;
-		1'b1: bypass1 = output1;
-	endcase
-	end
+assign read1OutData = compl ? output1 : (writeEn ? writeInData : output1);
+assign read2OutData = compl ? output2 : (writeEn ? writeInData : output2);
 
-	always @(*) begin
-	case(comp2)
-		1'b0: bypass2 =  writeEn ? writeInData : output2;
-		1'b1: bypass2 = output2;
-	endcase
-	end
-
-assign read1OutData = bypass1; 
-assign read2OutData = bypass2;
 endmodule
 `default_nettype wire
