@@ -25,8 +25,8 @@ output [15:0] PC_2_MEM_WB, aluResult_MEM_WB, rdData2_MEM_WB;
 output MemToReg_MEM_WB, regWrite_MEM_WB, isNotHalt_MEM_WB;
 output [2:0] writeRegSel_WB;
 
-register_16b IN_PC_REG(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_MEM_WB));
-register_16b DATA_REG(.en(en), .clk(clk), .rst(rst), .data_in(rdData2), .state(rdData2_MEM_WB));
+register_16b PC_2_REG(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_MEM_WB));
+register_16b READ_DATA_2_REG(.en(en), .clk(clk), .rst(rst), .data_in(rdData2), .state(rdData2_MEM_WB));
 register_16b ALURESULT_REG(.en(en), .clk(clk), .rst(rst), .data_in(aluResult), .state(aluResult_MEM_WB));
 
 register_3b WRITEREGSEL_REG(.en(en), .clk(clk), .rst(rst), .data_in(writeRegSel), .state(writeRegSel_MEM_WB));
