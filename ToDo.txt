@@ -1,7 +1,8 @@
 TODOs:
 
-1)	 Jae:  IF/ID, ID/EX
+1)	 Jae:  IF/ID, ID/EX	GOOD
 	 Seth: EX/MEM, MEM/WB	GOOD
+	
 
 2) Update Proc
 
