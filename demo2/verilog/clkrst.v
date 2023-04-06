@@ -9,12 +9,11 @@
 // Clock period is 100 time units, and reset length
 // to 201 time units (two rising edges of clock).
 
-`default_nettype none
 module clkrst (clk, rst, err);
 
     output clk;
     output rst;
-    input wire err;
+    input  err;
 
     reg clk;
     reg rst;
@@ -37,18 +36,12 @@ module clkrst (clk, rst, err);
     end
     always @(posedge clk) begin
        cycle_count = cycle_count + 1;
-       /*
-        MDS (3/25/19): change from 100000 cycles to 100004 cycles to
-        allow tests that intentionally loop infinitely to pass in wiscalculator;
-        without this change, such benchmarks will erroneously fail due to
-        reset cycles at the beginning.
-        */
-       if (cycle_count > 100004) begin
-          $display("hmm....more than 100004 cycles of simulation...error?\n");
+       if (cycle_count > 100000) begin
+          $display("hmm....more than 100000 cycles of simulation...error?\n");
           $finish;
        end
     end
 
+
 endmodule
-`default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:

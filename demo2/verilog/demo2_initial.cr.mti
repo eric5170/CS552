@@ -1,0 +1,349 @@
+/home/yeonc/private/CS552/project/demo2/verilog/rotateL.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/rotateL.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rotateL
+
+Top level modules:
+	rotateL
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/or2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/or2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module or2
+
+Top level modules:
+	or2
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/btr.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/btr.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module btr
+
+Top level modules:
+	btr
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/cla16b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/cla16b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module cla16b
+
+Top level modules:
+	cla16b
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/xor2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/xor2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module xor2
+
+Top level modules:
+	xor2
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/nand3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/nand3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nand3
+
+Top level modules:
+	nand3
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/mux2_1.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/mux2_1.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module mux2_1
+
+Top level modules:
+	mux2_1
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/mux4_1.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/mux4_1.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module mux4_1
+
+Top level modules:
+	mux4_1
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/wb.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/wb.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module wb
+
+Top level modules:
+	wb
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/shftL.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/shftL.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module shftL
+
+Top level modules:
+	shftL
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/not1.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/not1.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module not1
+
+Top level modules:
+	not1
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/or3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/or3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module or3
+
+Top level modules:
+	or3
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/isBranch_Jump.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/isBranch_Jump.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module isBranch_Jump
+
+Top level modules:
+	isBranch_Jump
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/rf.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/rf.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rf
+
+Top level modules:
+	rf
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/fetch.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/fetch.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module fetch
+
+Top level modules:
+	fetch
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/instr_decode.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/instr_decode.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module instr_decode
+
+Top level modules:
+	instr_decode
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/proc_hier.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/proc_hier.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc_hier
+
+Top level modules:
+	proc_hier
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/proc.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/proc.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc
+
+Top level modules:
+	proc
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/xor3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/xor3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module xor3
+
+Top level modules:
+	xor3
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/and2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/and2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module and2
+
+Top level modules:
+	and2
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/sco.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/sco.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module sco
+
+Top level modules:
+	sco
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/fullAdder1b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/fullAdder1b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module fullAdder1b
+
+Top level modules:
+	fullAdder1b
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/memory2c.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/memory2c.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module memory2c
+
+Top level modules:
+	memory2c
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/dff.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/dff.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module dff
+
+Top level modules:
+	dff
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/proc_hier_bench.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/proc_hier_bench.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc_hier_bench
+
+Top level modules:
+	proc_hier_bench
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/mux4_1_4b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/mux4_1_4b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module mux4_1_4b
+
+Top level modules:
+	mux4_1_4b
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/rotateR.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/rotateR.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rotateR
+
+Top level modules:
+	rotateR
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/execute.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/execute.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module execute
+
+Top level modules:
+	execute
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/clkrst.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/clkrst.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module clkrst
+
+Top level modules:
+	clkrst
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/isBranch_ALU.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/isBranch_ALU.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module isBranch_ALU
+
+Top level modules:
+	isBranch_ALU
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/decode.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/decode.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module decode
+
+Top level modules:
+	decode
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/shifter.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/shifter.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module shifter
+
+Top level modules:
+	shifter
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/and3.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/and3.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module and3
+
+Top level modules:
+	and3
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/memory2c.syn.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/memory2c.syn.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module memory2c
+
+Top level modules:
+	memory2c
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/shfR_L.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/shfR_L.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module shfR_L
+
+Top level modules:
+	shfR_L
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/register_3b.v {0 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/register_3b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module register_3b
+** Error: (vlog-13069) /home/yeonc/private/CS552/project/demo2/verilog/register_3b.v(8): near "endmodule": syntax error, unexpected endmodule, expecting ';' or ','.
+
+} {4.0 5.0} {}} /home/yeonc/private/CS552/project/demo2/verilog/control.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/control.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module control
+
+Top level modules:
+	control
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/nor2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/nor2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nor2
+
+Top level modules:
+	nor2
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/seq.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/seq.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module seq
+
+Top level modules:
+	seq
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/rf_bypass.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/rf_bypass.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module rf_bypass
+
+Top level modules:
+	rf_bypass
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/proc_hier_pbench.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/proc_hier_pbench.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module proc_hier_pbench
+
+Top level modules:
+	proc_hier_pbench
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/slbi.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/slbi.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module slbi
+
+Top level modules:
+	slbi
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/shfR_A.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/shfR_A.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module shfR_A
+
+Top level modules:
+	shfR_A
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/register_p.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/register_p.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module register_p
+
+Top level modules:
+	register_p
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/cla4b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/cla4b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module cla4b
+
+Top level modules:
+	cla4b
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/memory.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/memory.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module memory
+
+Top level modules:
+	memory
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/dff_en.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/dff_en.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module dff_en
+
+Top level modules:
+	dff_en
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/nand2.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/nand2.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module nand2
+
+Top level modules:
+	nand2
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/register_1b.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/register_1b.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module register_1b
+
+Top level modules:
+	register_1b
+
+} {} {}} /home/yeonc/private/CS552/project/demo2/verilog/alu_optimal.v {1 {vlog -work work -stats=none /home/yeonc/private/CS552/project/demo2/verilog/alu_optimal.v
+Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
+-- Compiling module alu_optimal
+
+Top level modules:
+	alu_optimal
+
+} {} {}}
