@@ -2,7 +2,7 @@
 /* $LastChangedDate: 2009-03-04 23:09:45 -0600 (Wed, 04 Mar 2009) $ */
 /* $Rev: 45 $ */
 //`timescale 1ns/1ns
-`default_nettype none
+
 module proc_hier();
    
    /*AUTOWIRE*/
@@ -27,5 +27,5 @@ module proc_hier();
    
 
 endmodule
-`default_nettype wire
+
 // DUMMY LINE FOR REV CONTROL :0:

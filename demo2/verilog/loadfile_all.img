@@ -1,0 +1,2549 @@
+Reading line: // seed 8
+Reading line: lbi r0, 35 // icount 0
+Reading line: slbi r0, 98 // icount 1
+Reading line: lbi r1, 1 // icount 2
+Reading line: slbi r1, 152 // icount 3
+Reading line: lbi r2, 123 // icount 4
+Reading line: slbi r2, 131 // icount 5
+Reading line: lbi r3, 167 // icount 6
+Reading line: slbi r3, 87 // icount 7
+Reading line: lbi r4, 226 // icount 8
+Reading line: slbi r4, 182 // icount 9
+Reading line: lbi r5, 175 // icount 10
+Reading line: slbi r5, 28 // icount 11
+Reading line: lbi r6, 238 // icount 12
+Reading line: slbi r6, 177 // icount 13
+Reading line: lbi r7, 216 // icount 14
+Reading line: slbi r7, 202 // icount 15
+Reading line: j 22 // icount 16
+Reading line: nop // icount 17
+Reading line: nop // icount 18
+Reading line: nop // icount 19
+Reading line: nop // icount 20
+Reading line: nop // icount 21
+Reading line: nop // icount 22
+Reading line: nop // icount 23
+Reading line: nop // icount 24
+Reading line: nop // icount 25
+Reading line: nop // icount 26
+Reading line: nop // icount 27
+Reading line: srli r7, r6, 3 // icount 28
+Reading line: j 16 // icount 29
+Reading line: nop // icount 30
+Reading line: nop // icount 31
+Reading line: nop // icount 32
+Reading line: nop // icount 33
+Reading line: nop // icount 34
+Reading line: nop // icount 35
+Reading line: nop // icount 36
+Reading line: nop // icount 37
+Reading line: add r2, r4, r1 // icount 38
+Reading line: slt r2, r1, r1 // icount 39
+Reading line: andni r7, r7, 1 // icount 40
+Reading line: ld r5, r7, 0 // icount 41
+Reading line: lbi r4, 0 // icount 42
+Reading line: lbi r5, 0 // icount 43
+Reading line: nop // to align branch icount 44
+Reading line: bgez r0, 8 // icount 45
+Reading line: sub r0, r4, r2 // icount 46
+Reading line: sll r5, r0, r4 // icount 47
+Reading line: lbi r5, 1 // icount 48
+Reading line: srli r4, r2, 9 // icount 49
+Reading line: slbi r4, 2 // icount 50
+Reading line: xor r3, r3, r1 // icount 51
+Reading line: xor r3, r1, r6 // icount 52
+Reading line: xor r7, r3, r5 // icount 53
+Reading line: lbi r4, 0 // icount 54
+Reading line: lbi r3, 0 // icount 55
+Reading line: nop // to align branch icount 56
+Reading line: beqz r5, 16 // icount 57
+Reading line: sll r1, r5, r0 // icount 58
+Reading line: ror r4, r5, r5 // icount 59
+Reading line: andni r5, r5, 1 // icount 60
+Reading line: st r2, r5, 10 // icount 61
+Reading line: subi r3, r3, 12 // icount 62
+Reading line: sco r6, r6, r3 // icount 63
+Reading line: sll r2, r3, r5 // icount 64
+Reading line: lbi r0, 4 // icount 65
+Reading line: sub r5, r7, r0 // icount 66
+Reading line: subi r0, r3, 14 // icount 67
+Reading line: sco r1, r5, r7 // icount 68
+Reading line: nop // to align meminst icount 69
+Reading line: andni r5, r5, 1 // icount 70
+Reading line: stu r4, r5, 10 // icount 71
+Reading line: srl r5, r3, r1 // icount 72
+Reading line: xori r2, r6, 3 // icount 73
+Reading line: rori r2, r0, 4 // icount 74
+Reading line: subi r2, r1, 15 // icount 75
+Reading line: xor r7, r0, r2 // icount 76
+Reading line: lbi r7, 0 // icount 77
+Reading line: lbi r6, 0 // icount 78
+Reading line: bltz r7, 28 // icount 79
+Reading line: add r2, r4, r2 // icount 80
+Reading line: sle r5, r2, r3 // icount 81
+Reading line: andni r5, r6, 2 // icount 82
+Reading line: slt r0, r0, r2 // icount 83
+Reading line: rori r1, r6, 3 // icount 84
+Reading line: slbi r7, 7 // icount 85
+Reading line: slbi r6, 9 // icount 86
+Reading line: nop // to align meminst icount 87
+Reading line: andni r1, r1, 1 // icount 88
+Reading line: st r6, r1, 8 // icount 89
+Reading line: andni r6, r6, 1 // icount 90
+Reading line: ld r2, r6, 10 // icount 91
+Reading line: sll r2, r1, r5 // icount 92
+Reading line: addi r0, r2, 5 // icount 93
+Reading line: seq r3, r2, r3 // icount 94
+Reading line: lbi r0, 11 // icount 95
+Reading line: xor r0, r4, r0 // icount 96
+Reading line: ror r5, r2, r4 // icount 97
+Reading line: andni r7, r7, 1 // icount 98
+Reading line: stu r5, r7, 4 // icount 99
+Reading line: rori r7, r6, 2 // icount 100
+Reading line: andn r3, r2, r6 // icount 101
+Reading line: sle r3, r5, r7 // icount 102
+Reading line: sub r2, r4, r7 // icount 103
+Reading line: sle r4, r6, r3 // icount 104
+Reading line: nop // to align meminst icount 105
+Reading line: andni r6, r6, 1 // icount 106
+Reading line: stu r5, r6, 14 // icount 107
+Reading line: xor r2, r2, r5 // icount 108
+Reading line: nop // to align meminst icount 109
+Reading line: andni r4, r4, 1 // icount 110
+Reading line: st r7, r4, 0 // icount 111
+Reading line: srl r1, r3, r6 // icount 112
+Reading line: addi r3, r4, 4 // icount 113
+Reading line: sub r2, r4, r4 // icount 114
+Reading line: subi r2, r1, 11 // icount 115
+Reading line: lbi r3, 7 // icount 116
+Reading line: j 28 // icount 117
+Reading line: nop // icount 118
+Reading line: nop // icount 119
+Reading line: nop // icount 120
+Reading line: nop // icount 121
+Reading line: nop // icount 122
+Reading line: nop // icount 123
+Reading line: nop // icount 124
+Reading line: nop // icount 125
+Reading line: nop // icount 126
+Reading line: nop // icount 127
+Reading line: nop // icount 128
+Reading line: nop // icount 129
+Reading line: nop // icount 130
+Reading line: nop // icount 131
+Reading line: slli r5, r6, 15 // icount 132
+Reading line: slt r6, r2, r4 // icount 133
+Reading line: lbi r2, 0 // icount 134
+Reading line: lbi r0, 0 // icount 135
+Reading line: nop // to align branch icount 136
+Reading line: bltz r2, 12 // icount 137
+Reading line: srli r0, r7, 1 // icount 138
+Reading line: srli r0, r2, 0 // icount 139
+Reading line: addi r0, r6, 6 // icount 140
+Reading line: slbi r3, 13 // icount 141
+Reading line: srli r7, r3, 8 // icount 142
+Reading line: nop // to align meminst icount 143
+Reading line: andni r4, r4, 1 // icount 144
+Reading line: ld r3, r4, 0 // icount 145
+Reading line: rori r0, r7, 13 // icount 146
+Reading line: rol r6, r2, r3 // icount 147
+Reading line: andni r5, r5, 4 // icount 148
+Reading line: srl r2, r1, r2 // icount 149
+Reading line: subi r6, r3, 14 // icount 150
+Reading line: xor r3, r5, r0 // icount 151
+Reading line: lbi r5, 0 // icount 152
+Reading line: lbi r2, 0 // icount 153
+Reading line: nop // to align branch icount 154
+Reading line: bltz r4, 8 // icount 155
+Reading line: add r4, r0, r7 // icount 156
+Reading line: andni r7, r7, 11 // icount 157
+Reading line: seq r1, r3, r4 // icount 158
+Reading line: subi r7, r2, 9 // icount 159
+Reading line: andni r0, r1, 11 // icount 160
+Reading line: sub r3, r1, r5 // icount 161
+Reading line: andn r1, r5, r4 // icount 162
+Reading line: sll r6, r1, r2 // icount 163
+Reading line: sle r7, r0, r0 // icount 164
+Reading line: j 12 // icount 165
+Reading line: nop // icount 166
+Reading line: nop // icount 167
+Reading line: nop // icount 168
+Reading line: nop // icount 169
+Reading line: nop // icount 170
+Reading line: nop // icount 171
+Reading line: srl r0, r3, r7 // icount 172
+Reading line: xori r6, r6, 9 // icount 173
+Reading line: andni r5, r5, 1 // icount 174
+Reading line: st r7, r5, 12 // icount 175
+Reading line: xori r4, r4, 15 // icount 176
+Reading line: j 28 // icount 177
+Reading line: nop // icount 178
+Reading line: nop // icount 179
+Reading line: nop // icount 180
+Reading line: nop // icount 181
+Reading line: nop // icount 182
+Reading line: nop // icount 183
+Reading line: nop // icount 184
+Reading line: nop // icount 185
+Reading line: nop // icount 186
+Reading line: nop // icount 187
+Reading line: nop // icount 188
+Reading line: nop // icount 189
+Reading line: nop // icount 190
+Reading line: nop // icount 191
+Reading line: rol r1, r4, r5 // icount 192
+Reading line: rol r6, r0, r3 // icount 193
+Reading line: lbi r4, 0 // icount 194
+Reading line: lbi r3, 0 // icount 195
+Reading line: nop // to align branch icount 196
+Reading line: bnez r4, 12 // icount 197
+Reading line: rori r4, r3, 14 // icount 198
+Reading line: sco r6, r1, r4 // icount 199
+Reading line: srli r5, r3, 0 // icount 200
+Reading line: ror r7, r2, r2 // icount 201
+Reading line: slli r7, r3, 1 // icount 202
+Reading line: xori r3, r1, 1 // icount 203
+Reading line: xori r4, r2, 2 // icount 204
+Reading line: rol r7, r5, r4 // icount 205
+Reading line: andni r7, r7, 1 // icount 206
+Reading line: ld r5, r7, 6 // icount 207
+Reading line: rol r0, r3, r1 // icount 208
+Reading line: addi r1, r6, 4 // icount 209
+Reading line: andni r2, r2, 1 // icount 210
+Reading line: stu r1, r2, 10 // icount 211
+Reading line: lbi r3, 0 // icount 212
+Reading line: lbi r4, 0 // icount 213
+Reading line: nop // to align branch icount 214
+Reading line: bltz r3, 20 // icount 215
+Reading line: slbi r1, 6 // icount 216
+Reading line: sco r0, r1, r6 // icount 217
+Reading line: rol r1, r3, r5 // icount 218
+Reading line: slt r5, r7, r7 // icount 219
+Reading line: subi r2, r6, 1 // icount 220
+Reading line: slt r2, r3, r0 // icount 221
+Reading line: andn r0, r7, r4 // icount 222
+Reading line: rol r2, r3, r5 // icount 223
+Reading line: seq r5, r0, r7 // icount 224
+Reading line: nop // to align meminst icount 225
+Reading line: andni r4, r4, 1 // icount 226
+Reading line: st r3, r4, 6 // icount 227
+Reading line: lbi r2, 3 // icount 228
+Reading line: andn r2, r0, r6 // icount 229
+Reading line: rol r1, r7, r4 // icount 230
+Reading line: sco r7, r0, r7 // icount 231
+Reading line: subi r3, r4, 12 // icount 232
+Reading line: slt r0, r4, r7 // icount 233
+Reading line: sub r0, r6, r7 // icount 234
+Reading line: nop // to align meminst icount 235
+Reading line: andni r4, r4, 1 // icount 236
+Reading line: st r4, r4, 0 // icount 237
+Reading line: andn r6, r1, r0 // icount 238
+Reading line: sub r0, r3, r4 // icount 239
+Reading line: slbi r6, 4 // icount 240
+Reading line: sco r6, r6, r6 // icount 241
+Reading line: sll r2, r3, r1 // icount 242
+Reading line: lbi r0, 1 // icount 243
+Reading line: seq r7, r5, r2 // icount 244
+Reading line: slt r6, r6, r1 // icount 245
+Reading line: srl r2, r1, r6 // icount 246
+Reading line: lbi r5, 8 // icount 247
+Reading line: andn r7, r1, r4 // icount 248
+Reading line: nop // to align meminst icount 249
+Reading line: andni r5, r5, 1 // icount 250
+Reading line: stu r0, r5, 2 // icount 251
+Reading line: seq r0, r4, r0 // icount 252
+Reading line: lbi r6, 0 // icount 253
+Reading line: lbi r1, 0 // icount 254
+Reading line: bgez r4, 32 // icount 255
+Reading line: slbi r3, 9 // icount 256
+Reading line: seq r6, r1, r6 // icount 257
+Reading line: subi r4, r6, 3 // icount 258
+Reading line: lbi r6, 13 // icount 259
+Reading line: addi r5, r1, 13 // icount 260
+Reading line: sle r2, r4, r1 // icount 261
+Reading line: slli r4, r4, 12 // icount 262
+Reading line: subi r1, r0, 1 // icount 263
+Reading line: add r4, r4, r7 // icount 264
+Reading line: ror r3, r4, r0 // icount 265
+Reading line: slbi r1, 14 // icount 266
+Reading line: rol r2, r2, r1 // icount 267
+Reading line: slt r1, r4, r2 // icount 268
+Reading line: sll r4, r3, r7 // icount 269
+Reading line: xori r6, r6, 10 // icount 270
+Reading line: ror r7, r6, r3 // icount 271
+Reading line: sll r4, r4, r0 // icount 272
+Reading line: andni r4, r5, 12 // icount 273
+Reading line: srli r6, r4, 1 // icount 274
+Reading line: nop // to align meminst icount 275
+Reading line: andni r5, r5, 1 // icount 276
+Reading line: stu r6, r5, 4 // icount 277
+Reading line: andni r1, r3, 1 // icount 278
+Reading line: slt r7, r0, r2 // icount 279
+Reading line: add r4, r7, r7 // icount 280
+Reading line: nop // to align meminst icount 281
+Reading line: andni r4, r4, 1 // icount 282
+Reading line: stu r4, r4, 12 // icount 283
+Reading line: sco r2, r6, r5 // icount 284
+Reading line: seq r5, r7, r5 // icount 285
+Reading line: andni r0, r7, 8 // icount 286
+Reading line: slt r2, r3, r5 // icount 287
+Reading line: roli r3, r0, 12 // icount 288
+Reading line: roli r1, r3, 7 // icount 289
+Reading line: sub r7, r7, r6 // icount 290
+Reading line: sll r2, r5, r7 // icount 291
+Reading line: j 8 // icount 292
+Reading line: nop // icount 293
+Reading line: nop // icount 294
+Reading line: nop // icount 295
+Reading line: nop // icount 296
+Reading line: sll r6, r2, r3 // icount 297
+Reading line: lbi r0, 0 // icount 298
+Reading line: lbi r7, 0 // icount 299
+Reading line: nop // to align branch icount 300
+Reading line: bgez r1, 8 // icount 301
+Reading line: addi r6, r3, 9 // icount 302
+Reading line: sle r4, r1, r0 // icount 303
+Reading line: slt r1, r0, r2 // icount 304
+Reading line: seq r5, r2, r4 // icount 305
+Reading line: andni r2, r1, 13 // icount 306
+Reading line: sle r6, r6, r2 // icount 307
+Reading line: andni r1, r1, 1 // icount 308
+Reading line: stu r7, r1, 4 // icount 309
+Reading line: sle r7, r7, r7 // icount 310
+Reading line: lbi r4, 0 // icount 311
+Reading line: lbi r7, 0 // icount 312
+Reading line: bnez r6, 0 // icount 313
+Reading line: j 0 // icount 314
+Reading line: rori r6, r3, 15 // icount 315
+Reading line: lbi r3, 0 // icount 316
+Reading line: lbi r4, 0 // icount 317
+Reading line: nop // to align branch icount 318
+Reading line: beqz r4, 24 // icount 319
+Reading line: roli r6, r2, 14 // icount 320
+Reading line: xor r6, r6, r3 // icount 321
+Reading line: slbi r1, 0 // icount 322
+Reading line: lbi r1, 12 // icount 323
+Reading line: xor r4, r0, r5 // icount 324
+Reading line: addi r3, r4, 6 // icount 325
+Reading line: slt r5, r6, r3 // icount 326
+Reading line: lbi r4, 7 // icount 327
+Reading line: lbi r2, 2 // icount 328
+Reading line: lbi r7, 7 // icount 329
+Reading line: xori r6, r2, 0 // icount 330
+Reading line: roli r2, r2, 0 // icount 331
+Reading line: add r6, r5, r0 // icount 332
+Reading line: nop // to align meminst icount 333
+Reading line: andni r4, r4, 1 // icount 334
+Reading line: ld r4, r4, 6 // icount 335
+Reading line: subi r4, r4, 3 // icount 336
+Reading line: seq r6, r3, r2 // icount 337
+Reading line: andni r6, r6, 1 // icount 338
+Reading line: st r5, r6, 2 // icount 339
+Reading line: subi r7, r3, 15 // icount 340
+Reading line: sll r6, r3, r2 // icount 341
+Reading line: andni r2, r2, 1 // icount 342
+Reading line: st r0, r2, 6 // icount 343
+Reading line: sll r6, r2, r3 // icount 344
+Reading line: sco r5, r6, r2 // icount 345
+Reading line: rori r6, r1, 8 // icount 346
+Reading line: add r4, r2, r1 // icount 347
+Reading line: sco r6, r2, r2 // icount 348
+Reading line: andn r6, r1, r0 // icount 349
+Reading line: lbi r6, 0 // icount 350
+Reading line: lbi r7, 0 // icount 351
+Reading line: nop // to align branch icount 352
+Reading line: bltz r6, 16 // icount 353
+Reading line: sle r4, r7, r5 // icount 354
+Reading line: andn r5, r7, r5 // icount 355
+Reading line: add r1, r6, r3 // icount 356
+Reading line: addi r1, r3, 7 // icount 357
+Reading line: lbi r7, 3 // icount 358
+Reading line: add r5, r4, r5 // icount 359
+Reading line: add r7, r3, r4 // icount 360
+Reading line: xori r3, r3, 2 // icount 361
+Reading line: xor r7, r4, r7 // icount 362
+Reading line: nop // to align meminst icount 363
+Reading line: andni r5, r5, 1 // icount 364
+Reading line: stu r7, r5, 6 // icount 365
+Reading line: lbi r4, 12 // icount 366
+Reading line: srli r6, r4, 13 // icount 367
+Reading line: add r7, r4, r4 // icount 368
+Reading line: nop // to align meminst icount 369
+Reading line: andni r4, r4, 1 // icount 370
+Reading line: stu r2, r4, 14 // icount 371
+Reading line: srl r5, r1, r5 // icount 372
+Reading line: sco r6, r1, r3 // icount 373
+Reading line: lbi r1, 0 // icount 374
+Reading line: lbi r5, 0 // icount 375
+Reading line: nop // to align branch icount 376
+Reading line: bltz r7, 4 // icount 377
+Reading line: lbi r5, 2 // icount 378
+Reading line: add r2, r1, r0 // icount 379
+Reading line: srl r1, r5, r1 // icount 380
+Reading line: nop // to align meminst icount 381
+Reading line: andni r4, r4, 1 // icount 382
+Reading line: ld r5, r4, 4 // icount 383
+Reading line: j 12 // icount 384
+Reading line: nop // icount 385
+Reading line: nop // icount 386
+Reading line: nop // icount 387
+Reading line: nop // icount 388
+Reading line: nop // icount 389
+Reading line: nop // icount 390
+Reading line: sub r1, r3, r3 // icount 391
+Reading line: andni r0, r7, 15 // icount 392
+Reading line: j 22 // icount 393
+Reading line: nop // icount 394
+Reading line: nop // icount 395
+Reading line: nop // icount 396
+Reading line: nop // icount 397
+Reading line: nop // icount 398
+Reading line: nop // icount 399
+Reading line: nop // icount 400
+Reading line: nop // icount 401
+Reading line: nop // icount 402
+Reading line: nop // icount 403
+Reading line: nop // icount 404
+Reading line: andni r6, r6, 2 // icount 405
+Reading line: slli r7, r4, 2 // icount 406
+Reading line: nop // to align meminst icount 407
+Reading line: andni r2, r2, 1 // icount 408
+Reading line: stu r6, r2, 0 // icount 409
+Reading line: lbi r0, 0 // icount 410
+Reading line: lbi r4, 0 // icount 411
+Reading line: nop // to align branch icount 412
+Reading line: bgez r0, 28 // icount 413
+Reading line: slli r0, r3, 13 // icount 414
+Reading line: sll r5, r0, r0 // icount 415
+Reading line: andni r4, r4, 1 // icount 416
+Reading line: ld r5, r4, 2 // icount 417
+Reading line: ror r7, r0, r5 // icount 418
+Reading line: nop // to align meminst icount 419
+Reading line: andni r1, r1, 1 // icount 420
+Reading line: st r6, r1, 10 // icount 421
+Reading line: rori r5, r1, 0 // icount 422
+Reading line: subi r3, r0, 5 // icount 423
+Reading line: seq r2, r0, r4 // icount 424
+Reading line: rol r1, r5, r3 // icount 425
+Reading line: rori r0, r5, 4 // icount 426
+Reading line: lbi r7, 2 // icount 427
+Reading line: andni r5, r5, 1 // icount 428
+Reading line: st r0, r5, 8 // icount 429
+Reading line: andn r5, r0, r3 // icount 430
+Reading line: sub r5, r6, r0 // icount 431
+Reading line: xori r0, r2, 11 // icount 432
+Reading line: nop // to align meminst icount 433
+Reading line: andni r7, r7, 1 // icount 434
+Reading line: stu r1, r7, 6 // icount 435
+Reading line: sle r2, r2, r4 // icount 436
+Reading line: srli r0, r0, 11 // icount 437
+Reading line: xor r1, r6, r0 // icount 438
+Reading line: addi r4, r4, 1 // icount 439
+Reading line: ror r5, r4, r5 // icount 440
+Reading line: slbi r1, 11 // icount 441
+Reading line: rol r2, r2, r4 // icount 442
+Reading line: nop // to align meminst icount 443
+Reading line: andni r4, r4, 1 // icount 444
+Reading line: st r0, r4, 12 // icount 445
+Reading line: andni r5, r5, 1 // icount 446
+Reading line: ld r5, r5, 10 // icount 447
+Reading line: sco r0, r7, r2 // icount 448
+Reading line: rol r7, r2, r3 // icount 449
+Reading line: add r3, r2, r3 // icount 450
+Reading line: seq r7, r1, r4 // icount 451
+Reading line: lbi r5, 0 // icount 452
+Reading line: lbi r0, 0 // icount 453
+Reading line: nop // to align branch icount 454
+Reading line: bltz r6, 4 // icount 455
+Reading line: lbi r3, 13 // icount 456
+Reading line: lbi r5, 5 // icount 457
+Reading line: slli r4, r3, 13 // icount 458
+Reading line: seq r1, r3, r4 // icount 459
+Reading line: lbi r6, 0 // icount 460
+Reading line: lbi r7, 0 // icount 461
+Reading line: nop // to align branch icount 462
+Reading line: bnez r7, 4 // icount 463
+Reading line: sco r0, r3, r6 // icount 464
+Reading line: addi r5, r3, 13 // icount 465
+Reading line: andni r1, r1, 1 // icount 466
+Reading line: st r5, r1, 12 // icount 467
+Reading line: srli r7, r0, 13 // icount 468
+Reading line: andn r5, r0, r1 // icount 469
+Reading line: lbi r5, 0 // icount 470
+Reading line: lbi r3, 0 // icount 471
+Reading line: nop // to align branch icount 472
+Reading line: beqz r2, 16 // icount 473
+Reading line: srli r3, r6, 3 // icount 474
+Reading line: xori r0, r1, 7 // icount 475
+Reading line: roli r7, r7, 3 // icount 476
+Reading line: rori r0, r2, 4 // icount 477
+Reading line: lbi r4, 15 // icount 478
+Reading line: xor r3, r3, r1 // icount 479
+Reading line: srli r1, r5, 6 // icount 480
+Reading line: slbi r0, 3 // icount 481
+Reading line: lbi r3, 0 // icount 482
+Reading line: sle r2, r7, r7 // icount 483
+Reading line: sco r0, r6, r5 // icount 484
+Reading line: slbi r4, 11 // icount 485
+Reading line: ror r6, r2, r1 // icount 486
+Reading line: andn r0, r7, r0 // icount 487
+Reading line: sco r3, r4, r4 // icount 488
+Reading line: sle r0, r0, r1 // icount 489
+Reading line: sll r5, r0, r5 // icount 490
+Reading line: lbi r2, 8 // icount 491
+Reading line: lbi r0, 0 // icount 492
+Reading line: lbi r5, 0 // icount 493
+Reading line: nop // to align branch icount 494
+Reading line: bltz r5, 4 // icount 495
+Reading line: andn r1, r3, r3 // icount 496
+Reading line: lbi r1, 6 // icount 497
+Reading line: subi r0, r4, 9 // icount 498
+Reading line: roli r7, r0, 1 // icount 499
+Reading line: lbi r1, 0 // icount 500
+Reading line: lbi r1, 0 // icount 501
+Reading line: nop // to align branch icount 502
+Reading line: bnez r6, 20 // icount 503
+Reading line: andni r6, r6, 1 // icount 504
+Reading line: ld r0, r6, 6 // icount 505
+Reading line: slli r1, r1, 0 // icount 506
+Reading line: sub r1, r5, r5 // icount 507
+Reading line: rori r1, r4, 3 // icount 508
+Reading line: sco r1, r5, r6 // icount 509
+Reading line: lbi r4, 15 // icount 510
+Reading line: seq r0, r0, r3 // icount 511
+Reading line: xori r2, r1, 13 // icount 512
+Reading line: lbi r3, 12 // icount 513
+Reading line: slbi r0, 4 // icount 514
+Reading line: subi r1, r2, 0 // icount 515
+Reading line: sle r5, r6, r3 // icount 516
+Reading line: sub r2, r2, r1 // icount 517
+Reading line: andni r4, r1, 6 // icount 518
+Reading line: sle r2, r3, r4 // icount 519
+Reading line: xor r6, r5, r4 // icount 520
+Reading line: rori r6, r7, 4 // icount 521
+Reading line: andni r6, r6, 1 // icount 522
+Reading line: stu r3, r6, 8 // icount 523
+Reading line: rori r3, r3, 13 // icount 524
+Reading line: nop // to align meminst icount 525
+Reading line: andni r3, r3, 1 // icount 526
+Reading line: stu r0, r3, 8 // icount 527
+Reading line: slbi r5, 14 // icount 528
+Reading line: j 20 // icount 529
+Reading line: nop // icount 530
+Reading line: nop // icount 531
+Reading line: nop // icount 532
+Reading line: nop // icount 533
+Reading line: nop // icount 534
+Reading line: nop // icount 535
+Reading line: nop // icount 536
+Reading line: nop // icount 537
+Reading line: nop // icount 538
+Reading line: nop // icount 539
+Reading line: j 22 // icount 540
+Reading line: nop // icount 541
+Reading line: nop // icount 542
+Reading line: nop // icount 543
+Reading line: nop // icount 544
+Reading line: nop // icount 545
+Reading line: nop // icount 546
+Reading line: nop // icount 547
+Reading line: nop // icount 548
+Reading line: nop // icount 549
+Reading line: nop // icount 550
+Reading line: nop // icount 551
+Reading line: add r7, r0, r0 // icount 552
+Reading line: j 6 // icount 553
+Reading line: nop // icount 554
+Reading line: nop // icount 555
+Reading line: nop // icount 556
+Reading line: xor r2, r1, r0 // icount 557
+Reading line: rol r7, r3, r1 // icount 558
+Reading line: andni r7, r6, 2 // icount 559
+Reading line: slli r7, r1, 5 // icount 560
+Reading line: j 2 // icount 561
+Reading line: nop // icount 562
+Reading line: andn r0, r3, r6 // icount 563
+Reading line: roli r0, r2, 9 // icount 564
+Reading line: j 28 // icount 565
+Reading line: nop // icount 566
+Reading line: nop // icount 567
+Reading line: nop // icount 568
+Reading line: nop // icount 569
+Reading line: nop // icount 570
+Reading line: nop // icount 571
+Reading line: nop // icount 572
+Reading line: nop // icount 573
+Reading line: nop // icount 574
+Reading line: nop // icount 575
+Reading line: nop // icount 576
+Reading line: nop // icount 577
+Reading line: nop // icount 578
+Reading line: nop // icount 579
+Reading line: j 20 // icount 580
+Reading line: nop // icount 581
+Reading line: nop // icount 582
+Reading line: nop // icount 583
+Reading line: nop // icount 584
+Reading line: nop // icount 585
+Reading line: nop // icount 586
+Reading line: nop // icount 587
+Reading line: nop // icount 588
+Reading line: nop // icount 589
+Reading line: nop // icount 590
+Reading line: lbi r5, 0 // icount 591
+Reading line: lbi r6, 0 // icount 592
+Reading line: bnez r3, 24 // icount 593
+Reading line: srl r5, r0, r7 // icount 594
+Reading line: xor r1, r3, r6 // icount 595
+Reading line: slbi r5, 15 // icount 596
+Reading line: slt r5, r3, r1 // icount 597
+Reading line: sle r1, r3, r2 // icount 598
+Reading line: xor r1, r0, r3 // icount 599
+Reading line: xori r5, r3, 1 // icount 600
+Reading line: subi r5, r4, 2 // icount 601
+Reading line: srl r3, r5, r3 // icount 602
+Reading line: slt r7, r3, r0 // icount 603
+Reading line: subi r1, r3, 12 // icount 604
+Reading line: andn r3, r6, r4 // icount 605
+Reading line: sco r4, r3, r3 // icount 606
+Reading line: andni r5, r2, 7 // icount 607
+Reading line: sll r0, r0, r6 // icount 608
+Reading line: ror r0, r2, r4 // icount 609
+Reading line: sle r1, r5, r0 // icount 610
+Reading line: andni r7, r4, 4 // icount 611
+Reading line: ror r3, r7, r5 // icount 612
+Reading line: xor r2, r6, r7 // icount 613
+Reading line: xori r1, r1, 10 // icount 614
+Reading line: srli r2, r6, 10 // icount 615
+Reading line: srli r0, r0, 10 // icount 616
+Reading line: sco r1, r4, r0 // icount 617
+Reading line: lbi r1, 0 // icount 618
+Reading line: lbi r3, 0 // icount 619
+Reading line: nop // to align branch icount 620
+Reading line: beqz r0, 32 // icount 621
+Reading line: add r3, r1, r0 // icount 622
+Reading line: sub r6, r3, r1 // icount 623
+Reading line: subi r1, r5, 12 // icount 624
+Reading line: ror r3, r6, r1 // icount 625
+Reading line: lbi r5, 6 // icount 626
+Reading line: sco r7, r6, r3 // icount 627
+Reading line: slbi r7, 10 // icount 628
+Reading line: andn r7, r7, r0 // icount 629
+Reading line: xor r5, r2, r7 // icount 630
+Reading line: seq r6, r3, r1 // icount 631
+Reading line: sll r3, r3, r5 // icount 632
+Reading line: sll r5, r1, r0 // icount 633
+Reading line: ror r0, r0, r5 // icount 634
+Reading line: ror r4, r0, r3 // icount 635
+Reading line: xori r3, r0, 15 // icount 636
+Reading line: seq r5, r2, r3 // icount 637
+Reading line: sco r6, r7, r6 // icount 638
+Reading line: srli r6, r5, 10 // icount 639
+Reading line: xor r2, r2, r3 // icount 640
+Reading line: xori r0, r1, 15 // icount 641
+Reading line: sll r1, r0, r7 // icount 642
+Reading line: seq r2, r4, r6 // icount 643
+Reading line: subi r1, r1, 11 // icount 644
+Reading line: srli r5, r7, 6 // icount 645
+Reading line: seq r4, r5, r4 // icount 646
+Reading line: rol r6, r1, r4 // icount 647
+Reading line: sll r0, r6, r0 // icount 648
+Reading line: xori r0, r5, 15 // icount 649
+Reading line: srli r4, r3, 6 // icount 650
+Reading line: xori r7, r7, 2 // icount 651
+Reading line: slbi r1, 5 // icount 652
+Reading line: sco r3, r0, r4 // icount 653
+Reading line: andn r1, r1, r5 // icount 654
+Reading line: lbi r5, 0 // icount 655
+Reading line: lbi r1, 0 // icount 656
+Reading line: bnez r5, 28 // icount 657
+Reading line: slli r2, r5, 12 // icount 658
+Reading line: subi r1, r1, 6 // icount 659
+Reading line: add r4, r2, r4 // icount 660
+Reading line: rori r0, r3, 5 // icount 661
+Reading line: andni r3, r3, 1 // icount 662
+Reading line: st r2, r3, 4 // icount 663
+Reading line: roli r6, r4, 12 // icount 664
+Reading line: sco r6, r7, r5 // icount 665
+Reading line: lbi r2, 7 // icount 666
+Reading line: sco r5, r0, r4 // icount 667
+Reading line: sco r0, r4, r3 // icount 668
+Reading line: sub r0, r1, r6 // icount 669
+Reading line: andn r4, r4, r1 // icount 670
+Reading line: xori r5, r7, 0 // icount 671
+Reading line: add r2, r3, r4 // icount 672
+Reading line: lbi r2, 0 // icount 673
+Reading line: slli r3, r3, 12 // icount 674
+Reading line: lbi r7, 15 // icount 675
+Reading line: xori r4, r4, 14 // icount 676
+Reading line: rori r1, r5, 0 // icount 677
+Reading line: andni r0, r3, 15 // icount 678
+Reading line: ror r6, r4, r1 // icount 679
+Reading line: ror r4, r1, r6 // icount 680
+Reading line: nop // to align meminst icount 681
+Reading line: andni r5, r5, 1 // icount 682
+Reading line: ld r7, r5, 0 // icount 683
+Reading line: andni r1, r1, 1 // icount 684
+Reading line: stu r5, r1, 0 // icount 685
+Reading line: add r2, r5, r4 // icount 686
+Reading line: srl r2, r1, r7 // icount 687
+Reading line: sco r2, r3, r6 // icount 688
+Reading line: rol r3, r3, r4 // icount 689
+Reading line: lbi r7, 0 // icount 690
+Reading line: lbi r7, 0 // icount 691
+Reading line: nop // to align branch icount 692
+Reading line: bnez r3, 12 // icount 693
+Reading line: rori r6, r3, 3 // icount 694
+Reading line: addi r5, r3, 7 // icount 695
+Reading line: lbi r6, 3 // icount 696
+Reading line: nop // to align meminst icount 697
+Reading line: andni r2, r2, 1 // icount 698
+Reading line: st r7, r2, 6 // icount 699
+Reading line: slt r7, r2, r3 // icount 700
+Reading line: xori r2, r3, 1 // icount 701
+Reading line: andni r3, r3, 1 // icount 702
+Reading line: st r4, r3, 14 // icount 703
+Reading line: slli r0, r1, 14 // icount 704
+Reading line: slt r7, r7, r4 // icount 705
+Reading line: rol r0, r4, r1 // icount 706
+Reading line: xori r1, r5, 11 // icount 707
+Reading line: xor r1, r1, r0 // icount 708
+Reading line: srli r1, r2, 7 // icount 709
+Reading line: j 12 // icount 710
+Reading line: nop // icount 711
+Reading line: nop // icount 712
+Reading line: nop // icount 713
+Reading line: nop // icount 714
+Reading line: nop // icount 715
+Reading line: nop // icount 716
+Reading line: xor r3, r0, r3 // icount 717
+Reading line: lbi r3, 0 // icount 718
+Reading line: lbi r6, 0 // icount 719
+Reading line: nop // to align branch icount 720
+Reading line: bltz r2, 20 // icount 721
+Reading line: add r2, r7, r7 // icount 722
+Reading line: rori r4, r6, 8 // icount 723
+Reading line: sco r0, r4, r5 // icount 724
+Reading line: rori r7, r1, 8 // icount 725
+Reading line: roli r7, r7, 10 // icount 726
+Reading line: srl r5, r5, r0 // icount 727
+Reading line: seq r6, r2, r3 // icount 728
+Reading line: srl r2, r4, r5 // icount 729
+Reading line: rori r5, r0, 13 // icount 730
+Reading line: slt r4, r0, r4 // icount 731
+Reading line: ror r7, r1, r0 // icount 732
+Reading line: xor r0, r6, r6 // icount 733
+Reading line: ror r3, r2, r1 // icount 734
+Reading line: rori r4, r1, 12 // icount 735
+Reading line: sle r1, r5, r5 // icount 736
+Reading line: subi r2, r3, 0 // icount 737
+Reading line: lbi r7, 15 // icount 738
+Reading line: rol r2, r4, r1 // icount 739
+Reading line: sub r1, r2, r6 // icount 740
+Reading line: add r6, r4, r6 // icount 741
+Reading line: xor r1, r1, r7 // icount 742
+Reading line: j 18 // icount 743
+Reading line: nop // icount 744
+Reading line: nop // icount 745
+Reading line: nop // icount 746
+Reading line: nop // icount 747
+Reading line: nop // icount 748
+Reading line: nop // icount 749
+Reading line: nop // icount 750
+Reading line: nop // icount 751
+Reading line: nop // icount 752
+Reading line: lbi r1, 11 // icount 753
+Reading line: j 20 // icount 754
+Reading line: nop // icount 755
+Reading line: nop // icount 756
+Reading line: nop // icount 757
+Reading line: nop // icount 758
+Reading line: nop // icount 759
+Reading line: nop // icount 760
+Reading line: nop // icount 761
+Reading line: nop // icount 762
+Reading line: nop // icount 763
+Reading line: nop // icount 764
+Reading line: lbi r2, 0 // icount 765
+Reading line: lbi r1, 0 // icount 766
+Reading line: bltz r2, 24 // icount 767
+Reading line: andn r1, r3, r6 // icount 768
+Reading line: add r7, r5, r2 // icount 769
+Reading line: seq r6, r4, r6 // icount 770
+Reading line: slbi r4, 8 // icount 771
+Reading line: andni r7, r7, 1 // icount 772
+Reading line: stu r0, r7, 8 // icount 773
+Reading line: andni r1, r1, 1 // icount 774
+Reading line: st r3, r1, 0 // icount 775
+Reading line: slbi r6, 5 // icount 776
+Reading line: srl r3, r2, r4 // icount 777
+Reading line: andni r2, r2, 1 // icount 778
+Reading line: ld r1, r2, 14 // icount 779
+Reading line: slli r0, r0, 6 // icount 780
+Reading line: sle r5, r5, r5 // icount 781
+Reading line: ror r1, r0, r5 // icount 782
+Reading line: add r0, r6, r7 // icount 783
+Reading line: sll r0, r2, r0 // icount 784
+Reading line: xor r3, r5, r3 // icount 785
+Reading line: add r0, r3, r7 // icount 786
+Reading line: sll r7, r7, r0 // icount 787
+Reading line: sco r2, r6, r4 // icount 788
+Reading line: slt r1, r1, r1 // icount 789
+Reading line: lbi r0, 12 // icount 790
+Reading line: addi r4, r6, 8 // icount 791
+Reading line: srli r7, r6, 11 // icount 792
+Reading line: nop // to align meminst icount 793
+Reading line: andni r0, r0, 1 // icount 794
+Reading line: stu r5, r0, 14 // icount 795
+Reading line: sle r3, r0, r3 // icount 796
+Reading line: slli r4, r2, 12 // icount 797
+Reading line: andni r6, r6, 1 // icount 798
+Reading line: st r2, r6, 8 // icount 799
+Reading line: j 12 // icount 800
+Reading line: nop // icount 801
+Reading line: nop // icount 802
+Reading line: nop // icount 803
+Reading line: nop // icount 804
+Reading line: nop // icount 805
+Reading line: nop // icount 806
+Reading line: xor r3, r7, r4 // icount 807
+Reading line: j 12 // icount 808
+Reading line: nop // icount 809
+Reading line: nop // icount 810
+Reading line: nop // icount 811
+Reading line: nop // icount 812
+Reading line: nop // icount 813
+Reading line: nop // icount 814
+Reading line: lbi r7, 0 // icount 815
+Reading line: lbi r5, 0 // icount 816
+Reading line: bgez r0, 24 // icount 817
+Reading line: andni r0, r0, 1 // icount 818
+Reading line: stu r3, r0, 10 // icount 819
+Reading line: andni r0, r0, 1 // icount 820
+Reading line: stu r6, r0, 0 // icount 821
+Reading line: sub r6, r2, r2 // icount 822
+Reading line: sle r2, r2, r0 // icount 823
+Reading line: sco r7, r1, r3 // icount 824
+Reading line: nop // to align meminst icount 825
+Reading line: andni r5, r5, 1 // icount 826
+Reading line: stu r1, r5, 2 // icount 827
+Reading line: andn r4, r4, r1 // icount 828
+Reading line: slbi r3, 15 // icount 829
+Reading line: slli r4, r3, 7 // icount 830
+Reading line: sub r7, r7, r3 // icount 831
+Reading line: xori r5, r2, 11 // icount 832
+Reading line: slli r0, r3, 14 // icount 833
+Reading line: rol r0, r0, r0 // icount 834
+Reading line: roli r1, r5, 1 // icount 835
+Reading line: slt r0, r2, r1 // icount 836
+Reading line: sub r1, r7, r2 // icount 837
+Reading line: srli r0, r6, 10 // icount 838
+Reading line: slt r7, r1, r2 // icount 839
+Reading line: andn r5, r5, r2 // icount 840
+Reading line: xor r4, r7, r6 // icount 841
+Reading line: subi r3, r4, 5 // icount 842
+Reading line: subi r6, r1, 0 // icount 843
+Reading line: xori r4, r3, 11 // icount 844
+Reading line: nop // to align meminst icount 845
+Reading line: andni r0, r0, 1 // icount 846
+Reading line: stu r5, r0, 14 // icount 847
+Reading line: halt // icount 848
+@0
+c0
+23
+90
+62
+c1
+01
+91
+98
+c2
+7b
+92
+83
+c3
+a7
+93
+57
+c4
+e2
+94
+b6
+c5
+af
+95
+1c
+c6
+ee
+96
+b1
+c7
+d8
+97
+ca
+20
+16
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+be
+e3
+20
+10
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+dc
+28
+e9
+28
+5f
+e1
+8f
+a0
+c4
+00
+c5
+00
+08
+00
+78
+08
+dc
+41
+d0
+94
+c5
+01
+ba
+89
+94
+02
+db
+2e
+d9
+ce
+db
+be
+c4
+00
+c3
+00
+08
+00
+65
+10
+d5
+04
+d5
+b3
+5d
+a1
+85
+4a
+4b
+6c
+fe
+78
+d3
+a8
+c0
+04
+df
+15
+4b
+0e
+fd
+e4
+08
+00
+5d
+a1
+9d
+8a
+d3
+35
+56
+43
+b0
+44
+49
+4f
+d8
+5e
+c7
+00
+c6
+00
+77
+1c
+dc
+48
+f2
+74
+5e
+a2
+e8
+40
+b6
+23
+97
+07
+96
+09
+08
+00
+59
+21
+81
+c8
+5e
+c1
+8e
+4a
+d1
+a8
+42
+05
+e2
+6c
+c0
+0b
+dc
+02
+d2
+97
+5f
+e1
+9f
+a4
+b6
+e2
+da
+cf
+f5
+ec
+dc
+e9
+f6
+70
+08
+00
+5e
+c1
+9e
+ae
+da
+aa
+08
+00
+5c
+81
+84
+e0
+d3
+c5
+44
+64
+dc
+89
+49
+4b
+c3
+07
+20
+1c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+ae
+af
+ea
+98
+c2
+00
+c0
+00
+08
+00
+72
+0c
+bf
+01
+ba
+00
+46
+06
+93
+0d
+bb
+e8
+08
+00
+5c
+81
+8c
+60
+b7
+0d
+d2
+7a
+5d
+a4
+d1
+49
+4b
+ce
+dd
+0e
+c5
+00
+c2
+00
+08
+00
+74
+08
+d8
+f0
+5f
+eb
+e3
+84
+4a
+e9
+59
+0b
+d9
+ad
+dd
+87
+d1
+58
+f0
+1c
+20
+0c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+d3
+e1
+56
+c9
+5d
+a1
+85
+ec
+54
+8f
+20
+1c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+d4
+a6
+d0
+7a
+c4
+00
+c3
+00
+08
+00
+6c
+0c
+b3
+8e
+f9
+98
+bb
+a0
+d2
+5f
+ab
+e1
+51
+61
+52
+82
+d5
+9e
+5f
+e1
+8f
+a6
+d3
+22
+46
+24
+5a
+41
+9a
+2a
+c3
+00
+c4
+00
+08
+00
+73
+14
+91
+06
+f9
+c0
+d3
+a6
+ef
+f4
+4e
+41
+eb
+08
+df
+83
+d3
+aa
+e0
+f4
+08
+00
+5c
+81
+84
+66
+c2
+03
+d8
+cb
+d7
+86
+f8
+fc
+4c
+6c
+ec
+e0
+de
+e1
+08
+00
+5c
+81
+84
+80
+d9
+1b
+db
+81
+96
+04
+fe
+d8
+d3
+28
+c0
+01
+e5
+5c
+ee
+38
+d1
+c9
+c5
+08
+d9
+9f
+08
+00
+5d
+a1
+9d
+02
+e4
+00
+c6
+00
+c1
+00
+7c
+20
+93
+09
+e1
+d8
+4e
+83
+c6
+0d
+41
+ad
+f4
+28
+ac
+8c
+48
+21
+dc
+f0
+d4
+0f
+91
+0e
+d2
+2a
+ec
+44
+d3
+f0
+56
+ca
+d6
+7f
+d4
+10
+5d
+8c
+bc
+c1
+08
+00
+5d
+a1
+9d
+c4
+5b
+21
+e8
+5c
+df
+f0
+08
+00
+5c
+81
+9c
+8c
+fe
+a8
+e7
+b4
+5f
+08
+eb
+a8
+a0
+6c
+a3
+27
+df
+dd
+d5
+e8
+20
+08
+08
+00
+08
+00
+08
+00
+08
+00
+d2
+78
+c0
+00
+c7
+00
+08
+00
+79
+08
+43
+c9
+f1
+10
+e8
+44
+e2
+94
+59
+4d
+f6
+58
+59
+21
+99
+e4
+f7
+fc
+c4
+00
+c7
+00
+6e
+00
+20
+00
+b3
+cf
+c3
+00
+c4
+00
+08
+00
+64
+18
+a2
+ce
+de
+7a
+91
+00
+c1
+0c
+d8
+b2
+44
+66
+ee
+74
+c4
+07
+c2
+02
+c7
+07
+52
+c0
+a2
+40
+dd
+18
+08
+00
+5c
+81
+8c
+86
+4c
+83
+e3
+58
+5e
+c1
+86
+a2
+4b
+ef
+d3
+58
+5a
+41
+82
+06
+d2
+78
+fe
+54
+b1
+c8
+da
+30
+fa
+58
+d9
+1b
+c6
+00
+c7
+00
+08
+00
+76
+10
+f7
+b0
+df
+b7
+de
+64
+43
+27
+c7
+03
+dc
+b4
+db
+9c
+53
+62
+dc
+fe
+08
+00
+5d
+a1
+9d
+e6
+c4
+0c
+bc
+cd
+dc
+9c
+08
+00
+5c
+81
+9c
+4e
+d1
+b5
+f9
+78
+c1
+00
+c5
+00
+08
+00
+77
+04
+c5
+02
+d9
+08
+d5
+25
+08
+00
+5c
+81
+8c
+a4
+20
+0c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+db
+65
+5f
+0f
+20
+16
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+5e
+c2
+ac
+e2
+08
+00
+5a
+41
+9a
+c0
+c0
+00
+c4
+00
+08
+00
+78
+1c
+ab
+0d
+d0
+14
+5c
+81
+8c
+a2
+d0
+bf
+08
+00
+59
+21
+81
+ca
+b1
+a0
+48
+65
+e0
+88
+d5
+66
+b5
+04
+c7
+02
+5d
+a1
+85
+08
+d8
+77
+de
+15
+52
+0b
+08
+00
+5f
+e1
+9f
+26
+f2
+88
+b8
+0b
+de
+06
+44
+81
+d4
+b7
+91
+0b
+d2
+8a
+08
+00
+5c
+81
+84
+0c
+5d
+a1
+8d
+aa
+ff
+40
+d2
+7e
+da
+6c
+e1
+9c
+c5
+00
+c0
+00
+08
+00
+76
+04
+c3
+0d
+c5
+05
+ab
+8d
+e3
+84
+c6
+00
+c7
+00
+08
+00
+6f
+04
+fb
+c0
+43
+ad
+59
+21
+81
+ac
+b8
+ed
+d8
+37
+c5
+00
+c3
+00
+08
+00
+62
+10
+be
+63
+51
+07
+a7
+e3
+b2
+04
+c4
+0f
+db
+2e
+bd
+26
+90
+03
+c3
+00
+f7
+e8
+fe
+a0
+94
+0b
+d2
+3b
+df
+03
+fc
+8c
+f0
+20
+d0
+b4
+c2
+08
+c0
+00
+c5
+00
+08
+00
+75
+04
+db
+67
+c1
+06
+4c
+09
+a0
+e1
+c1
+00
+c1
+00
+08
+00
+6e
+14
+5e
+c1
+8e
+06
+a9
+20
+dd
+a5
+b4
+23
+fd
+c4
+c4
+0f
+e0
+60
+51
+4d
+c3
+0c
+90
+04
+4a
+20
+f6
+74
+da
+29
+59
+86
+f3
+88
+dd
+9a
+b7
+c4
+5e
+c1
+9e
+68
+b3
+6d
+08
+00
+5b
+61
+9b
+08
+95
+0e
+20
+14
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+20
+16
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+d8
+1c
+20
+06
+08
+00
+08
+00
+08
+00
+d9
+0a
+d3
+3e
+5e
+e2
+a9
+e5
+20
+02
+08
+00
+db
+c3
+a2
+09
+20
+1c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+20
+14
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+c5
+00
+c6
+00
+6b
+18
+d0
+f5
+db
+c6
+95
+0f
+eb
+34
+f3
+44
+d8
+66
+53
+a1
+4c
+a2
+d5
+6d
+eb
+1c
+4b
+2c
+de
+8f
+fb
+70
+5a
+a7
+d0
+c0
+d2
+83
+f5
+04
+5c
+e4
+d7
+af
+de
+ea
+51
+2a
+be
+4a
+b8
+0a
+fc
+04
+c1
+00
+c3
+00
+08
+00
+60
+20
+d9
+0c
+db
+39
+4d
+2c
+d6
+2f
+c5
+06
+fe
+7c
+97
+0a
+df
+1f
+da
+f6
+e3
+38
+d3
+ac
+d1
+14
+d0
+a3
+d0
+73
+50
+6f
+e2
+74
+ff
+d8
+bd
+ca
+da
+6a
+51
+0f
+d0
+e4
+e4
+c8
+49
+2b
+bf
+a6
+e5
+90
+d1
+9a
+d6
+00
+55
+0f
+bb
+86
+57
+e2
+91
+05
+f8
+8c
+d9
+a7
+c5
+00
+c1
+00
+6d
+1c
+ad
+4c
+49
+26
+da
+90
+b3
+05
+5b
+61
+83
+44
+a4
+cc
+ff
+b8
+c2
+07
+f8
+94
+fc
+60
+d9
+c1
+dc
+33
+57
+a0
+db
+88
+c2
+00
+ab
+6c
+c7
+0f
+54
+8e
+b5
+20
+5b
+0f
+d4
+3b
+d1
+d3
+08
+00
+5d
+a1
+8d
+e0
+59
+21
+99
+a0
+dd
+88
+d1
+e9
+fb
+c8
+d3
+8e
+c7
+00
+c7
+00
+08
+00
+6b
+0c
+b3
+c3
+43
+a7
+c6
+03
+08
+00
+5a
+41
+82
+e6
+ea
+7c
+53
+41
+5b
+61
+83
+8e
+a9
+0e
+ef
+9c
+d4
+22
+55
+2b
+d9
+06
+ba
+27
+20
+0c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+d8
+6e
+c3
+00
+c6
+00
+08
+00
+72
+14
+df
+e8
+b6
+88
+fc
+a0
+b1
+e8
+a7
+ea
+d5
+15
+e2
+78
+d4
+a9
+b0
+ad
+e8
+90
+d1
+1f
+de
+c2
+d2
+2f
+b1
+8c
+f5
+a4
+4b
+40
+c7
+0f
+d4
+2a
+da
+c5
+dc
+d8
+d9
+e6
+20
+12
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+c1
+0b
+20
+14
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+c2
+00
+c1
+00
+72
+18
+db
+c7
+dd
+5c
+e4
+d8
+94
+08
+5f
+e1
+9f
+08
+59
+21
+81
+60
+96
+05
+d2
+8d
+5a
+41
+8a
+2e
+a8
+06
+f5
+b4
+d0
+a7
+de
+e0
+d2
+00
+dd
+6e
+db
+e0
+d7
+1c
+fe
+88
+e9
+24
+c0
+0c
+46
+88
+be
+eb
+08
+00
+58
+01
+98
+ae
+f0
+6c
+aa
+8c
+5e
+c1
+86
+48
+20
+0c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+df
+8e
+20
+0c
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+08
+00
+c7
+00
+c5
+00
+78
+18
+58
+01
+98
+6a
+58
+01
+98
+c0
+da
+59
+f2
+08
+f9
+7c
+08
+00
+5d
+a1
+9d
+22
+dc
+33
+93
+0f
+ab
+87
+df
+7d
+52
+ab
+ab
+0e
+d0
+02
+a5
+21
+ea
+20
+df
+45
+be
+0a
+e9
+5c
+dd
+57
+df
+d2
+4c
+65
+49
+c0
+53
+8b
+08
+00
+58
+01
+98
+ae
+00
+00
