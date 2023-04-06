@@ -1,0 +1,26 @@
+TODOs:
+
+1)	 Jae:  IF/ID, ID/EX
+	 Seth: EX/MEM, MEM/WB	GOOD
+
+2) Update Proc
+
+3) Submit Timeline Quiz
+
+4) Register File fix 		GOOD
+
+5) Go through code and get rid of Sinclair Author Comments.
+
+6) Hazard Detection Unit
+
+7) Update Decode: add stall
+
+8) Are we using WriteRegSel?
+
+9) Change ALUresult to ALURes
+
+10) Fix Proc Layout
+
+11) Change WB aluResult to ALURes
+
+12) Remove isMemRead? Was wanted to be removed in Alex
