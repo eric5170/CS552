@@ -3,106 +3,128 @@
 /* $Rev: 46 $ */
 `default_nettype none
 module proc (/*AUTOARG*/
-	// Outputs
-	err, 
-	// Inputs
-	clk, rst
-	);
+   // Outputs
+   err, 
+   // Inputs
+   clk, rst
+   );
 
-	input wire clk;
-	input wire rst;
+   input clk;
+   input rst;
 
-	output reg err;
+   output err;
+   
+   
+   // None of the above lines can be modified
 
-	// None of the above lines can be modified
+   // OR all the err ouputs for every sub-module and assign it as this
+   // err output
+   
+   // As desribed in the homeworks, use the err signal to trap corner
+   // cases that you think are illegal in your statemachines
+   
+   
+   /* your code here -- should include instantiations of fetch, decode, execute, mem and wb modules */
 
-	// OR all the err ouputs for every sub-module and assign it as this
-	// err output
-
-	// As desribed in the homeworks, use the err signal to trap corner
-	// cases that you think are illegal in your statemachines
-
-
-	/* your code here -- should include instantiations of fetch, decode, execute, mem and wb modules */
-	//control signals and other wires 
-	wire stall, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite, ALUSrc, isRegWrite, flush;
+	wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, 
+		isMemToReg, isMemRead, isMemWrite, ALUSrc, isRegWrite, stall, flush;
 	wire [3:0] ALUop;
-	wire [15:0] instr, wr_data, ALURes, rFm,rdData1, rdData2, immed, currPC, PC_next, PC_2;
-	wire [1:0] num;
-	wire[2:0] readRegSel1, readRegSel2, writeReg;
+	wire [15:0] instr, wr_data, ALURes, rFm, rdData1, rdData2, immed, currPC, PC_next, PC_2;
+	wire [1:0] num_reg_reads;
 	
-	
-	// Fetch to Decode
-	wire [2:0] instr_FD, PC_2_FD, currPC_FD, instr_flush;
-	
-	// Decode to Execute
-	wire [15:0] PC_2_DX, imm_DX, readData1_DX, readData2_DX;
-	wire [3:0] ALUop_DX;
-	wire [2:0] writeRegSel_DX;
-	wire isNotHalt_DX, isJAL_DX, isMemToReg_DX, isMemRead_DX, isMemWrite_DX, ALU_src_DX, isRegWrite_DX;
-	
-	// Execute to Memory
-	wire [15:0] ALURes_EM, PC_2_EM,rdData2_EM;
-	wire [2:0] writeRegSel_EM;
-	wire isNotHalt_EM, isJAL_EM, isMemToReg_EM, isMemRead_EM, isMemWrite_EM, isRegWrite_EM;
-	
-	// Memory to WriteBack
-	wire [15:0] rFm_MW, ALURes_MW, PC_2_MW;
-	wire[2:0] writeRegSel_MW;
-	wire isJAL_MW, isMemToReg_MW, isRegWrite_MW, isNotHalt_MW;
-	
-	wire [15:0] PC_test, instr_in;
-	
-	wire en_new;
-	assign en_new =  ~stall;
-	
-	register_p PC_reg(.en(en_new), .clk(clk), .rst(rst), .data_in(testPC), .state(currPC));
-	
-	// register file to load
-	//register iREG(.clk(clk), .rst(rst), .data_in(PC_next), .state(currPC));
+	// writeReg7 is isJAL
 
-	// load instruction from current pc, gets next pc
-	fetch fetch0(.clk(clk), .rst(rst), .PC(currPC), .nextPC(PC_2), .instr(instr));
-
-	assign instr_in  =  flush ? 16'h0800 : instr;
-	assign PC_test =  flush ? PC_next : PC_2;
+	wire [15:0] instr_IF_ID, PC_2_IF_ID, currPC_IF_ID, flush_instr;
 	
-	// Fetch to Decode
-	I2D fetch_to_decode (.en(en_new), .clk(clk), .rst(rst), .PC_2(PC_2), .instr(instr_in), .currPC(currPC), .instr_next(instr_FD), .PC_2_next(PC_2_FD), .currPC_next(currPC_FD));
+	wire [2:0] writeRegSel, readRegSel1, readRegSel2, writeReg;
+
+	wire [15:0] PC_2_ID_EX, immed_ID_EX, rdData1_ID_EX, rdData2_ID_EX;
+	wire [2:0] writeRegSel_ID_EX;
+	wire [3:0] ALUop_ID_EX;
+	wire isNotHalt_ID_EX, isJAL_ID_EX, isMemToReg_ID_EX, isMemRead_ID_EX, isMemWrite_ID_EX, 
+		ALUsrc_ID_EX, isRegWrite_ID_EX;
+
+	wire [15:0] aluResult_EX_MEM, PC_2_EX_MEM, rdData2_EX_MEM;
+	wire [2:0] writeRegSel_EX_MEM;
+	wire isNotHalt_EX_MEM, isJAL_EX_MEM, isMemToReg_EX_MEM, isMemRead_EX_MEM, 
+	isMemWrite_EX_MEM, isRegWrite_EX_MEM; // ALUsrc_EX_MEM?
 	
-	// hazard detection logic
-	hazard_detect iDetect ( .instr(instr_FD),
-                            .writeRegSel_DX(writeRegSel_DX), 
-                            .writeRegSel_XM(writeRegSel_EM),
-							.writeRegSel_MW(writeRegSel_MW),
-                            .readRegSel1(, 
-                            readRegSel2, 
-                            isRegWrite_DX,
-                            isRegWrite_XM,
-                            stall(stall),
-							
 
-	// decodes the instructions, sets signals for control unit
-	decode decode0(.clk(clk), .rst(rst), .instr(instr), .currPC(currPC), .new_addr(PC_2),
-					.writeData(wr_data), .isNotHalt(isNotHalt), .isNOP(isNOP), .isJAL(isJAL),  
-					.isJR(isJR), .isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
-					.isMemRead(isMemRead), .ALU_Op(ALUop), .isMemWrite(isMemWrite), 
-					.ALU_src(ALUSrc), .isRegWrite(isRegWrite), .immed(immed),
-					.rd_data1(rdData1), .rd_data2(rdData2), .PC_next(PC_next));
+	wire [15:0] rFm_MEM_WB, ALURes_MEM_WB, PC_2_MEM_WB;
+	wire [2:0] writeRegSel_MEM_WB;
+	wire isJAL_MEM_WB, isMemToReg_MEM_WB, isRegWrite_MWB, isNotHalt_MEM_WB;
+
+	wire [15:0] PC_Test, instr_in;
 	
-	// executes using ALU
-	execute execute0(.ALU_src(ALUSrc), .ALU_Op(ALUop), .extOut(immed), .rd_data1(rdData1), 
-					.rd_data2(rdData2), .ALU_res(ALURes),.zero(), .ofl());
+	register_16b PC_REG(.en(~stall), .clk(clk), .rst(rst), .data_in(PC_Test), .state(currPC));
 
-	// retrieves the data to memory
-	memory memory0 (.clk(clk), .rst(rst), .isNotHalt(isNotHalt), .isMemWrite(isMemWrite), 
-					.isMemRead(isMemRead), .ALU_res(ALURes), .rd_data(rFm), .writeData(rdData2));
+fetch FETCH_STAGE (.clk(clk), .rst(rst), .PC(currPC), .PC_next(PC_2), .instr(instr)); 
+// CHANGE NEXTPC TO PC_NEXT
 
-	// reads data from memory and write when Enabled
-	wb wb0(.readData(rFm), .isMemToReg(isMemToReg), .isMemRead(isMemRead), .aluResult(ALURes),
-					.isJAL(isJAL), .nextPC(PC_2), .writeEn(isRegWrite), .writeData(wr_data));
+assign instr_in = flush ? 16'h0800 : instr;
+assign PC_Test = flush ? PC_next: PC_2;
+
+// IF/ID
+IF_ID IF_ID_PIPE(.en(~stall), .clk(clk), .rst(rst), .currPC(currPC),.PC_2(PC_2), .instr(instr_in), 
+	.instr_IF_ID(instr_IF_ID), .PC_2_IF_ID(PC_2_IF_ID), .currPC_IF_ID(currPC_IF_ID));
+			
+// TODO: Hazard Detection Unit // TODO:
+hazard_detection_unit HD_unit(.instruction(instr_FD), .writeRegSel_ID_EX(writeRegSel_ID_EX),
+	.writeRegSel_EX_MEM(writeRegSel_EX_MEM), .writeRegSel_MEM_WB(writeRegSel_MEM_WB), 
+	.readRegSel1(readRegSel1), .readRegSel2(readRegSel2), .isRegWrite_ID_EX(isRegWrite_ID_EX),
+	.isRegWrite_EX_MEM(isRegWrite_EX_MEM), .isRegWrite_MEM_WB(isRegWrite_MEM_WB), .stall(stall));
+
+decode DECODE_STAGE(.clk(clk), .rst(rst), .stall(stall), .isRegWrite_MEM_WB(isRegWrite_MEM_WB),
+	.currPC(currPC_IF_ID), .instr(instr_IF_ID), .new_addr(PC_2_IF_ID), .write_data(writeData), 
+	.isNotHalt(isNotHalt),  .isNOP(isNOP), .isJAL(isJAL), .isJR(isJR), .isJump(isJump),  
+	.isBranch(isBranch), .isMemToReg(isMemToReg), .isMemRead(isMemRead), .ALUop(ALUop), 
+	.isMemWrite(isMemWrite), .ALUsrc(ALUsrc), .isRegWrite(isRegWrite), .immed(immed),
+	.rd_data1(rdData1), .rd_data2(readData2), .writeRegSel(writeRegSel), .writeReg(writeReg),
+	.PC_next(PC_next), .readReg1(readRegSel1), .readReg2(readRegSel2), .flush(flush));
+	// ADD STALL AND FLUSH TO DECODE
+
+// TODO: ID/EX, TODO: STALL, WRITEREGSEL, VARIABLE NAMES
+// pc_plus_2 to PC_2
+ID_EX ID_EX_PIPE(.clk(clk), .rst(rst), .en(1'b1), .PC_2(PC_2_IF_ID), .isNotHalt(isNotHalt), .isJAL(isJAL),
+	.isMemToReg(isMemToReg), .isMemRead(isMemRead), .isMemWrite(isMemWrite), .ALUsrc(ALUsrc),
+    .isRegWrite(isRegWrite), .ALUop(ALUop), .immed(immed), .rdData2(rdData2), .rdData1(rdData1),
+	.writeRegSel(writeRegSel), .PC_2_ID_EX(PC_2_ID_EX), .isNotHalt_ID_EX(isNotHalt_ID_EX),
+	.isJAL_EX_MEM(isJAL_EX_MEM), .isMemToReg_ID_EX(isMemToReg_ID_EX), .isMemRead_ID_EX(isMemRead_ID_EX),
+	.isMemWrite_ID_EX(isMemWrite_ID_EX), .ALUsrc_ID_EX(ALUsrc_ID_EX), .isRegWrite_ID_EX(isRegWrite_ID_EX),
+	.ALUop_ID_EX(ALUop_ID_EX), .immed_ID_EX(immed_ID_EX), .rdData2_ID_EX(rdData2_ID_EX),
+	.rdData1_ID_EX(rdData1_ID_EX), .writeRegSel_ID_EX(writeRegSel_ID_EX));
+
+// ALUSRC, ALUop, rdData1, rdData2, ALURes, extOutput
+execute EXECUTE_STAGE(.ALUSrc(ALUSrc_ID_EX), .ALUop(ALUop_ID_EX, .rd_data1(rdData1_ID_EX), 
+	.rd_data2(rdData2_ID_EX), .extOut(immed_ID_EX), .ALU_res(ALURes), .zero(), .ofl());
+
+// EX/MEM Pipeline Register
+EX_MEM EX_MEM_PIPE(.clk(clk), .rst(rst), .en(1'b1), .ALURes(ALURes), .PC_2(PC_2_ID_EX), 
+	.isNotHalt(isNotHalt_ID_EX), .isJAL(.isJAL_ID_EX), .isMemToReg(isMemToReg_ID_EX), 
+	.isMemRead(isMemRead_ID_EX), .isMemWrite(isMemWrite_ID_EX),
+	.isRegWrite(isRegWrite_ID_EX), .rdData2(rdData2_ID_EX), .writeRegSel(writeRegSel_ID_EX),
+	.ALURes_EX_MEM(ALURes_EX_MEM), .isNotHalt_EX_MEM(isNotHalt_EX_MEM), .PC_2_EX_MEM(PC_2_EX_MEM),
+	.isJAL_EX_MEM(isJAL_EX_MEM), .isMemToReg_EX_MEM(isMemToReg_EX_MEM), .isMemRead_EX_MEM(isMemRead_EX_MEM),
+	.isMemWrite_EX_MEM(isMemWrite_EX_MEM), .isRegWrite_EX_MEM(isRegWrite_EX_MEM),
+	.rdData2_EX_MEM(rdData2_EX_MEM), .writeRegSel_EX_MEM(writeRegSel_EX_MEM));
+
+memory MEMORY_STAGE (.clk(clk), .rst(rst), .isNotHalt(isNotHalt_MEM_WB), .isMemWrite(isMemWrite_EX_MEM), 
+	.ALU_res(ALURes_EX_MEM), .writeData(rdData2_EX_MEM), .isMemRead(isMemRead_EX_MEM), .rd_data(rFm));
+	// Change rd_data?
+
+MEM_WB MEM_Wb_PIPE(.clk(clk), .rst(rst), .en(1'b1), .isNotHalt(isNotHalt_EX_MEM), .rFm(rFm), 
+	.ALURes(ALURes_EX_MEM), .PC_2(PC_2_EX_MEM), .isJAL(isJAL), .isMemToReg(isMemToReg_EX_MEM), 
+	.isRegWrite(isRegWrite_EX_MEM), .writeRegSel(writeRegSel_EX_MEM), .rFm_MEM_WB(rFm_MEM_WB), 
+	.ALURes_MEM_WB(ALURes_MEM_WB), .PC_2_MEM_WB(PC_2_MEM_WB), .isMemToReg_MEM_WB(isMemToReg_MEM_WB), 
+	.isRegWrite_MEM_WB(isRegWrite_MEM_WB), .writeRegSel_MEM_WB(writeRegSel_MEM_WB), 
+	.isNotHalt_MEM_WB(isNotHalt_MEM_WB));
+
+wb WRITE_BACK_STAGE (.readData(rFm_MEM_WB), .isMemToReg(isMemToReg_MEM_WB), .isMemRead(isMemRead), 
+	.aluResult(ALURes_MEM_WB), .PC_next(PC_2_MEM_WB), .isJAL(isJAL_MEM_WB), .writeEn(isRegWrite_MEM_WB), 
+	.writeRegSel(writeRegSel_MEM_WB), .writeData(wr_data));
+	// CHANGE NEXTPC TO PC_NEXT
 
    
-endmodule // proc
+endmodule
 `default_nettype wire
 // DUMMY LINE FOR REV CONTROL :0:
