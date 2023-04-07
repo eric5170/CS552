@@ -9,6 +9,6 @@ module register_p(en, clk, rst, data_in, state);
 	//NOP
 	assign data = rst ? 16'h0800 : data_in;
 
-	dffe DFF_ENABLE[15:0] (.en(en), .q(state), .d(data), .clk(clk), .rst(1'b0));
+	dff_en DFF_ENABLE[15:0] (.en(en), .q(state), .d(data), .clk(clk), .rst(1'b0));
 
 endmodule
