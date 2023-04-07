@@ -6,10 +6,12 @@
 */
 module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, isNOP, isJAL, isJR,  
 					isJump, isBranch, isMemToReg, isMemRead, ALU_Op, isMemWrite, ALU_src, 
-					isRegWrite, isRegWrite_MW, immed, rd_data1, rd_data2, PC_next, flush);
+					isRegWrite, isRegWrite_MW, immed, rd_data1, rd_data2, writeReg, writeRegSel, read_reg1, read_reg2, PC_next, flush);
 
 	input wire clk, rst, stall, isRegWrite_MW;
 	input wire[15:0] instr, currPC, new_addr, writeData;
+	input wire [2:0] writeReg;
+	
 
 	output wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
 				ALU_src, isRegWrite, flush;
@@ -17,10 +19,12 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	output wire [3:0] ALU_Op;
 
 	output wire [15:0] immed, rd_data1, rd_data2, PC_next;
-
+	output wire [2:0] writeRegSel, read_reg1, read_reg2;
+	
 	wire [1:0] isType;
-	wire[2:0] read_reg1, read_reg2, writeReg;
-	wire zero, b_or_j, control_instr;
+	
+	wire zero, b_or_j;
+	wire [15:0] control_instr;
 	wire [15:0] PC_next_i, branchALU;
 	wire [4:0] opcode;
 
@@ -40,7 +44,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	 *  1. isNotHalt
 	 *  2. isNOP
 	 *  3. isType
-	 *  4. isJAL, 
+	 *  4. isJAL 
 	 *  5. isJR 
 	 *  6. isJump
 	 *  7. isBranch
@@ -61,14 +65,14 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 
 	// decode instruction to ports 
 	instr_decode iDecode(.isType(isType), .instr(instr), .read_reg1(read_reg1), .read_reg2(read_reg2),  
-						 .writeReg(writeReg), .incr_PC(new_addr), .immed(immed));
+						 .writeReg(writeRegSel), .incr_PC(new_addr), .immed(immed));
 
 
 
 	// create register file according to provided ports
-	rf_bypass regFile0(.read1Data(rd_data1), .read2Data(rd_data2), .err(), .clk(clk), .rst(rst), 
+	rf_bypass regFile0(.read1OutData(rd_data1), .read2OutData(rd_data2), .err(), .clk(clk), .rst(rst), 
 					 .read1RegSel(read_reg1), .read2RegSel(read_reg2), .writeRegSel(writeReg),
-					 .writeData(writeData), .writeEn(isRegWrite_MW));
+					 .writeInData(writeData), .writeEn(isRegWrite_MW));
 
 	// branch ALU logic
 	cla16b iCLA(.sum(branchALU), .cOut(), .inA(immed), .inB(rd_data1), .cIn(1'b0));

@@ -1,16 +1,18 @@
 module hazard_detect(		instr,
                             writeRegSel_DX, 
-                            writeRegSel_XM, 
+                            writeRegSel_XM,
+							writeRegSel_MW,
                             readRegSel1, 
                             readRegSel2, 
                             isRegWrite_DX,
                             isRegWrite_XM,
+							isRegWrite_MW,
                             stall
                             );
 
     input wire [15:0] instr;
-    input wire [2:0] writeRegSel_DX, writeRegSel_XM, readRegSel1, readRegSel2;
-    input wire isRegWrite_DX, isRegWrite_XM;
+    input wire [2:0] writeRegSel_DX, writeRegSel_XM, writeRegSel_MW,readRegSel1, readRegSel2;
+    input wire isRegWrite_DX, isRegWrite_XM, isRegWrite_MW;
     output stall;
 	
 	wire [1:0] num;
