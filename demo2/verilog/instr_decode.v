@@ -4,7 +4,7 @@
    Filename        : instr_decode.v
    Description     : This is the module for decoding instructions to specified ports.
 */
-module instr_decode(instr, incr_PC, isType, read_reg1, read_reg2, writeReg, immed);
+module instr_decode(instr, isType, read_reg1, read_reg2, writeReg, immed);
 
 localparam 	JAL 		= 5'b00110;
 localparam 	JALR 		= 5'b00111;
@@ -18,7 +18,7 @@ localparam I1 = 2'b01;
 localparam I2 = 2'b10;
 localparam R = 2'b11;
 
-input wire[15:0] instr, incr_PC;
+input wire[15:0] instr;
 input wire [1:0] isType;
 
 output wire [2:0] read_reg1, read_reg2, writeReg;
