@@ -5,7 +5,6 @@ module regRead(instr, num);
 	wire [4:0] opcode;
 	assign opcode = instr[15:11];
 	reg [1:0] num_temp;
-	assign num_reg_reads = num_temp;
 
 	always@(*) begin
 	   case(opcode)
@@ -104,5 +103,7 @@ module regRead(instr, num);
 					end
 		endcase
 	end
+	
+	assign num = num_temp;
 
 endmodule
