@@ -64,8 +64,8 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	 .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
 
 	// decode instruction to ports 
-	instr_decode iDecode(.isType(isType), .instr(instr), .read_reg1(read_reg1), .read_reg2(read_reg2),  
-			     .writeReg(writeRegSel), .PC_inc(new_addr), .immed(immed));
+	instr_decode iDecode(.instr(instr), .isType(isType), .read_reg1(read_reg1), .read_reg2(read_reg2),  
+			     .writeReg(writeRegSel), .immed(immed));
 
 
 
