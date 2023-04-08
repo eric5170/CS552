@@ -25,3 +25,5 @@ TODOs:
 11) Change WB aluResult to ALURes
 
 12) Remove isMemRead? Was wanted to be removed in Alex
+
+13) slbi, is "<<" legal?
