@@ -59,9 +59,9 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	// stall vs control unit logic
 	assign control_instr = stall ? 16'h0800: instr;
 	 
-	control iCtrl(.instr(control_instr), .isNotHalt(isNotHalt), .isNOP(isNOP), .isType(isType),.isJAL(isJAL), 
+	control iCtrl(.instr(control_instr), .isType(isType), .isNotHalt(isNotHalt), .isNOP(isNOP), .isJAL(isJAL), 
 	  .isJR(isJR),.isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
-	 .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
+		      .isMemRead(isMemRead), .isMemWrite(isMemWrite), .ALUop(ALU_Op), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
 
 	// decode instruction to ports 
 	instr_decode iDecode(.instr(instr), .isType(isType), .read_reg1(read_reg1), .read_reg2(read_reg2),  
