@@ -65,7 +65,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 
 	// decode instruction to ports 
 	instr_decode iDecode(.isType(isType), .instr(instr), .read_reg1(read_reg1), .read_reg2(read_reg2),  
-						 .writeReg(writeRegSel), .incr_PC(new_addr), .immed(immed));
+			     .writeReg(writeRegSel), .PC_inc(new_addr), .immed(immed));
 
 
 
@@ -82,7 +82,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	assign opcode = instr[15:11];
 
 	// determines whether to branch or jump
-	isBranch_Jump iBrnchjp(.opcode(opcode), .RsVal(rd_data1), .incr_PC(new_addr), .isJR(isJR),  
+	isBranch_Jump iBrnchjp(.opcode(opcode), .RsVal(rd_data1), .PC_inc(new_addr), .isJR(isJR),  
 						   .isJump(isJump), .isBranch(isBranch), .ALUResult(branchALU), .immed(immed),  
-						   .next_PC(PC_next_i));
+						   .PC_next(PC_next_i));
 endmodule
