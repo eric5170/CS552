@@ -1,104 +1,151 @@
-module instr_type(input [15:0] instr, output [1:0] isType);
+module instr_type(instr, isType);
 
+	// I-format 1
+	localparam	ADDI 		= 5'b01000; 
+	localparam 	SUBI 		= 5'b01001; 
+	localparam	XORI 		= 5'b01010; 
+	localparam 	ANDNI 		= 5'b01011; 
+	localparam	ROLI  		= 5'b10100; 
+	localparam 	SLLI 		= 5'b10101; 
+	localparam	RORI 		= 5'b10110; 
+	localparam 	SRLI 		= 5'b10111; 
+	localparam	ST 			= 5'b10000; 
+	localparam 	LD 			= 5'b10001; 
+	localparam	STU 		= 5'b10011; 
+
+	// R-format 
+	localparam 	BTR 		= 5'b11001; 
+	//consists of ADD...
+	localparam	ALU_1 		= 5'b11011; 
+	localparam	ALU_2 		= 5'b11010; 
+	localparam SEQ			= 5'b11100;
+	localparam SLT			= 5'b11101;
+	localparam SLE			= 5'b11110;
+	localparam SCO			= 5'b11111;
+
+	// I-format 2
+	localparam 	BEQZ 		= 5'b01100;
+	localparam 	BNEZ 		= 5'b01101;
+	localparam 	BLTZ 		= 5'b01110;
+	localparam 	BGEZ 		= 5'b01111;
+	localparam 	LBI 		= 5'b11000;
+	localparam 	SLBI 		= 5'b10010;
+	localparam 	J 			= 5'b00100;
+	localparam 	JR 			= 5'b00101;
+
+	// J-format
+	localparam 	JAL 		= 5'b00110;
+	localparam 	JALR 		= 5'b00111;
+
+	// Special instructions
+	localparam 	SIIC  		= 5'b00010;
+	localparam 	NOP 		= 5'b00001;
+	localparam 	NOP_RTI 	= 5'b00011;
+	localparam 	HALT 		= 5'b00000;
+	
+	input wire [15:0] instr;
+	output wire [1:0] isType;
+	
 	wire [4:0] opcode;
 	assign opcode = instr[15:11];
-	reg [1:0] instr_type_i;
-	assign isType = instr_type_i;
+	
+	reg [1:0] isType_temp;
+	assign isType = isType_temp;
 
 	always@(*) begin
 	   case(opcode)
-			5'b00000: begin			/************************************ HALT */
-						instr_type_i = 0;
+			HALT: begin			
+						isType_temp = 0;
 					 end
-			5'b00001: begin			/************************************ NOP */
-						instr_type_i = 0;
+			NOP: begin			
+						isType_temp = 0;
 					 end
-			5'b00100: begin			/************************************ J */
-						instr_type_i = 0;
+			J: begin			
+						isType_temp = 0;
 					 end
-			5'b00110: begin			/************************************ JAL */
-						instr_type_i = 0;
+			JAL: begin			
+						isType_temp = 0;
 					 end
-			5'b01000: begin			/************************************ ADDI */
-						instr_type_i = 1;
+			ADDI: begin			
+						isType_temp = 1;
 					 end
-			5'b01001: begin			/************************************ SUBI */
-						instr_type_i = 1;
+			SUBI: begin			
+						isType_temp = 1;
 					 end
-			5'b01010: begin			/************************************ XORI */
-						instr_type_i = 1;
+			 XORI: begin			
+						isType_temp = 1;
 					 end
-			5'b01011: begin			/************************************ ANDNI */
-						instr_type_i = 1;
+			ANDNI: begin		
+						isType_temp = 1;
 					 end
-			5'b10100: begin			/************************************ ROLI */
-						instr_type_i = 1;
+			ROLI: begin			
+						isType_temp = 1;
 					 end
-			5'b10101: begin			/************************************ SLLI */
-						instr_type_i = 1;
+			SLLI: begin			
+						isType_temp = 1;
 					 end
-			5'b10110: begin			/************************************ RORI */
-						instr_type_i = 1;
+			RORI: begin			
+						isType_temp = 1;
 					 end
-			5'b10111: begin			/************************************ SRLI */
-						instr_type_i = 1;
+			SRLI: begin			
+						isType_temp = 1;
 					 end
-			5'b10000: begin			/************************************ ST */
-						instr_type_i = 1;
+			ST: begin			
+						isType_temp = 1;
 					 end
-			5'b10001: begin			/************************************ LD */
-						instr_type_i = 1;
+			LD: begin			
+						isType_temp = 1;
 					 end
-			5'b10011: begin			/************************************ STU */
-						instr_type_i = 1;
+			STU: begin			
+						isType_temp = 1;
 					 end
-			5'b11000: begin			/************************************ LBI */
-						instr_type_i = 2;
+			LBI: begin			
+						isType_temp = 2;
 					 end
-			5'b10010: begin			/************************************ SLBI */
-						instr_type_i = 2;
+			SLBI: begin			
+						isType_temp = 2;
 					 end
-			5'b00101: begin			/************************************ JR */
-						instr_type_i = 2;
+			JR: begin			
+						isType_temp = 2;
 					 end
-			5'b00111: begin			/************************************ JALR */
-						instr_type_i = 2;
+			JALR: begin			
+						isType_temp = 2;
 					 end
-			5'b01100: begin			/************************************ BEQZ */
-						instr_type_i = 2;
+			BEQZ: begin			
+						isType_temp = 2;
 					 end
-			5'b01101: begin			/************************************ BNEZ */
-						instr_type_i = 2;
+			BNEZ: begin		
+						isType_temp = 2;
 					 end
-			5'b01110: begin			/************************************ BLTZ */
-						instr_type_i = 2;
+			BLTZ: begin		
+						isType_temp = 2;
 					 end
-			5'b01111: begin			/************************************ BGEZ */
-						instr_type_i = 2;
+			BGEZ: begin			
+						isType_temp = 2;
 					 end
-			5'b11001: begin			/************************************ BTR */
-						instr_type_i = 3;
+			BTR: begin			
+						isType_temp = 3;
 					 end
-			5'b11011: begin			/************************************ ADD, SUB, XOR, ANDN */
-						instr_type_i = 3;
+			ALU_1: begin			
+						isType_temp = 3;
 					 end
-			5'b11010: begin			/************************************ ROL, SLL, ROR, SRL */
-						instr_type_i = 3;
+			ALU_2: begin			
+						isType_temp = 3;
 					 end
-			5'b11100: begin			/************************************ SEQ */
-						instr_type_i = 3;
+			SEQ: begin			
+						isType_temp = 3;
 					 end
-			5'b11101: begin			/************************************ SLT */
-						instr_type_i = 3;
+			SLT: begin			
+						isType_temp = 3;
 					 end
-			5'b11110: begin			/************************************ SLE */
-						instr_type_i = 3;
+			SLE: begin			
+						isType_temp = 3;
 					 end
-			5'b11111: begin			/************************************ SCO */
-						instr_type_i = 3;
+			SCO: begin			
+						isType_temp = 3;
 					 end
 			default: begin
-						instr_type_i = 0;
+						isType_temp = 2'bxx;
 					end
 		endcase
 	end

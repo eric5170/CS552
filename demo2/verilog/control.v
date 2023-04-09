@@ -70,9 +70,8 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 	output wire[3:0] ALUop;
 
 
-	// signals in progress
-	reg [1:0] isType_i;
 
+	//signals in process
 	reg isNotHalt_i, isNOP_i, isJAL_i, isJR_i, isJump_i, isBranch_i, isMemToReg_i, isMemRead_i, isMemWrite_i,
 		ALU_src_i, isRegWrite_i;
 		
@@ -124,7 +123,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 		case(opcode)
 			HALT: begin			
 				// Everything 0  since Halt
-				isType_i = 0;
 				isNotHalt_i = 0;  
 				isNOP_i = 0;
 				isJAL_i = 0;  
@@ -140,7 +138,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 			end
 					 
 			NOP: begin			
-				isType_i = 0;
 				isNotHalt_i = 1;  
 				isNOP_i = 1;
 				isJAL_i = 0;  
@@ -155,7 +152,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 				isRegWrite_i = 0;
 			end
 			J: begin			
-				isType_i = 0;
 				isNotHalt_i = 1;  
 				isNOP_i = 0;
 				isJAL_i = 0;  
@@ -171,7 +167,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 			end
 					 
 			JAL: begin
-				isType_i = 0;
 				isNotHalt_i = 1;  
 				isNOP_i = 0;
 				isJAL_i = 1;  		
@@ -187,7 +182,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 			end
 					 
 			ADDI: begin	
-						isType_i = 1;		// I1
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -203,7 +197,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SUBI: begin			
-						isType_i = 1;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -219,7 +212,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			XORI: begin			
-						isType_i = 1;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -235,7 +227,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			ANDNI: begin			
-						isType_i = 1;		
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -251,7 +242,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			ROLI: begin			
-						isType_i = 1;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -267,7 +257,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SLLI: begin			
-						isType_i = 1;	
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -283,7 +272,7 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			RORI: begin		
-						isType_i = 1;		
+						 		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -299,7 +288,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SRLI: begin			
-						isType_i = 1;		
 						isNotHalt_i <= 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -315,7 +303,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			ST: begin			
-						isType_i = 1;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -331,7 +318,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			LD: begin			
-						isType_i = 1;		
 						isNotHalt_i = 1; 
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -347,7 +333,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			STU: begin		
-						isType_i = 1;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -363,7 +348,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			LBI: begin		
-						isType_i = 2;		
 						isNotHalt_i = 1; 
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -379,7 +363,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SLBI: begin		
-						isType_i = 2;		// I2
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -395,7 +378,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			JR: begin			
-						isType_i = 2;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -411,7 +393,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			JALR: begin			
-						isType_i = 2;		
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 1;  		
@@ -427,7 +408,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			BEQZ: begin		
-						isType_i = 2;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -443,7 +423,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			BNEZ: begin			
-						isType_i = 2;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -459,7 +438,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			BLTZ: begin			
-						isType_i = 2;		
 						isNotHalt_i = 1; 
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -475,7 +453,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			BGEZ: begin			
-						isType_i = 2;		
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -491,7 +468,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			BTR: begin			
-						isType_i = 3;		// R
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -507,7 +483,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			ALU_1: begin			
-						isType_i = 3;	
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -523,7 +498,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			ALU_2: begin			
-						isType_i = 3;		
 						isNotHalt_i = 1;  
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -539,7 +513,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SEQ: begin		
-						isType_i = 3;		
 						isNotHalt_i = 1; 
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -555,7 +528,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SLT: begin		
-						isType_i = 3;		
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -571,7 +543,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SLE: begin			
-						isType_i = 3;		
 						isNotHalt_i = 1; 
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -587,7 +558,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			SCO: begin			
-						isType_i = 3;		
 						isNotHalt_i = 1;   
 						isNOP_i = 0;
 						isJAL_i = 0;  
@@ -603,7 +573,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 					 end
 					 
 			default: begin
-						isType_i = 0;               
 						isNotHalt_i = 1; 
 						isNOP_i = 0;
 						isJAL_i = 0;
@@ -621,7 +590,6 @@ module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToRe
 	end
 
 	// assign signals to modify
-	//assign isType = isType_i;
 	assign ALUop = ALUop_i;
 	assign isNotHalt = isNotHalt_i;
 	assign isNOP = isNOP_i;
