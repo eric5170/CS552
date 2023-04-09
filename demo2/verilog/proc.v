@@ -74,12 +74,10 @@ module proc (/*AUTOARG*/
 	hazard_detect iDetect( .instr(instr_FD),
                             .writeRegSel_DX(writeRegSel_DX), 
                             .writeRegSel_XM(writeRegSel_EM),
-							.writeRegSel_MW(writeRegSel_MW),
                             .readRegSel1(readRegSel1), 
                             .readRegSel2(readRegSel2), 
                             .isRegWrite_DX(isRegWrite_DX),
                             .isRegWrite_XM(isRegWrite_EM),
-							.isRegWrite_MW(isRegWrite_MW),
                             .stall(stall));
 
 	decode iDECODE_STAGE(.clk(clk), .rst(rst), .stall(stall), .isRegWrite_MW(isRegWrite_MW),
@@ -128,7 +126,7 @@ M2W MEM_Wb_PIPE(.clk(clk), .rst(rst), .en(1'b1), .isNotHalt(isNotHalt_EM), .rFm(
 	.isNotHalt_MW(isNotHalt_MW));
 
 wb WRITE_BACK_STAGE (.readData(rFm_MW), .isMemToReg(isMemToReg_MW), .isMemRead(isMemRead), 
-	.aluResult(ALURes_MW), .nextPC(PC_2_MW), .isJAL(isJAL_MW), .writeData(wr_data), .writeEn(isRegWrite_MW), 
+	.aluResult(ALURes_MW), .nextPC(PC_2_MW), .isJAL(isJAL_MW), .writeData(wr_data), 
 	.writeRegSel(writeRegSel_MW), .writeReg(writeReg));
 	// CHANGE NEXTPC TO PC_NEXT
 
