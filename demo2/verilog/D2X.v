@@ -45,11 +45,11 @@ module D2X(
     output [15:0] readData1_DX, readData2_DX;
     output [2:0] writeRegSel_DX;
 
-    register_p PC_2_reg(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_DX));
+    register_16b PC_2_reg(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_DX));
     
-    register_p imm_reg(.en(en), .clk(clk), .rst(rst), .data_in(imm), .state(imm_DX));
-    register_p readData2_reg(.en(en), .clk(clk), .rst(rst), .data_in(readData2), .state(readData2_DX));
-    register_p readData1_reg(.en(en), .clk(clk), .rst(rst), .data_in(readData1), .state(readData1_DX));
+    register_16b imm_reg(.en(en), .clk(clk), .rst(rst), .data_in(imm), .state(imm_DX));
+    register_16b readData2_reg(.en(en), .clk(clk), .rst(rst), .data_in(readData2), .state(readData2_DX));
+    register_16b readData1_reg(.en(en), .clk(clk), .rst(rst), .data_in(readData1), .state(readData1_DX));
 
 	// control signals
     register_1b isNotHalt_reg(.en(en), .clk(clk), .rst(rst), .data_in(isNotHalt), .state(isNotHalt_DX));

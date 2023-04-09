@@ -4,7 +4,7 @@
    Filename        : control.v
    Description     : This is the module for control unit where all the signals are located.
 */
-module control(instr, isType, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, 
+module control(instr, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, 
 					isMemRead, isMemWrite, ALUop, ALU_src, isRegWrite);
 
 
@@ -61,7 +61,7 @@ module control(instr, isType, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, i
 	input [15:0] instr;
 
 	// determine which type: J,I1,I2,R
-	output [1:0] isType;
+	//output [1:0] isType;
 
 	// other signals
 	output wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
@@ -621,7 +621,7 @@ module control(instr, isType, isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, i
 	end
 
 	// assign signals to modify
-	assign isType = isType_i;
+	//assign isType = isType_i;
 	assign ALUop = ALUop_i;
 	assign isNotHalt = isNotHalt_i;
 	assign isNOP = isNOP_i;

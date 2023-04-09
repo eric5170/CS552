@@ -7,8 +7,8 @@ module I2D(en, clk, rst, PC_2, instr, currPC, instr_next, PC_2_next, currPC_next
 	// instruction register
     register_p instr_reg(.en(en), .clk(clk), .rst(rst), .data_in(instr), .state(instr_next));
 	// PC+2 register 
-    register_p PC_2_reg(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_next));
+    register_16b PC_2_reg(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_next));
 	// current PC register
-    register_p currPC_reg(.en(en), .clk(clk), .rst(rst), .data_in(currPC), .state(currPC_next));
+    register_16b currPC_reg(.en(en), .clk(clk), .rst(rst), .data_in(currPC), .state(currPC_next));
 
 endmodule

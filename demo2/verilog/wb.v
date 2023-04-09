@@ -4,14 +4,14 @@
    Filename        : wb.v
    Description     : This is the module for writeback logic.
 */
-module wb(readData,	isMemToReg, isMemRead, aluResult, nextPC, isJAL, writeData, writeRegSel, writeReg);
+module wb(readData,	isMemToReg, isMemRead, aluResult, nextPC, isJAL, writeData,	writeRegSel, writeReg);
 
-	input [15:0] readData, aluResult, nextPC;
-	input [2:0] writeRegSel;
-	input isMemRead, isMemToReg, isJAL;
+	input wire [15:0] readData, aluResult, nextPC;
+	input wire[2:0] writeRegSel;
+	input wire isMemRead, isMemToReg, isJAL;
 	
-	output [15:0] writeData;
-	output [2:0] writeReg;
+	output wire [15:0] writeData;
+	output wire [2:0] writeReg;
 	
 	assign writeData = isJAL ? nextPC : (isMemToReg ? readData : aluResult);
 	assign writeReg = writeRegSel;

@@ -6,7 +6,8 @@
 */
 module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, isNOP, isJAL, isJR,  
 					isJump, isBranch, isMemToReg, isMemRead, ALU_Op, isMemWrite, ALU_src, 
-					isRegWrite, isRegWrite_MW, immed, rd_data1, rd_data2, writeReg, writeRegSel, read_reg1, read_reg2, PC_next, flush);
+					isRegWrite, isRegWrite_MW, immed, rd_data1, rd_data2, writeReg, writeRegSel, read_reg1,
+					read_reg2, PC_next, flush);
 
 	input wire clk, rst, stall, isRegWrite_MW;
 	input wire[15:0] instr, currPC, new_addr, writeData;
@@ -35,8 +36,8 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	assign flush =  b_or_j ? ((PC_next_i == new_addr) ? 0 : 1) : 0;
 
 	// next PC logic
-	assign PC_next = ~(isNotHalt) ? currPC : (b_or_j ? PC_next_i : new_addr);
-
+	//assign PC_next = ~(isNotHalt) ? currPC : (b_or_j ? PC_next_i : new_addr);
+	assign PC_next = PC_next_i;
 
 
 	/* Control Unit: Yeon Jae
@@ -59,20 +60,22 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	// stall vs control unit logic
 	assign control_instr = stall ? 16'h0800: instr;
 	 
-	control iCtrl(.instr(control_instr), .isType(isType), .isNotHalt(isNotHalt), .isNOP(isNOP), .isJAL(isJAL), 
+	control iCtrl(.instr(instr), .isNotHalt(isNotHalt), .isNOP(isNOP), .isJAL(isJAL), 
 	  .isJR(isJR),.isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
-		      .isMemRead(isMemRead), .isMemWrite(isMemWrite), .ALUop(ALU_Op), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
+	 .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
+
+	instr_type iType(.instr(instr), .isType(isType));
 
 	// decode instruction to ports 
-	instr_decode iDecode(.instr(instr), .isType(isType), .read_reg1(read_reg1), .read_reg2(read_reg2),  
-			     .writeReg(writeRegSel), .immed(immed));
+	instr_decode iDecode(.isType(isType), .instr(instr), .read_reg1(read_reg1), .read_reg2(read_reg2),  
+						 .writeReg(writeRegSel), .incr_PC(new_addr), .immed(immed));
 
 
 
 	// create register file according to provided ports
 	rf_bypass regFile0(.read1OutData(rd_data1), .read2OutData(rd_data2), .err(), .clk(clk), .rst(rst), 
 					 .read1RegSel(read_reg1), .read2RegSel(read_reg2), .writeRegSel(writeReg),
-					 .writeInData(writeData), .writeEn(isRegWrite_MW));
+					 .writeData(writeData), .writeEn(isRegWrite_MW));
 
 	// branch ALU logic
 	cla16b iCLA(.sum(branchALU), .cOut(), .inA(immed), .inB(rd_data1), .cIn(1'b0));
@@ -82,7 +85,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	assign opcode = instr[15:11];
 
 	// determines whether to branch or jump
-	isBranch_Jump iBrnchjp(.opcode(opcode), .RsVal(rd_data1), .PC_inc(new_addr), .isJR(isJR),  
+	isBranch_Jump iBrnchjp(.opcode(opcode), .RsVal(rd_data1), .incr_PC(new_addr), .isJR(isJR),  
 						   .isJump(isJump), .isBranch(isBranch), .ALUResult(branchALU), .immed(immed),  
-						   .PC_next(PC_next_i));
+						   .next_PC(PC_next_i));
 endmodule
