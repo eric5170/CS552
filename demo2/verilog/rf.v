@@ -1,4 +1,9 @@
-
+/*
+   CS/ECE 552 Spring '23
+  
+   Filename        : rf.v
+   Description     : This is the module for register file. 
+*/
 module rf (
                 // Outputs
                 read1Data, read2Data, err,
@@ -34,77 +39,95 @@ module rf (
  
 	always@(*) begin
 		case(read1RegSel) 
-		3'b000: begin 
-			err_i = 0;
-			read1 = state0;
+			3'b000: begin 
+				err_i = 0;
+				read1 = state0;
 			end
-		3'b001: begin 
-			err_i = 0;
-			read1 = state1;
+			
+			3'b001: begin 
+				err_i = 0;
+				read1 = state1;
 			end
-		3'b010: begin 
-			err_i = 0;
-			read1 = state2;
+			
+			3'b010: begin 
+				err_i = 0;
+				read1 = state2;
 			end
-		3'b011: begin 
-			err_i = 0;
-			read1 = state3;
+			
+			3'b011: begin 
+				err_i = 0;
+				read1 = state3;
 			end
-		3'b100: begin 
-			err_i = 0;
-			read1 = state4;
+			
+			3'b100: begin 
+				err_i = 0;
+				read1 = state4;
 			end
-		3'b101: begin 
-			err_i = 0;
-			read1 = state5;
+			
+			3'b101: begin 
+				err_i = 0;
+				read1 = state5;
 			end
-		3'b110: begin 
-			err_i = 0;
-			read1 = state6;
+			
+			3'b110: begin 
+				err_i = 0;
+				read1 = state6;
 			end
-		3'b111: begin 
-			err_i = 0;
-			read1 = state7;
+			
+			3'b111: begin 
+				err_i = 0;
+				read1 = state7;
 			end
-		default: err_i = 1;
+			
+			default: err_i = 1;
+			
 		endcase
 	end
 
 	always@(*) begin 
 		case(read2RegSel) 
-		3'b000: begin 
-			err_i = 0;
-			read2 = state0;
+			3'b000: begin 
+				err_i = 0;
+				read2 = state0;
 			end
-		3'b001: begin 
-			err_i = 0;
-			read2 = state1;
+			
+			3'b001: begin 
+				err_i = 0;
+				read2 = state1;
 			end
-		3'b010: begin 
-			err_i = 0;
-			read2 = state2;
+			
+			3'b010: begin 
+				err_i = 0;
+				read2 = state2;
 			end
-		3'b011: begin 
-			err_i = 0;
-			read2 = state3;
+			
+			3'b011: begin 
+				err_i = 0;
+				read2 = state3;
 			end
-		3'b100: begin 
-			err_i = 0;
-			read2 = state4;
+			
+			3'b100: begin 
+				err_i = 0;
+				read2 = state4;
 			end
-		3'b101: begin 
-			err_i = 0;
-			read2 = state5;
+			
+			3'b101: begin 
+				err_i = 0;
+				read2 = state5;
 			end
-		3'b110: begin 
-			err_i = 0;
-			read2 = state6;
+			
+			3'b110: begin 
+				err_i = 0;
+				read2 = state6;
 			end
-		3'b111: begin 
-			err_i = 0;
-			read2 = state7;
+			
+			3'b111: begin 
+				err_i = 0;
+				read2 = state7;
 			end
-		default: err_i = 1;
+			
+			default: err_i = 1;
+		
 		endcase 
 	end
 
@@ -122,6 +145,5 @@ module rf (
 	assign read1Data = read1;
 	assign read2Data = read2;
 	assign err = err_i;
-
 
 endmodule

@@ -136,11 +136,8 @@ module proc_hier_pbench();
    //    
    assign WriteRegister = DUT.p0.writeRegSel_MW;
    // The name of the register being written to. (3 bit signal)
-   
-   //ERROR: doesn't seem to get the right value
-   //assign WriteData = DUT.p0.wr_data;
-      assign WriteData = DUT.p0.writeData;
-
+  
+   assign WriteData = DUT.p0.writeData;
    // Data being written to the register. (16 bits)
    
    assign MemRead =  DUT.p0.isMemRead_EM;
@@ -158,9 +155,7 @@ module proc_hier_pbench();
    assign MemDataOut = DUT.p0.rFm;
    // Data read from memory for memory reads (16 bits)
 
-   
-   // ERROR: seems like it's stopping 2 cycles before it actually stops.
-   assign Halt = ~DUT.p0.isNotHalt;
+   assign Halt = DUT.p0.isHalt_MW;
    // Processor halted
    
    

@@ -24,7 +24,7 @@ input wire [1:0] isType;
 output wire [2:0] read_reg1, read_reg2, writeReg;
 output reg [15:0] immed;
 
-reg [2:0] readReg1Wire, readReg2Wire, writeRegWire;
+reg [2:0] readReg1_temp, readReg2_temp, writeReg_temp;
 wire [4:0] opcode;
 //flags for the operations
 wire JALR_f, JAL_f, SLBI_f, LBI_f, ST_f, STU_f;
@@ -54,49 +54,49 @@ always @(*) begin
 	case(isType)
 	 
 		J: begin 
-			writeRegWire = (~JAL_f) ? 7: 0;
-			readReg1Wire = 0;
-			readReg2Wire = 0;
+			writeReg_temp = (~JAL_f) ? 7: 0;
+			readReg1_temp = 0;
+			readReg2_temp = 0;
 			immed = { {5{instr[10]}}, instr[10:0] };
 		end
 		
 	
 		I1: begin 
-			writeRegWire = ( ~STU_f ) ? instr[10:8] : instr[7:5];
-			readReg1Wire = instr[10:8];
-			readReg2Wire = ( ~STU_f | ~ST_f ) ?  instr[7:5] : 3'h0;
+			writeReg_temp = ( ~STU_f ) ? instr[10:8] : instr[7:5];
+			readReg1_temp = instr[10:8];
+			readReg2_temp = ( ~STU_f | ~ST_f ) ?  instr[7:5] : 3'h0;
 			immed = I1_Extend;
 
 		end
 		
 		I2: begin 
-			readReg1Wire = instr[10:8];
-			writeRegWire = (~JALR_f) ? 7 : ((~SLBI_f | ~LBI_f) ? instr[10:8] : 0);
+			readReg1_temp = instr[10:8];
+			writeReg_temp = (~JALR_f) ? 7 : ((~SLBI_f | ~LBI_f) ? instr[10:8] : 0);
 			immed = I2_Extend;
 		end
 		
 		R: begin 
-			readReg1Wire = instr[10:8];
-			readReg2Wire = instr[7:5];
-			writeRegWire = instr[4:2];
+			readReg1_temp = instr[10:8];
+			readReg2_temp = instr[7:5];
+			writeReg_temp = instr[4:2];
 			immed = 1'b0;
 			
 		end
 		
 		 //if none matches --> XX
 		default: begin
-			readReg1Wire = 2'bxx;
-			readReg1Wire = 2'bxx;
-			readReg2Wire = 2'bxx;
+			readReg1_temp = 2'bxx;
+			readReg1_temp = 2'bxx;
+			readReg2_temp = 2'bxx;
 			immed = 1'b0;
 		end
 		
 	endcase
 end
 
-assign writeReg = writeRegWire;
-assign read_reg1 = readReg1Wire;
-assign read_reg2 = readReg2Wire;
+assign writeReg = writeReg_temp;
+assign read_reg1 = readReg1_temp;
+assign read_reg2 = readReg2_temp;
 
 endmodule
 			

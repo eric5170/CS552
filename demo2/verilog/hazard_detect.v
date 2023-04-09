@@ -1,3 +1,9 @@
+/*
+   CS/ECE 552 Spring '23
+  
+   Filename        : hazard_detect.v
+   Description     : This is the module for hazard_detection logic depending on the number of register being read.
+*/
 module hazard_detect(		instr,
                             writeRegSel_DX, 
                             writeRegSel_EM,

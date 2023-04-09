@@ -1,4 +1,53 @@
+/*
+   CS/ECE 552 Spring '23
+  
+   Filename        : regRead.v
+   Description     : This is the module for counting numbers of register being read for hazard detection logic.
+*/
 module regRead(instr, num);
+// I-format 1
+	localparam	ADDI 		= 5'b01000; 
+	localparam 	SUBI 		= 5'b01001; 
+	localparam	XORI 		= 5'b01010; 
+	localparam 	ANDNI 		= 5'b01011; 
+	localparam	ROLI  		= 5'b10100; 
+	localparam 	SLLI 		= 5'b10101; 
+	localparam	RORI 		= 5'b10110; 
+	localparam 	SRLI 		= 5'b10111; 
+	localparam	ST 			= 5'b10000; 
+	localparam 	LD 			= 5'b10001; 
+	localparam	STU 		= 5'b10011; 
+
+	// R-format 
+	localparam 	BTR 		= 5'b11001; 
+	//consists of ADD...
+	localparam	ALU_1 		= 5'b11011; 
+	localparam	ALU_2 		= 5'b11010; 
+	localparam SEQ			= 5'b11100;
+	localparam SLT			= 5'b11101;
+	localparam SLE			= 5'b11110;
+	localparam SCO			= 5'b11111;
+
+	// I-format 2
+	localparam 	BEQZ 		= 5'b01100;
+	localparam 	BNEZ 		= 5'b01101;
+	localparam 	BLTZ 		= 5'b01110;
+	localparam 	BGEZ 		= 5'b01111;
+	localparam 	LBI 		= 5'b11000;
+	localparam 	SLBI 		= 5'b10010;
+	localparam 	J 			= 5'b00100;
+	localparam 	JR 			= 5'b00101;
+
+	// J-format
+	localparam 	JAL 		= 5'b00110;
+	localparam 	JALR 		= 5'b00111;
+
+	// Special instructions
+	localparam 	SIIC  		= 5'b00010;
+	localparam 	NOP 		= 5'b00001;
+	localparam 	NOP_RTI 	= 5'b00011;
+	localparam 	HALT 		= 5'b00000;
+
 	input wire [15:0] instr;
 	output wire [1:0] num;
 
@@ -7,100 +56,131 @@ module regRead(instr, num);
 	reg [1:0] num_temp;
 
 	always@(*) begin
-	   case(opcode)
-			5'b00000: begin			/************************************ HALT */
+	    case(opcode)
+			HALT: begin			
 						num_temp = 2'h0;
-					 end
-			5'b00001: begin			/************************************ NOP */
+			end
+			
+			NOP: begin			
 						num_temp = 2'h0;
-					 end
-			5'b00100: begin			/************************************ J */
+			end
+			
+			J: begin			
 						num_temp = 2'h0;
-					 end
-			5'b00110: begin			/************************************ JAL */
+			end
+			
+			JAL: begin		
 						num_temp = 2'h0;
-					 end
-			5'b01000: begin			/************************************ ADDI */
+			end
+			
+			ADDI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b01001: begin			/************************************ SUBI */
+			end
+			
+			SUBI: begin		
 						num_temp = 2'h1;
-					 end
-			5'b01010: begin			/************************************ XORI */
+			end
+			
+			XORI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b01011: begin			/************************************ ANDNI */
+			end
+			
+			ANDNI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b10100: begin			/************************************ ROLI */
+			end
+			
+			ROLI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b10101: begin			/************************************ SLLI */
+			end
+			
+			SLLI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b10110: begin			/************************************ RORI */
+			end
+			
+			RORI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b10111: begin			/************************************ SRLI */
+			end
+			
+			SRLI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b10000: begin			/************************************ ST */
+			end
+			
+			ST: begin			
 						num_temp = 2'h2;
-					 end
-			5'b10001: begin			/************************************ LD */
+			end
+			
+			LD: begin			
 						num_temp = 2'h1;
-					 end
-			5'b10011: begin			/************************************ STU */
+			end
+			
+			STU: begin			
 						num_temp = 2'h2;
-					 end
-			5'b11000: begin			/************************************ LBI */
+			end
+			
+			LBI: begin			
 						num_temp = 2'h0;
-					 end
-			5'b10010: begin			/************************************ SLBI */
+			end
+			
+			SLBI: begin			
 						num_temp = 2'h1;
-					 end
-			5'b00101: begin			/************************************ JR */
+			end
+			
+			JR: begin			
 						num_temp = 2'h1;
-					 end
-			5'b00111: begin			/************************************ JALR */
+			end
+			
+			JALR: begin			
 						num_temp = 2'h1;
-					 end
-			5'b01100: begin			/************************************ BEQZ */
+			end
+			
+			BEQZ: begin			
 						num_temp = 2'h1;
-					 end
-			5'b01101: begin			/************************************ BNEZ */
+			end
+			
+			BNEZ: begin			
 						num_temp = 2'h1;
-					 end
-			5'b01110: begin			/************************************ BLTZ */
+			end
+			
+			BLTZ: begin			
 						num_temp = 2'h1;
-					 end
-			5'b01111: begin			/************************************ BGEZ */
+			end
+			
+			BGEZ: begin			
 						num_temp = 2'h1;
-					 end
-			5'b11001: begin			/************************************ BTR */
+			end
+			
+			BTR: begin			
 						num_temp = 2'h1;
-					 end
-			5'b11011: begin			/************************************ ADD, SUB, XOR, ANDN */
+			end
+			
+			ALU_1: begin			
 						num_temp = 2'h2;
-					 end
-			5'b11010: begin			/************************************ ROL, SLL, ROR, SRL */
+			end
+			
+			ALU_2: begin			
 						num_temp = 2'h2;
-					 end
-			5'b11100: begin			/************************************ SEQ */
+			end
+			
+			SEQ: begin			
 						num_temp = 2'h2;
-					 end
-			5'b11101: begin			/************************************ SLT */
+			end
+			
+			SLT: begin			
 						num_temp = 2'h2;
-					 end
-			5'b11110: begin			/************************************ SLE */
+			end
+			
+			SLE: begin			
 						num_temp = 2'h2;
-					 end
-			5'b11111: begin			/************************************ SCO */
+			end
+			
+			SCO: begin			
 						num_temp = 2'h2;
-					 end
+			end
+			
 			default: begin
 						num_temp = 2'h0;
-					end
+			end
+			
 		endcase
 	end
 	

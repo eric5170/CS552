@@ -10,11 +10,11 @@ module execute (ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl)
 	localparam SUB = 4'b0001;
 	localparam ANDN = 4'b1101;
 	
-	input ALU_src;
-	input [3:0] ALU_Op;
-	input [15:0] extOut, rd_data1, rd_data2;
-	output [15:0] ALU_res;
-	output zero, ofl;
+	input wire ALU_src;
+	input wire[3:0] ALU_Op;
+	input wire[15:0] extOut, rd_data1, rd_data2;
+	output wire[15:0] ALU_res;
+	output wire zero, ofl;
 
 	wire [15:0] muxOutput;
 	wire invA, invB, SLT_f, SLE_f, SUB_f, ANDN_f;

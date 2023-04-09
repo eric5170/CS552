@@ -4,7 +4,7 @@
    Filename        : decode.v
    Description     : This is the module for the overall decode stage of the processor.
 */
-module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, isNOP, isJAL, isJR,  
+module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNOP, isJAL, isJR,  
 					isJump, isBranch, isMemToReg, isMemRead, ALU_Op, isMemWrite, ALU_src, 
 					isRegWrite, isRegWrite_MW, immed, rd_data1, rd_data2, writeReg, writeRegSel, read_reg1,
 					read_reg2, PC_next, flush);
@@ -14,7 +14,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	input wire [2:0] writeReg;
 	
 
-	output wire isNotHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
+	output wire isHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
 				ALU_src, isRegWrite, flush;
 				
 	output wire [3:0] ALU_Op;
@@ -36,13 +36,18 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	assign flush =  b_or_j ? ((PC_next_i == new_addr) ? 0 : 1) : 0;
 
 	// next PC logic
-	//assign PC_next = ~(isNotHalt) ? currPC : (b_or_j ? PC_next_i : new_addr);
 	assign PC_next = PC_next_i;
 
+	wire [15:0] stall_PC;
+	assign stall_PC = 16'h0800;
+	
+	// stall vs control unit logic
+	assign control_instr = stall ? stall_PC: instr;
+	 
 
 	/* Control Unit: Yeon Jae
 	 * control signals:
-	 *  1. isNotHalt
+	 *  1. isHalt
 	 *  2. isNOP
 	 *  3. isType
 	 *  4. isJAL 
@@ -57,10 +62,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isNotHalt, i
 	 *  13. isRegWrite
 	 */
 	 
-	// stall vs control unit logic
-	assign control_instr = stall ? 16'h0800: instr;
-	 
-	control iCtrl(.instr(instr), .isNotHalt(isNotHalt), .isNOP(isNOP), .isJAL(isJAL), 
+	control iCtrl(.instr(control_instr), .isHalt(isHalt), .isNOP(isNOP), .isJAL(isJAL), 
 	  .isJR(isJR),.isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
 	 .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
 
