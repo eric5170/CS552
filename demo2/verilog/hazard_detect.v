@@ -1,10 +1,10 @@
 module hazard_detect(		instr,
-                            writeRegSel_ID_EX, 
-                            writeRegSel_EX_MEM,
+                            writeRegSel_DX, 
+                            writeRegSel_EM,
                             readRegSel1, 
                             readRegSel2, 
-                            isRegWrite_ID_EX,
-                            isRegWrite_EX_MEM,
+                            isRegWrite_DX,
+                            isRegWrite_EM,
                             stall
                             );
 
