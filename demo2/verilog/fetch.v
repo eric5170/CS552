@@ -20,10 +20,10 @@ module fetch (clk, rst, currPC, nextPC, instr);
 	cla16b iADD(.sum(PC_2), .cOut(), .inA(currPC), .inB(16'h2),.cIn(1'b0));
 	
 	// next PC logic
-	assign nextPC = rst ? currPC : PC_2;
+	mux2_1 PC_NEXT_MUX[15:0] (.out(nextPC), .inputA(PC_2), .inputB(currPC), .sel(rst));
 	
 	// stall logic
-	assign instr = rst ? 16'h0800 : new_instr;
+	mux2_1 INSTR_MUX[15:0] (.out(instr), .inputA(new_instr), .inputB(16'h0800), .sel(rst));
 
 endmodule
 `default_nettype wire
