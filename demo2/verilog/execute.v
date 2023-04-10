@@ -28,8 +28,8 @@ module execute (ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl)
 	assign ANDN_f = |(ALU_Op ^ ANDN);
 	assign carryIn = ~(SLT_f & SUB_f & SLE_f);
 	
-	assign invA = SUB_f ? 0 : 1;
-	assign invB = ANDN_f & SLT_f & SLE_f ? 0 : 1;
+	mux2_1 INV_A_MUX[15:0] (.out(invA), .inputA(1), .inputB(0), .sel(SUB_f));
+	mux2_1 INV_B_MUX[15:0] (.out(invB), .inputA(1), .inputB(0), .sel(ANDN_f & SLT_f & SLE_f));
 	
 	alu_optimal ALU (.opcode(ALU_Op), .inA(rd_data1), .inB(muxOutput), .Cin(carryIn),
 	.invA(invA), .invB(invB), .sign(1'b1), .zero(zero), .ofl(ofl), .aluOut(ALU_res));
