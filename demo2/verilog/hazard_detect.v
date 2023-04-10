@@ -49,6 +49,6 @@ module hazard_detect(		instr,
     assign stall = (( r1 & (readRegSel1 == writeRegSel_DX) & (isRegWrite_DX)) 
 	| (r1 & (readRegSel1 == writeRegSel_EM) & (isRegWrite_EM))
 	| (r2 & (readRegSel2 == writeRegSel_DX) & (isRegWrite_DX))
-	| (r2 & (readRegSel2 == writeRegSel_EM) & (isRegWrite_EM))) ? 1 : 0;
+	| (r2 & (readRegSel2 == writeRegSel_EM) & (isRegWrite_EM)));
 	
 endmodule
