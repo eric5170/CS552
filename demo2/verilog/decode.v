@@ -33,7 +33,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNO
 	assign b_or_j = isBranch | isJump;
 
 	// flush logic
-	assign flush =  b_or_j ? ((PC_next_i == new_addr) ? 0 : 1) : 0;
+	mux2_1 FLUSH_MUX[15:0] (.out(flush), .inputA(0), .inputB(~(PC_next_i == new_addr)), .sel(b_or_j));
 
 	// next PC logic
 	assign PC_next = PC_next_i;
@@ -42,7 +42,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNO
 	assign stall_PC = 16'h0800;
 	
 	// stall vs control unit logic
-	assign control_instr = stall ? stall_PC: instr;
+	mux2_1 CONTROL_INSTR_MUX[15:0] (.out(control_instr), .inputA(instr), .inputB(stall_PC), .sel(stall));
 	 
 
 	/* Control Unit: Yeon Jae
