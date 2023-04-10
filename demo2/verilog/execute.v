@@ -26,10 +26,10 @@ module execute (ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl)
 	assign SLE_f = |(ALU_Op ^ SLE);
 	assign SUB_f = |(ALU_Op ^ SUB);
 	assign ANDN_f = |(ALU_Op ^ ANDN);
-	assign carryIn = ~SLT_f | ~SUB_f | ~SLE_f;
+	assign carryIn = ~(SLT_f & SUB_f & SLE_f);
 	
-	assign invA = (~SUB_f) ? 1 : 0;
-	assign invB = (~ANDN_f | ~SLT_f | ~SLE_f) ? 1 : 0;
+	assign invA = SUB_f ? 0 : 1;
+	assign invB = ANDN_f & SLT_f & SLE_f ? 0 : 1;
 	
 	alu_optimal ALU (.opcode(ALU_Op), .inA(rd_data1), .inB(muxOutput), .Cin(carryIn),
 	.invA(invA), .invB(invB), .sign(1'b1), .zero(zero), .ofl(ofl), .aluOut(ALU_res));
