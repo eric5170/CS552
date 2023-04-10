@@ -33,7 +33,7 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNO
 	assign b_or_j = isBranch | isJump;
 
 	// flush logic
-	mux2_1 FLUSH_MUX[15:0] (.out(flush), .inputA(0), .inputB(~(PC_next_i == new_addr)), .sel(b_or_j));
+	mux2_1 FLUSH_MUX (.out(flush), .inputA(0), .inputB(~(PC_next_i == new_addr)), .sel(b_or_j));
 
 	// next PC logic
 	assign PC_next = PC_next_i;
