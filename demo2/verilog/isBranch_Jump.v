@@ -16,20 +16,21 @@ module isBranch_Jump(opcode, RsVal, incr_PC, isJR, isJump, isBranch, ALUResult, 
 
 	wire [15:0] immedWire;
 	wire [15:0] addOutput;
-	wire [15:0] mux2Output;
-	wire b_and_z;
+	wire [15:0] JR_out;
+	wire BZ, BZ_out;
 	wire zero;
 	wire C_out;
 
 
 	cla16b ADD(.sum(addOutput), .cOut(C_out), .inA(incr_PC), .inB(immedWire), .cIn(1'b0));
 
-	assign mux2Output = isJR ? ALUResult : addOutput;
+	mux2_1 JR_OUT_MUX[15:0] (.out(JR_out), .inputA(addOutput), .inputB(ALUResult), .sel(isJR));
 
-	assign next_PC = isJump ? mux2Output : (b_and_z ? addOutput : incr_PC); 
+	mux2_1 B_AND_Z_MUX[15:0] (.out(BZ_out), .inputA(incr_PC), .inputB(addOutput), .sel(BZ));
+	mux2_1 NEXT_PC_MUX[15:0] (.out(next_PC), .inputA(BZ_out), .inputB(JR_out), .sel(isJump));
 	
 	isBranch_ALU iBrnch(.opcode(opcode), .RsVal(RsVal), .zero(zero));
-	assign b_and_z = zero & isBranch; 
+	assign BZ= zero & isBranch; 
 	assign immedWire = immed;
 
 
