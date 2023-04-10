@@ -12,22 +12,17 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNO
 	input wire clk, rst, stall, isRegWrite_MW;
 	input wire[15:0] instr, currPC, new_addr, writeData;
 	input wire [2:0] writeReg;
-	
-
-	output wire isHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
-				ALU_src, isRegWrite, flush;
-				
-	output wire [3:0] ALU_Op;
 
 	output wire [15:0] immed, rd_data1, rd_data2, PC_next;
+	output wire [3:0] ALU_Op;
 	output wire [2:0] writeRegSel, read_reg1, read_reg2;
+	output wire isHalt, isNOP, isJAL, isJR, isJump, isBranch, isMemToReg, isMemRead, isMemWrite,
+		ALU_src, isRegWrite, flush;
 	
-	wire [1:0] isType;
-	
-	wire zero, b_or_j;
-	wire [15:0] control_instr;
-	wire [15:0] PC_next_i, branchALU;
+	wire [15:0] control_instr, PC_next_i, branchALU;
 	wire [4:0] opcode;
+	wire [1:0] isType;
+	wire zero, b_or_j;
 
 
 	assign b_or_j = isBranch | isJump;
