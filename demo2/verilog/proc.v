@@ -73,8 +73,8 @@ module proc (/*AUTOARG*/
 	wire [15:0] stall_PC;
 	assign stall_PC = 16'h0800;
 	
-	assign instr_in  =  flush ? stall_PC : instr;
-	assign PC_test =  flush ? PC_next : PC_2;
+	mux2_1 INSTR_IN_MUX([15:0] (.out(instr_in), .inputA(instr), .inputB(stall_PC), .sel(flush));
+	mux2_1 PC_TEST_MUX [15:0] (.out(PC_test), .inputA(PC_2), .inputB(PC_next), .sel(flush));
 	
 	
 	// Fetch to Decode
@@ -127,10 +127,7 @@ module proc (/*AUTOARG*/
 				   .read_reg1(readRegSel1), 
 				   .read_reg2(readRegSel2), 
 				   .flush(flush));
-		// ADD STALL AND FLUSH TO DECODE
 
-	// TODO: ID/EX, TODO: STALL, WRITEREGSEL, VARIABLE NAMES
-	// pc_plus_2 to PC_2
 	D2X Decode_to_Execute(.clk(clk), 
 					.rst(rst), 
 					.en(1'b1), 
@@ -161,7 +158,6 @@ module proc (/*AUTOARG*/
 					.readData1_DX(rdData1_DX), 
 					.writeRegSel_DX(writeRegSel_DX));
 
-	// ALUSRC, ALUop, rdData1, rdData2, ALURes, extOutput
 	execute execute0 (.ALU_src(ALU_src_DX),
 					  .ALU_Op(ALUop_DX), 
 					  .rd_data1(rdData1_DX), 
@@ -234,7 +230,6 @@ module proc (/*AUTOARG*/
 			.writeData(writeData), 
 			.writeRegSel(writeRegSel_MW), 
 			.writeReg(writeReg));
-		// CHANGE NEXTPC TO PC_NEXT
 
 	
    
