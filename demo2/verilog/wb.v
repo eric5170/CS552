@@ -12,9 +12,9 @@ module wb (readData,	isMemToReg, aluResult, nextPC, isJAL, writeData, writeRegSe
 	
 	output wire [15:0] writeData;
 	output wire [2:0] writeReg;
-	wire mem2reg_out
+	wire [15:0] mem2reg_out;
 	
-	mux2_1 MEM2REG_MUX(.out(mem2reg_out), .inputA(aluResult), .inputB(readData), .sel(isMemToReg));
+	mux2_1 MEM2REG_MUX[15:0] (.out(mem2reg_out), .inputA(aluResult), .inputB(readData), .sel(isMemToReg));
 	mux2_1 WRITE_DATA_MUX[15:0] (.out(writeData), .inputA(mem2reg_out), .inputB(nextPC), .sel(isJAL));
 	
 	assign writeReg = writeRegSel;
