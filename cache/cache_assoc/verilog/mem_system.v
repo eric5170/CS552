@@ -1,29 +1,21 @@
-/* $Author: karu $ */
-/* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
-/* $Rev: 77 $ */
+module mem_system(
+					//	Inputs
+					input wire [15:0] Addr;
+					input wire [15:0] DataIn;
+					input wire        Rd;
+					input wire        Wr;
+					input wire        createdump;
+					input wire        clk;
+					input wire        rst;
 
-module mem_system(/*AUTOARG*/
-   // Outputs
-   DataOut, Done, Stall, CacheHit, err, 
-   // Inputs
-   Addr, DataIn, Rd, Wr, createdump, clk, rst
+					//	Outputs
+					output reg [15:0] DataOut;
+					output reg        Done;
+					output reg        Stall;
+					output reg        CacheHit;
+					output reg        err;
    );
    
-	input [15:0] Addr;
-	input [15:0] DataIn;
-	input        Rd;
-	input        Wr;
-	input        createdump;
-	input        clk;
-	input        rst;
-
-	output reg [15:0] DataOut;
-	output reg        Done;
-	output reg        Stall;
-	output reg        CacheHit;
-	output reg        err;
-
-	// extra signals required for the connection between modules
 	wire [15:0] data, dFm, dTm, data1, data2, mem_addr;
 	wire [7:0] index;
 	wire [4:0] tag1, tag2, tag_in;
@@ -34,23 +26,20 @@ module mem_system(/*AUTOARG*/
 
 	assign index = Addr[10:3];
 
-	// ouptut register intermediate values
 	wire [15:0] DataOut_i;
 	wire Done_i, Stall_i, CacheHit_i, err_i;
 
-
-   /* data_mem = 1, inst_mem = 0 *
-    * needed for cache parameter */
    parameter memtype = 0;
 
-   cache #(0 + memtype) c0(// Outputs
+   cache #(0 + memtype) c0(
+					// 	Outputs
                      .tag_out              (tag1),
                      .data_out             (data1),
                      .hit                  (hit1),
                      .dirty                (dirty1),
                      .valid                (valid1),
                      .err                  (cacheErr1),
-                     // Inputs
+                    // 	Inputs
                      .enable               (en1),
                      .clk                  (clk),
                      .rst                  (rst),
@@ -63,14 +52,15 @@ module mem_system(/*AUTOARG*/
                      .write                (write),
                      .valid_in             (valid_in));
 
-   cache #(2 + memtype) c1(// Outputs
+   cache #(2 + memtype) c1(
+					// 	Outputs
                      .tag_out              (tag2),
                      .data_out             (data2),
                      .hit                  (hit2),
                      .dirty                (dirty2),
                      .valid                (valid2),
                      .err                  (cacheErr2),
-                     // Inputs
+                    // 	Inputs
                      .enable               (en2),
                      .clk                  (clk),
                      .rst                  (rst),
@@ -83,12 +73,13 @@ module mem_system(/*AUTOARG*/
                      .write                (write),
                      .valid_in             (valid_in));
 
-   four_bank_mem mem(// Outputs
+   four_bank_mem mem(
+					// 	Outputs
                      .data_out          (dFm),
                      .stall             (memStall),
                      .busy              (busy),
                      .err               (memErr),
-                     // Inputs
+                    //	Inputs
                      .clk               (clk),
                      .rst               (rst),
                      .createdump        (createdump),
@@ -99,7 +90,7 @@ module mem_system(/*AUTOARG*/
    
 	//FSM 
 	twoWay_FSM iFSM(     
-			  //inputs 
+			  //	Inputs 
 			  .clk(clk),
               .rst(rst),
 			  .data1(data1),
@@ -118,7 +109,8 @@ module mem_system(/*AUTOARG*/
               .ld(Rd),
 			  .st(Wr),
               .memStall(memStall),
-			  //outputs
+			  
+			  //	Outputs
               .en1(en1),
 			  .en2(en2),
 			  .cmp(cmp),
@@ -134,9 +126,9 @@ module mem_system(/*AUTOARG*/
               .offset_in(offset_in),      
               .data_out(DataOut_i),
 			  .stall(Stall_i),
-              .cache_hit(CacheHit_i)
-					);
-   	// assigning the outputs 
+              .cache_hit(CacheHit_i));
+			  
+   	// Assigning Outputs 
 	always @(*) begin
 		case (1'bx)
 			Done_i: Done = Done_i;
@@ -155,8 +147,4 @@ module mem_system(/*AUTOARG*/
 	end
 	
 endmodule
-
-   
-
-
 // DUMMY LINE FOR REV CONTROL :9:
