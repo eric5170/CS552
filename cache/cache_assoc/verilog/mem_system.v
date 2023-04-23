@@ -137,13 +137,22 @@ module mem_system(/*AUTOARG*/
               .cache_hit(CacheHit_i)
 					);
    	// assigning the outputs 
-	always @(*)	begin
-		Done = Done_i;
-		Stall = Stall_i;
-		CacheHit = CacheHit_i;
-		DataOut = DataOut_i;
-	end	
-	
+	always @(*) begin
+		case (1'bx)
+			Done_i: Done = Done_i;
+			Stall_i: Stall = Stall_i;
+			err_i: err = err_i;
+			CacheHit_i: CacheHit = CacheHit_i;
+			DataOut_i: DataOut = DataOut_i;
+			default: begin
+				Done = Done_i;
+				 Stall = Stall_i;
+				 err = err_i;
+				CacheHit = CacheHit_i;
+				 DataOut = DataOut_i;
+			end
+		endcase
+	end
 	
 endmodule
 
