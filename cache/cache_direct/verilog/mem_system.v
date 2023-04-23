@@ -1,28 +1,21 @@
-/* $Author: karu $ */
-/* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
-/* $Rev: 77 $ */
-
 `default_nettype none
-module mem_system(/*AUTOARG*/
-   // Outputs
-   DataOut, Done, Stall, CacheHit, err,
-   // Inputs
-   Addr, DataIn, Rd, Wr, createdump, clk, rst
+module mem_system(
+					//	Inputs
+					input wire [15:0] Addr;
+					input wire [15:0] DataIn;
+					input wire        Rd;
+					input wire        Wr;
+					input wire        createdump;
+					input wire        clk;
+					input wire        rst;
+
+					//	Outputs
+					output reg [15:0] DataOut;
+					output reg        Done;
+					output reg        Stall;
+					output reg        CacheHit;
+					output reg        err;
    );
-   
-    input wire [15:0] Addr;
-    input wire [15:0] DataIn;
-    input wire        Rd;
-    input wire        Wr;
-    input wire        createdump;
-    input wire        clk;
-    input wire        rst;
-   
-    output reg [15:0] DataOut;
-    output reg        Done;
-    output reg        Stall;
-    output reg        CacheHit;
-    output reg        err;
 	
     // other custom signals needed
     wire [15:0] data_out, data_in, dFm, dTm, mem_addr;
