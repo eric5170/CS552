@@ -1,7 +1,9 @@
 /*
    CS/ECE 552 Spring '23
-  
+   Authors: Yeon Jae Cho and Seth Thao 
+   Group: 18
    Filename        : execute.v
+   
    Description     : This is the module for the ALU execution.
 */
 module execute (ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl);
@@ -28,9 +30,10 @@ module execute (ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl)
 	assign ANDN_f = |(ALU_Op ^ ANDN);
 	assign carryIn = ~(SLT_f & SUB_f & SLE_f);
 	
-	mux2_1 INV_A_MUX[15:0] (.out(invA), .inputA(1), .inputB(0), .sel(SUB_f));
-	mux2_1 INV_B_MUX[15:0] (.out(invB), .inputA(1), .inputB(0), .sel(ANDN_f & SLT_f & SLE_f));
+	mux2_1 INV_A_MUX (.out(invA), .inputA(1), .inputB(0), .sel(SUB_f));
+	mux2_1 INV_B_MUX (.out(invB), .inputA(1), .inputB(0), .sel(ANDN_f & SLT_f & SLE_f));
 	
+	//instantiate the alu module 
 	alu_optimal ALU (.opcode(ALU_Op), .inA(rd_data1), .inB(muxOutput), .Cin(carryIn),
 	.invA(invA), .invB(invB), .sign(1'b1), .zero(zero), .ofl(ofl), .aluOut(ALU_res));
 	

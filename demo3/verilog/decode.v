@@ -1,7 +1,10 @@
 /*
    CS/ECE 552 Spring '23
-  
+    
+   Authors: Yeon Jae Cho and Seth Thao 
+   Group: 18
    Filename        : decode.v
+   
    Description     : This is the module for the overall decode stage of the processor.
 */
 module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNOP, isJAL, isJR,  
@@ -44,23 +47,24 @@ module decode (clk,	rst, instr, currPC, stall, new_addr, writeData, isHalt, isNO
 	 * control signals:
 	 *  1. isHalt
 	 *  2. isNOP
-	 *  3. isType
-	 *  4. isJAL 
-	 *  5. isJR 
-	 *  6. isJump
-	 *  7. isBranch
-	 *  8. isMemToReg
-	 *  9. isMemRead
-	 *  10. ALU_Op
-	 *  11. isMemWrite
-	 *  12. ALU_src
-	 *  13. isRegWrite
+	 *  3. isJAL
+	 *  4. isJR 
+	 *  5. isJump 
+	 *  6. isBranch
+	 *  7. isMemToReg
+	 *  8. isMemRead
+	 *  9. ALU_Op
+	 *  10. isMemWrite
+	 *  11. ALU_src
+	 *  12. isRegWrite
 	 */
 	 
 	control iCtrl(.instr(control_instr), .isHalt(isHalt), .isNOP(isNOP), .isJAL(isJAL), 
 	  .isJR(isJR),.isJump(isJump), .isBranch(isBranch), .isMemToReg(isMemToReg), 
 	 .isMemRead(isMemRead), .ALUop(ALU_Op),.isMemWrite(isMemWrite), .ALU_src(ALU_src), .isRegWrite(isRegWrite));
 
+	// module for initializing the instruction types from the instructions
+	// created because of the slow processor for the original code. 
 	instr_type iType(.instr(instr), .isType(isType));
 
 	// decode instruction to ports 

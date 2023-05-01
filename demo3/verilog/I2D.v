@@ -1,7 +1,9 @@
 /*
    CS/ECE 552 Spring '23
-  
+   Authors: Yeon Jae Cho and Seth Thao 
+   Group: 18
    Filename        : I2D.v
+   
    Description     : This is the module for Instruction Fetch to Decode Pipeline Logic.
 					 
 */
