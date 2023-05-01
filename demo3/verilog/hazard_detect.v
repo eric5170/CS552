@@ -6,23 +6,38 @@
    
    Description     : This is the module for hazard_detection logic depending on the number of register being read.
 */
-module hazard_detect(		instr,
-                            writeRegSel_DX, 
-                            writeRegSel_EM,
-                            readRegSel1, 
-                            readRegSel2, 
-                            isRegWrite_DX,
-                            isRegWrite_EM,
-                            stall
-                            );
+module hazard_detect(		
+					input wire [15:0] instr,
 
-    input wire [15:0] instr;
-    input wire [2:0] writeRegSel_DX, writeRegSel_EM, readRegSel1, readRegSel2;
-    input wire isRegWrite_DX, isRegWrite_EM;
-    output wirestall;
+                    input wire [2:0] writeRegSel_DX, 
+					input wire [2:0] writeRegSel_EM,
+                    input wire [2:0] writeRegSel_MWB, 
+					input wire [2:0] readRegSel1, 
+					input wire [2:0] readRegSel2, 
+					
+					input wire isRegWrite_DX,
+					input wire isRegWrite_EM,
+					input wire isRegWrite_MWB,
+					
+					input wire writeR7_DX,
+					input wire writeR7_EM,
+					input wire memRead_DX,
+					input wire memRead_EM,
+					
+					output wire wirestall,
+					output wire r1_hazard,
+					output wire r2_hazard,
+                            );
+	
+	localparam BEQZ 	=	5'b01100;
+	localparam BNEZ 	=	5'b01101;
+	localparam BLTZ 	=	5'b01110;
+	localparam BGEZ 	=	5'b01111;
+	localparam JR	 	=	5'b00101;
+	localparam JALR 	=	5'b00111;
 	
 	wire [1:0] num;
-    reg reg1, reg2;
+    reg reg1, reg2, isJump;
     
 	// instantiate module to get number of registers read
     regRead iregRead(.instr(instr),	.num(num));
@@ -52,10 +67,42 @@ module hazard_detect(		instr,
         endcase
     end
 	
+	always@(*) begin
+        case(instruction[15:11])
+            BEQZ: begin
+			branch_jump = 1;
+			end
+            BNEZ: 
+			branch_jump = 1;  
+			end
+            BLTZ: 
+			branch_jump = 1;  
+			end
+            BGEZ: 
+			branch_jump = 1;  
+			end
+            JR: 
+			branch_jump = 1;  
+			end
+            JALR: 
+			branch_jump = 1; 
+			end
+            default: begin
+			branch_jump = 0;
+			end
+			
+        endcase
+    end
+	
+	assign r1_hazard = reg1;
+	assign r2_hazard = reg2;
+	
 	// stall logic
-    assign stall = (( reg1 & (readRegSel1 == writeRegSel_DX) & (isRegWrite_DX)) 
-	| (reg1 & (readRegSel1 == writeRegSel_EM) & (isRegWrite_EM))
-	| (reg2 & (readRegSel2 == writeRegSel_DX) & (isRegWrite_DX))
-	| (reg2 & (readRegSel2 == writeRegSel_EM) & (isRegWrite_EM)));
+    assign wirestall = (
+	(reg1 & (readRegSel1 == writeRegSel_DX) & isRegWrite_DX & memRead_DX)	| 
+	(reg1 & (readRegSel1 == writeRegSel_EM) & isRegWrite_EM & branch_jump)	|
+	(reg2 & (readRegSel2 == writeRegSel_DX) & isRegWrite_DX & memRead_DX)	| 
+	(reg2 & (readRegSel2 == writeRegSel_EM) & isRegWrite_EM & branch_jump)
+	);
 	
 endmodule
