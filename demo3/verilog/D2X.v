@@ -1,41 +1,18 @@
 /*
    CS/ECE 552 Spring '23
-  
+   
+   Authors: Yeon Jae Cho and Seth Thao 
+   Group: 18
    Filename        : D2X.v
+   
    Description     : This is the module for Decode to Execute Pipeline Logic.
 					 It uses the registers to pass out the values.
 */
-module D2X(
-            clk,
-            rst,
-            en,
-            PC_2,
-            isHalt,
-            isJAL,
-            isMemToReg,
-            isMemRead,
-            isMemWrite,
-            ALU_src,
-            isRegWrite,
-            ALUop,
-            immed,
-            readData1,
-            readData2,
-            writeRegSel,
-            PC_2_DX,
-            isHalt_DX,
-            isJAL_DX,
-            isMemToReg_DX,
-            isMemRead_DX,
-            isMemWrite_DX,
-            ALU_src_DX,
-            isRegWrite_DX,
-            ALUop_DX,
-            immed_DX,
-            readData1_DX,
-            readData2_DX,
-            writeRegSel_DX
-            );
+module D2X(clk, rst, en, PC_2, isHalt, isJAL, isMemToReg, isMemRead, isMemWrite,
+           ALU_src, isRegWrite, ALUop, immed, readData1, readData2, writeRegSel,
+           PC_2_DX, isHalt_DX, isJAL_DX, isMemToReg_DX, isMemRead_DX, isMemWrite_DX,
+           ALU_src_DX, isRegWrite_DX, ALUop_DX, immed_DX, readData1_DX, readData2_DX,
+           writeRegSel_DX);
 
     input wire [15:0] PC_2, immed, readData1, readData2;
 	input wire[3:0] ALUop;
