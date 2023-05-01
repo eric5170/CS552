@@ -1,13 +1,22 @@
 /*
-   CS/ECE 552 Spring '22
+   CS/ECE 552 Spring '23
   
    Filename        : wb.v
-   Description     : This is the module for the overall Write Back stage of the processor.
+   Description     : This is the module for writeback logic.
 */
-`default_nettype none
-module wb (/* TODO: Add appropriate inputs/outputs for your WB stage here*/);
+module wb (readData,	isMemToReg, aluResult, nextPC, isJAL, writeData, writeRegSel, writeReg);
 
-   // TODO: Your code here
-   
+	input wire [15:0] readData, aluResult, nextPC;
+	input wire[2:0] writeRegSel;
+	input wire isMemToReg, isJAL;
+	
+	output wire [15:0] writeData;
+	output wire [2:0] writeReg;
+	wire [15:0] mem2reg_out;
+	
+	mux2_1 MEM2REG_MUX[15:0] (.out(mem2reg_out), .inputA(aluResult), .inputB(readData), .sel(isMemToReg));
+	mux2_1 WRITE_DATA_MUX[15:0] (.out(writeData), .inputA(mem2reg_out), .inputB(nextPC), .sel(isJAL));
+	
+	assign writeReg = writeRegSel;
+	
 endmodule
-`default_nettype wire
