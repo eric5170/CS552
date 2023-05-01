@@ -2,7 +2,9 @@ TODOs:
 Files to fix: 
 D2X - implement more signals
 M2W - implment more signals
-fwd_unit: create
+hazard_detect - more signals
+
+fwd_unit: create / edit variables
 
 
 1)	 Jae:  IF/ID, ID/EX	GOOD
