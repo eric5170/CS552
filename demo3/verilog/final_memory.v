@@ -54,16 +54,16 @@
 `default_nettype none
 module final_memory (
     output wire [15:0] data_out,
-    output wire        err,
-    input wire  [15:0] data_in,
-    input wire  [12:0] addr,
-    input wire         wr,
-    input wire         rd,
-    input wire         enable,
-    input wire         create_dump,
-    input wire   [1:0] bank_id,
-    input wire         clk,
-    input wire         rst
+    output wire       err,
+    input wire [15:0] data_in,
+    input wire [12:0] addr,
+    input wire        wr,
+    input wire        rd,
+    input wire        enable,
+    input wire        create_dump,
+    input wire [1:0]  bank_id,
+    input wire        clk,
+    input wire        rst
 );
 
     reg     [7:0]  mem [0:16384];

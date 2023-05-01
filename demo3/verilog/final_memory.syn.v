@@ -55,16 +55,16 @@
 `default_nettype none
 module final_memory (
     output wire [15:0] data_out,
-    output wire        err,
-    input wire  [15:0] data_in,
-    input wire  [12:0] addr,
-    input wire         wr,
-    input wire         rd,
-    input wire         enable,
-    input wire         create_dump,
-    input wire   [1:0] bank_id,
-    input wire         clk,
-    input wire         rst
+    output wire       err,
+    input wire [15:0] data_in,
+    input wire [12:0] addr,
+    input wire        wr,
+    input wire        rd,
+    input wire        enable,
+    input wire        create_dump,
+    input wire [1:0]  bank_id,
+    input wire        clk,
+    input wire        rst
 );
 
     reg     [7:0]  mem [0:32];
@@ -113,7 +113,7 @@ module final_memory (
 
     always @(posedge clk) begin
       if (rst) begin
-        /* 
+         /* 
         if (!loaded) begin
            for (i = 0; i  <= 16384; i=i+1) begin
               mem[i] = 0;
@@ -126,7 +126,7 @@ module final_memory (
           endcase
           loaded = 1;
         end
-        */
+          */
       end
       else begin
         if (wr1) begin
@@ -135,7 +135,7 @@ module final_memory (
           //if ({1'b0, (addr_1c<<1)+1} > largest) largest = (addr_1c<<1)+1;  
            // avoid negative numbers
         end
-        /*
+         /*
         if (create_dump) begin
           case (bank_id)
             0: mcd = $fopen("dumpfile_0", "w");
@@ -151,10 +151,9 @@ module final_memory (
           $fclose(largeout);
           $fclose(mcd);
         end
-        */
+          */
       end
     end
-
 
 endmodule  // final_memory
 `default_nettype wire

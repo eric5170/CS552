@@ -1,6 +1,7 @@
 /* $Author: karu $ */
-/* $LastChangedDate: 2009-03-04 23:09:45 -0600 (Wed, 04 Mar 2009) $ */
-/* $Rev: 45 $ */
+/* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
+/* $Rev: 77 $ */
+
 // clock and reset generator
 // CS/ECE 552
 // Andy Phelps (TA)
