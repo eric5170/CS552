@@ -7,14 +7,30 @@
    Description     : This is the module for the overall fetch stage of the processor.
 */
 `default_nettype none
-module fetch (clk, rst, currPC, nextPC, instr);
+module fetch (clk, rst, currPC, nextPC, instr, stall_fetch, stall_data, flush, err);
 
-	input wire clk, rst;
+	input wire clk, rst, stall_data, flush;
 	input  wire [15:0] currPC;
 	output wire [15:0] nextPC, instr;
-	  
-	wire [15:0] PC_2 , new_instr, stall_PC;
+	output wire stall_fetch, err; 
 	
+	wire [15:0] PC_2 , new_instr, stall_PC;
+	wire done, flush_i;
+	
+	localparam memtype = 0;
+	
+	mem_system_hier #(memtype) INSTR_MEM(
+				.Addr(currPC),
+				.DataIn(16'h0),
+				.Rd(1'b1),
+				.Wr(1'b0),
+				.createdump(1'b0),
+				.DataOut(new_instr),
+				.Done(done), 
+				.Stall(stall_fetch), 
+				.CacheHit(), 
+				.err(err)
+);
 	assign stall_PC = 16'h0800;
 	
 	// instruction from memory using memory2c
@@ -24,11 +40,12 @@ module fetch (clk, rst, currPC, nextPC, instr);
 	cla16b iADD(.sum(PC_2), .cOut(), .inA(currPC), .inB(16'h2),.cIn(1'b0));
 	
 	// next PC logic
-	assign nextPC = rst ? currPC : PC_2;
+	assign nextPC = (rst | stall_data | ~done | flush_i) ? currPC : PC_2;
 	
 	
 	// stall logic
-	assign instr = rst ? stall_PC : new_instr;
+	assign instr = (rst | ~done | flush_i) ? 16'h0800 : new_instr;
+	dffe iFlush(.en(flush | ~stall_fetch), .q(flush_i), .d(flush), .clk(clk), .rst(rst));
 
 endmodule
 `default_nettype wire
