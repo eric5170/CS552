@@ -1,4 +1,9 @@
 TODOs:
+Files to fix: 
+D2X - implement more signals
+M2W - implment more signals
+fwd_unit: create
+
 
 1)	 Jae:  IF/ID, ID/EX	GOOD
 	 Seth: EX/MEM, MEM/WB	GOOD
