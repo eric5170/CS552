@@ -6,22 +6,22 @@
    
    Description     : This is the module for Memory to WriteBack Piepline Logic.
 */
-module M2W(clk,	rst, en, isHalt, rFm, ALURes, PC_2, isJAL, isMemToReg, isRegWrite,
-		   writeRegSel, rFm_MW, ALURes_MW, PC_2_MW, isJAL_MW, isMemToReg_MW,
-		   isRegWrite_MW, writeRegSel_MW, isHalt_MW);
+module M2W(clk,	rst, err, en, isHalt, rFm, ALURes, PC_2, isJAL, isMemToReg, isRegWrite,
+		   writeRegSel, memRead_XM, rFm_MW, ALURes_MW, PC_2_MW, isJAL_MW, isMemToReg_MW,
+		   isRegWrite_MW, writeRegSel_MW, isHalt_MW, data_en, err_MW, memRead_MW);
 
 	input wire [15:0] PC_2, ALURes, rFm;
 	input wire [2:0] writeRegSel;
-	input wire isJAL, isMemToReg, isRegWrite, clk, rst, en, isHalt;
+	input wire isJAL, isMemToReg, isRegWrite, clk, rst, en, isHalt, err, memRead_XM, data_en ;
 
 	output wire [15:0] PC_2_MW, ALURes_MW, rFm_MW;
 	output wire [2:0] writeRegSel_MW;
-	output wire isJAL_MW, isMemToReg_MW, isRegWrite_MW, isHalt_MW;
+	output wire isJAL_MW, isMemToReg_MW, isRegWrite_MW, isHalt_MW, err_MW,memRead_MW;
 	
 	//PC_2 Memory --> WriteBack
 	register16b PC_2_reg(.en(en), .clk(clk), .rst(rst), .data_in(PC_2), .state(PC_2_MW));
 	//rFm Memory --> WriteBack
-	register16b rFm_reg(.en(en), .clk(clk), .rst(rst), .data_in(rFm), .state(rFm_MW));
+	register16b rFm_reg(.en(data_en), .clk(clk), .rst(rst), .data_in(rFm), .state(rFm_MW));
 	//ALURes Memory --> WriteBack
 	register16b ALURes_reg(.en(en), .clk(clk), .rst(rst), .data_in(ALURes), .state(ALURes_MW));
 	// writeRegSel Memory --> WriteBack
@@ -32,6 +32,8 @@ module M2W(clk,	rst, en, isHalt, rFm, ALURes, PC_2, isJAL, isMemToReg, isRegWrit
 	register1b isRegWrite_reg(.en(en), .clk(clk), .rst(rst), .data_in(isRegWrite), .state(isRegWrite_MW));
 	register1b isNotHalt_reg(.en(en), .clk(clk), .rst(rst), .data_in(isHalt), .state(isHalt_MW));
 	register1b isJAL_reg(.en(en), .clk(clk), .rst(rst), .data_in(isJAL), .state(isJAL_MW));
+	register_1b err_reg(.en(en), .clk(clk), .rst(rst), .data_in(err), .state(err_MW));
+	register_1b memRead_reg(.en(en), .clk(clk), .rst(rst), .data_in(memRead_XM), .state(memRead_MW));
 
 	
 
