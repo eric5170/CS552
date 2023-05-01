@@ -1,6 +1,8 @@
 /*
    CS/ECE 552 Spring '23
-  
+   Authors: Yeon Jae Cho and Seth Thao 
+   Group: 18
+   
    Filename        : memory.v
    Description     : This module contains all components in the Memory stage of the 
                      processor.

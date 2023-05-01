@@ -73,8 +73,8 @@ module proc (/*AUTOARG*/
 	wire [15:0] stall_PC;
 	assign stall_PC = 16'h0800;
 	
-	mux2_1 INSTR_IN_MUX([15:0] (.out(instr_in), .inputA(instr), .inputB(stall_PC), .sel(flush));
-	mux2_1 PC_TEST_MUX [15:0] (.out(PC_test), .inputA(PC_2), .inputB(PC_next), .sel(flush));
+	mux2_1 INSTR_IN_MUX[15:0](.out(instr_in), .inputA(instr), .inputB(stall_PC), .sel(flush));
+	mux2_1 PC_TEST_MUX [15:0](.out(PC_test), .inputA(PC_2), .inputB(PC_next), .sel(flush));
 	
 	
 	// Fetch to Decode
