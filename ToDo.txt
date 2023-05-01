@@ -1,8 +1,10 @@
 TODOs:
 Files to fix: 
-D2X - implement more signals
-M2W - implment more signals
-hazard_detect - more signals
+D2X - implement more signals GOOD
+M2W - implment more signals GOOD
+hazard_detect - more signals, edit variables
+fetch - implement more signals
+proc - finalize it 
 
 fwd_unit: create / edit variables
 
