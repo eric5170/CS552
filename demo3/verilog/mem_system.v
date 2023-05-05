@@ -28,7 +28,7 @@ module mem_system(/*AUTOARG*/
 	wire [7:0] index;
 	wire [4:0] tag1, tag2, tag_in;
 	wire [3:0] busy;
-	wire [2:0] offset_in;
+	
 	wire hit, hit1, hit2, en1, en2, dirty1, dirty2, memStall, mem_rd, mem_wr, memErr, cacheErr1, 
 	cacheErr2, valid1, valid2, valid_in, cmp; 
 
@@ -37,6 +37,16 @@ module mem_system(/*AUTOARG*/
 	// ouptut register intermediate values
 	wire [15:0] DataOut_i;
 	wire Done_i, Stall_i, CacheHit_i, err_i;
+
+	wire ld, ld_or_st;
+    wire [4:0] tag;
+    wire [7:0] index_in;
+    wire [2:0] offset, offset_in;
+    wire mem_stall;
+
+	assign tag = Addr[15:11];
+	assign offset = Addr[2:0];
+	assign err_i = memErr | cacheErr1 | cacheErr2;
 
 
 	/* data_mem = 1, inst_mem = 0 *
@@ -56,7 +66,7 @@ module mem_system(/*AUTOARG*/
                      .rst                  (rst),
                      .createdump           (createdump),
                      .tag_in               (tag_in),
-                     .index                (index),
+                     .index                (index_in),
                      .offset               (offset_in),
                      .data_in              (data),
                      .comp                 (cmp),
@@ -76,7 +86,7 @@ module mem_system(/*AUTOARG*/
                      .rst                  (rst),
                      .createdump           (createdump),
                      .tag_in               (tag_in),
-                     .index                (index),
+                     .index                (index_in),
                      .offset               (offset_in),
                      .data_in              (data),
                      .comp                 (cmp),
@@ -133,6 +143,7 @@ module mem_system(/*AUTOARG*/
               .tag_in(tag_in),
               .offset_in(offset_in),      
               .data_out(DataOut_i),
+			  .index_in(index_in),
 			  .stall(Stall_i),
               .cache_hit(CacheHit_i)
 					);

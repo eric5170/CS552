@@ -7,19 +7,53 @@
    Description     : This module contains all components in the Memory stage of the 
                      processor.
 */
+module memory (
+						clk,
+						rst,
+						isHalt,
+						isMemWrite,
+						ALU_res,
+						writeData,
+						isMemRead,
+						rd_data,
+						stall,
+						done,
+						err			
+					);
 
-module memory (clk, rst, isHalt, isMemWrite, ALU_res, writeData, isMemRead, rd_data);
+input wire clk, rst;
+input wire isMemWrite, isMemRead;			// Control signals: ST / LD
+input wire [15:0] writeData;				// Data written to mem
+input wire [15:0] ALU_res;			// Calculated address
+input wire isHalt;
 
-	input wire clk, rst, isHalt, isMemWrite, isMemRead;
-	input wire [15:0] writeData, ALU_res;				
-	output wire[15:0] rd_data;	
+output wire [15:0] rd_data;				// Data read from mem
+output wire stall;
+output wire done;
+output wire err;
 
-	wire memRoW;
-	assign memRoW = isMemRead | isMemWrite;
+wire done_i;
+wire mem_row;
+assign mem_row = isMemRead | isMemWrite;
 
 
-	memory2c DATA_MEM(.data_out(rd_data), .data_in(writeData), .addr(ALU_res), .enable(memRoW),
-					.wr(isMemWrite), .createdump(isHalt), .clk(clk), .rst(rst));
+/* data_mem = 1, inst_mem = 0 *
+* needed for cache parameter */
+parameter memtype = 1;
+
+mem_system_hier #(memtype) DATA_MEM(
+				.Addr(ALU_res),
+				.DataIn(writeData),
+				.Rd(isMemRead),
+				.Wr(isMemWrite),
+				.createdump(isHalt),
+				.DataOut(rd_data),
+				.Done(done), 
+				.Stall(stall),
+				.CacheHit()
+);
+
+assign done = done_i;
 
    
 endmodule

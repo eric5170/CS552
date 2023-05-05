@@ -11,22 +11,21 @@ module hazard_detect(
 
                     input wire [2:0] writeRegSel_DX, 
 					input wire [2:0] writeRegSel_EM,
-                    input wire [2:0] writeRegSel_MWB, 
 					input wire [2:0] readRegSel1, 
 					input wire [2:0] readRegSel2, 
 					
 					input wire isRegWrite_DX,
 					input wire isRegWrite_EM,
-					input wire isRegWrite_MWB,
+					input wire isRegWrite_MW,
 					
-					input wire writeR7_DX,
-					input wire writeR7_EM,
+					input wire isJAL_DX,
+					input wire isJAL_EM,
 					input wire memRead_DX,
 					input wire memRead_EM,
 					
-					output wire wirestall,
+					output wire stall,
 					output wire r1_hazard,
-					output wire r2_hazard,
+					output wire r2_hazard
                             );
 	
 	localparam BEQZ 	=	5'b01100;
@@ -68,27 +67,27 @@ module hazard_detect(
     end
 	
 	always@(*) begin
-        case(instruction[15:11])
+        case(instr[15:11])
             BEQZ: begin
-			branch_jump = 1;
+				isJump = 1;
 			end
-            BNEZ: 
-			branch_jump = 1;  
+            BNEZ: begin
+				isJump = 1;  
 			end
-            BLTZ: 
-			branch_jump = 1;  
+            BLTZ: begin
+				isJump = 1;  
 			end
-            BGEZ: 
-			branch_jump = 1;  
+            BGEZ: begin
+				isJump = 1;  
 			end
-            JR: 
-			branch_jump = 1;  
+            JR: begin
+				isJump = 1;  
 			end
-            JALR: 
-			branch_jump = 1; 
+            JALR: begin
+				isJump = 1; 
 			end
             default: begin
-			branch_jump = 0;
+				isJump = 0;
 			end
 			
         endcase
@@ -98,11 +97,18 @@ module hazard_detect(
 	assign r2_hazard = reg2;
 	
 	// stall logic
-    assign wirestall = (
-	(reg1 & (readRegSel1 == writeRegSel_DX) & isRegWrite_DX & memRead_DX)	| 
-	(reg1 & (readRegSel1 == writeRegSel_EM) & isRegWrite_EM & branch_jump)	|
-	(reg2 & (readRegSel2 == writeRegSel_DX) & isRegWrite_DX & memRead_DX)	| 
-	(reg2 & (readRegSel2 == writeRegSel_EM) & isRegWrite_EM & branch_jump)
-	);
-	
+   // assign stall = (
+//	(reg1 & (readRegSel1 == writeRegSel_DX) & isRegWrite_DX & memRead_DX)	| 
+//	(reg1 & (readRegSel1 == writeRegSel_EM) & isRegWrite_EM & isJump)	|
+//	(reg2 & (readRegSel2 == writeRegSel_DX) & isRegWrite_DX & memRead_DX)	| 
+//	(reg2 & (readRegSel2 == writeRegSel_EM) & isRegWrite_EM & isJump)
+//	);
+	  assign stall = (
+	  (reg1 & (readRegSel1 == writeRegSel_DX) & (isRegWrite_DX) & memRead_DX) |
+	  (reg2 & (readRegSel2 == writeRegSel_DX) & (isRegWrite_DX) & memRead_DX) |
+	  (reg1 & (readRegSel1 == 3'h7 & isJAL_DX) & (isRegWrite_DX) & ~memRead_DX) |
+	  (reg2 & (readRegSel2 == 3'h7 & isJAL_DX) & (isRegWrite_DX) & ~memRead_DX) |
+	  (reg1 & (readRegSel1 == writeRegSel_EM) & (isRegWrite_EM) & isJump) |
+	  (reg2 & (readRegSel2 == writeRegSel_EM) & (isRegWrite_EM) & isJump)
+      );
 endmodule

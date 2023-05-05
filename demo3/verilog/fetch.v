@@ -28,8 +28,8 @@ module fetch (clk, rst, currPC, nextPC, instr, stall_fetch, stall_data, flush, e
 				.DataOut(new_instr),
 				.Done(done), 
 				.Stall(stall_fetch), 
-				.CacheHit(), 
-				.err(err)
+				.CacheHit()
+				
 );
 	assign stall_PC = 16'h0800;
 	
@@ -45,7 +45,7 @@ module fetch (clk, rst, currPC, nextPC, instr, stall_fetch, stall_data, flush, e
 	
 	// stall logic
 	assign instr = (rst | ~done | flush_i) ? 16'h0800 : new_instr;
-	dffe iFlush(.en(flush | ~stall_fetch), .q(flush_i), .d(flush), .clk(clk), .rst(rst));
+	dff_en iFlush(.en(flush | ~stall_fetch), .q(flush_i), .d(flush), .clk(clk), .rst(rst));
 
 endmodule
 `default_nettype wire
