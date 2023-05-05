@@ -9,20 +9,20 @@
 					 It uses the registers to pass out the values.
 */
 module D2X(clk, rst, en, PC_2, isHalt, isJAL, isMemToReg, isMemRead, isMemWrite,
-           ALU_src, isRegWrite, ALUop, immed, readData1, readData2, writeRegSel, readRegSel1, readRegSel2, r1_hdu, r2_hdu,
+           ALU_src, isRegWrite, ALUop, immed, readData1, readData2, writeRegSel, readRegSel1, readRegSel2, r1_hazard, r2_hazard,
            PC_2_DX, isHalt_DX, isJAL_DX, isMemToReg_DX, isMemRead_DX, isMemWrite_DX,
            ALU_src_DX, isRegWrite_DX, ALUop_DX, immed_DX, readData1_DX, readData2_DX,
-           writeRegSel_DX, readRegSel1_DX, readRegSel2_DX, r1_hdu_DX, r2_hdu_DX);
+           writeRegSel_DX, readRegSel1_DX, readRegSel2_DX, r1_hazard_DX, r2_hazard_DX);
 
     input wire [15:0] PC_2, immed, readData1, readData2;
 	input wire[3:0] ALUop;
     input wire[2:0] writeRegSel, readRegSel1, readRegSel2;
-    input wire en, clk, rst, isHalt, isJAL, isMemToReg, isMemRead, isMemWrite, ALU_src, isRegWrite, r1_hdu, r2_hdu;
+    input wire en, clk, rst, isHalt, isJAL, isMemToReg, isMemRead, isMemWrite, ALU_src, isRegWrite, r1_hazard, r2_hazard;
     
     output wire[15:0] PC_2_DX, immed_DX, readData1_DX, readData2_DX ;
 	output wire[3:0] ALUop_DX;
 	output wire[2:0] writeRegSel_DX, readRegSel1_DX, readRegSel2_DX;
-    output wire isHalt_DX, isJAL_DX, isMemToReg_DX, isMemRead_DX, isMemWrite_DX, ALU_src_DX, isRegWrite_DX, r1_hdu_DX, r2_hdu_DX;
+    output wire isHalt_DX, isJAL_DX, isMemToReg_DX, isMemRead_DX, isMemWrite_DX, ALU_src_DX, isRegWrite_DX, r1_hazard_DX, r2_hazard_DX;
  
   
 	// PC + 2 Decode --> Execute
@@ -40,8 +40,8 @@ module D2X(clk, rst, en, PC_2, isHalt, isJAL, isMemToReg, isMemRead, isMemWrite,
 	// writeRegSel Decode --> Execute
     register3b writeRegSel_reg(.en(en), .clk(clk), .rst(rst), .data_in(writeRegSel), .state(writeRegSel_DX));
 	// readRegSel Decode --> Execute
-	register_3b readRegSel1_REG(.en(en), .clk(clk), .rst(rst), .data_in(readRegSel1), .state(readRegSel1_DX)); 
-    register_3b readRegSel2_REG(.en(en), .clk(clk), .rst(rst), .data_in(readRegSel2), .state(readRegSel2_DX));
+	register3b readRegSel1_REG(.en(en), .clk(clk), .rst(rst), .data_in(readRegSel1), .state(readRegSel1_DX)); 
+    register3b readRegSel2_REG(.en(en), .clk(clk), .rst(rst), .data_in(readRegSel2), .state(readRegSel2_DX));
 	// control signals Decode --> Execute
     register1b isHalt_reg(.en(en), .clk(clk), .rst(rst), .data_in(isHalt), .state(isHalt_DX));
     register1b isJAL_reg(.en(en), .clk(clk), .rst(rst), .data_in(isJAL), .state(isJAL_DX));
@@ -51,8 +51,8 @@ module D2X(clk, rst, en, PC_2, isHalt, isJAL, isMemToReg, isMemRead, isMemWrite,
     register1b ALU_src_reg(.en(en), .clk(clk), .rst(rst), .data_in(ALU_src), .state(ALU_src_DX));
     register1b isRegWrite_reg(.en(en), .clk(clk), .rst(rst), .data_in(isRegWrite), .state(isRegWrite_DX));
     // hazard detection unit signals
-	register_1b r1_hdu_REG(.en(en), .clk(clk), .rst(rst), .data_in(r1_hdu), .state(r1_hdu_DX));
-    register_1b r2_hdu_REG(.en(en), .clk(clk), .rst(rst), .data_in(r2_hdu), .state(r2_hdu_DX));
+	register1b r1_haz_REG(.en(en), .clk(clk), .rst(rst), .data_in(r1_hazard), .state(r1_hazard_DX));
+    register1b r2_haz_REG(.en(en), .clk(clk), .rst(rst), .data_in(r2_hazard), .state(r2_hazard_DX));
     
     
 

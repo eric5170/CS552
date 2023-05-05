@@ -30,9 +30,9 @@ module execute (ALU_src, ALU_Op,extOut, rd_data1, rd_data2,  ALU_res, zero, ofl)
 	assign ANDN_f = |(ALU_Op ^ ANDN);
 	assign carryIn = ~(SLT_f & SUB_f & SLE_f);
 	
-	mux2_1 INV_A_MUX (.out(invA), .inputA(1), .inputB(0), .sel(SUB_f));
-	mux2_1 INV_B_MUX (.out(invB), .inputA(1), .inputB(0), .sel(ANDN_f & SLT_f & SLE_f));
-	
+	mux2_1 INV_A_MUX (.out(invA), .inputA(1'b1), .inputB(1'b0), .sel(SUB_f));
+	mux2_1 INV_B_MUX (.out(invB), .inputA(1'b1), .inputB(1'b0), .sel(ANDN_f & SLT_f & SLE_f));
+ 	
 	//instantiate the alu module 
 	alu_optimal ALU (.opcode(ALU_Op), .inA(rd_data1), .inB(muxOutput), .Cin(carryIn),
 	.invA(invA), .invB(invB), .sign(1'b1), .zero(zero), .ofl(ofl), .aluOut(ALU_res));
