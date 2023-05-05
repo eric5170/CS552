@@ -5,11 +5,11 @@
    Filename        : wb.v
    Description     : This is the module for writeback logic.
 */
-module wb (readData,	isMemToReg, aluResult, nextPC, isJAL, writeData, writeRegSel, writeReg);
+module wb (readData, isMemToReg, aluResult, nextPC, isJAL, writeEn, writeData, writeRegSel, writeReg);
 
 	input wire [15:0] readData, aluResult, nextPC;
 	input wire[2:0] writeRegSel;
-	input wire isMemToReg, isJAL;
+	input wire isMemToReg, isJAL, writeEn;
 	
 	output wire [15:0] writeData;
 	output wire [2:0] writeReg;
